@@ -41,8 +41,9 @@ export default function MeDepartmentAssociations() {
       setLoading(true);
       try {
         const response = await fetch(
-          'https://sbce.ac.in/api/cse-depts?filters[Dept_name][$eq]=me&populate=Association_and_clubs'
+          `${process.env.NEXT_PUBLIC_STRAPI}/api/cse-depts?filters[Dept_name][$eq]=me&populate=Association_and_clubs`
         );
+
 
         if (!response.ok) {
           throw new Error(`API call failed: ${response.status}`);
@@ -69,7 +70,7 @@ export default function MeDepartmentAssociations() {
 
         // Fallback data
         setAssociations([
-          
+
 
         ]);
       } finally {
@@ -88,7 +89,7 @@ export default function MeDepartmentAssociations() {
         }
       `}</style>
 
-<header className="relative bg-gradient-to-b from-yellow-50 to-white">
+      <header className="relative bg-gradient-to-b from-yellow-50 to-white">
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 bg-yellow-900/10 pattern-diagonal-lines pattern-yellow-500/20 pattern-bg-white pattern-size-4" aria-hidden="true" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">

@@ -41,7 +41,7 @@ export default function EcEdpartmentAssociations() {
       setLoading(true);
       try {
         const response = await fetch(
-          'https://sbce.ac.in/api/cse-depts?filters[Dept_name][$eq]=ECE&populate=Association_and_clubs'
+          `${process.env.NEXT_PUBLIC_STRAPI}/api/cse-depts?filters[Dept_name][$eq]=ECE&populate=Association_and_clubs`
         );
 
         if (!response.ok) {

@@ -41,9 +41,9 @@ export default function ErdpartmentAssociations() {
       setLoading(true);
       try {
         const response = await fetch(
-          'https://sbce.ac.in/api/cse-depts?filters[Dept_name][$eq]=ER&populate=Association_and_clubs'
+          `${process.env.NEXT_PUBLIC_STRAPI}/api/cse-depts?filters[Dept_name][$eq]=ER&populate=Association_and_clubs`
         );
-
+  
         if (!response.ok) {
           throw new Error(`API call failed: ${response.status}`);
         }
