@@ -67,16 +67,16 @@ const Management = () => {
         <img className="line" src={"/assets/Line_2.png"} alt="Line separator" />
 
         {/* Vice Chairman */}
-        {/* <Person
-          name={managementData.Vice_chairman_name}
-          position="Vice-Chairman"
-          content={managementData.Vice_chairman_info}
-          pic={
-            managementData.Vice_chairman_image?.url
-              ? `${process.env.NEXT_PUBLIC_STRAPI}${managementData.Vice_chairman_image.url}`
-              : "/assets/images/DharmaRajan.png"
-          }
-        /> */}
+          {/* <Person
+            name={managementData.Vice_chairman_name}
+            position="Vice-Chairman"
+            content={managementData.Vice_chairman_info}
+            pic={
+              managementData.Vice_chairman_image?.url
+                ? `${process.env.NEXT_PUBLIC_STRAPI}${managementData.Vice_chairman_image.url}`
+                : "/assets/images/DharmaRajan.png"
+            }
+          /> */}
         <img className="line" src={"/assets/Line_2.png"} alt="Line separator" />
 
         {/* Secretary */}
