@@ -23,7 +23,7 @@ export default function AIMachineLearningPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             Program Educational Objectives (PEOs)
           </h3>
-          <ul className="space-y-3">
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">PEO1: </span>
               Graduates will possess strong logical, computing, and analytical reasoning skills, enabling them to excel as AI/ML Engineers, Robotics Engineers, Business Intelligence Developers, computer professionals, researchers, or entrepreneurs in their respective industries.
@@ -44,7 +44,7 @@ export default function AIMachineLearningPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             Program Specific Outcomes (PSOs)
           </h3>
-          <ul className="space-y-3">
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">PSO1: </span>
               Graduates of the program will leverage computational knowledge and algorithmic principles in Artificial Intelligence and Machine Learning to develop innovative AI-based applications that will provide optimal solutions to complex computational challenges.

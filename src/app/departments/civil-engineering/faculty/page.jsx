@@ -1,142 +1,162 @@
 "use client"
 
-import React from 'react'
-// import image1 from "@/assets/images/departments/cs_dept_img1.png"
-// import DepartmentNavbar from '@/components/departments/department_navbar'
-
+import React, { useState, useEffect } from 'react'
+import { Poppins } from 'next/font/google'
 import "../../department_style.css"
-
-
 import "./style.css"
 
-// import image from "@/assets/images/departments/faculty/cs/cs_f1.jpg"
+// Initialize Poppins font
+const poppins = Poppins({
+    weight: ['400', '500', '600', '700'],
+    subsets: ['latin'],
+    display: 'swap',
+})
 
-export default function ComputerScienceDepartmentFaculty() {
+export default function CivilDepartmentFaculty() {
+    const [faculty, setFaculty] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const faculty = [
-        ["civil_faculty_1.jpg", "Dr. Gouri Antherjanam", "Ph.D", "Professor & HoD", "Civil Engineering"],
-        ["civil_faculty_2.jpg", "Dr. Sivsankar S.", "Ph.D", "Professor", "Structural Engineering"],
-        ["civil_faculty_3.jpg", "Mr. Ashok Mathew", "M.Tech", "Assistant Professor", "Structural Engineering"],
-        ["civil_faculty_4.jpg", "Mr. Unnikrishnan S.", "M.Tech", "Assistant Professor", "Construction Engineering"],
-        ["civil_faculty_5.jpg", "Ms. Regi P. Mohan", "M.Tech", "Assistant Professor", "Environmental Geotechnology"],
-        ["civil_faculty_6.jpg", "Ms. Sobha Elizabeth Thomas", "M.Tech", "Assistant Professor", "Structural Engineering"],
-        ["civil_faculty_7.jpg", "Mr. Pradeep P", "M.Tech", "Assistant Professor", "Habitat Technology"],
-        ["civil_faculty_8.jpg", "Ms. Sreelekshmi S. (Leave)", "M.Tech", "Assistant Professor", "Transportation Engineering"],
-        ["civil_faculty_9.jpg", "Ms. Cinaya Tony", "M.Tech", "Assistant Professor", "Hydraulics Engineering"],
-        ["civil_faculty_10.jpg", "Ms. Ritzy R.", "M.Tech", "Assistant Professor", "Structural Engineering"],
-        ["civil_faculty_11.jpg", "Ms. Namitha Chandran", "M.Tech", "Assistant Professor", "Civil Engineering"],
-        ["civil_faculty_12.jpg", "Ms. Anusree Lal", "M.Tech", "Assistant Professor", "Structural Engineering"],
-        ["civil_faculty_13.jpg", "Mr. Sooraj S.", "M.Tech", "Assistant Professor", "Structural Engineering"],
-        ["aswathi.jpg", "Ms. Aswathy S. Kumar", "M.Tech", "Assistant Professor", "Structural Engineering"]
-    ];
-    
-      
+    useEffect(() => {
+        const fetchFaculty = async () => {
+            try {
+                const response = await fetch(
+                    `${process.env.NEXT_PUBLIC_STRAPI}/api/cse-depts?filters[Dept_name][$eq]=civil&populate[Faculty][populate]=Faculty_image`
+                );
 
-    return (
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch faculty data: ${response.status}`);
+                }
 
-        <div className="cs_department_faculty">
-
+                const data = await response.json();
+                console.log('API Response:', data);
 
 
-            {/* <div className="top_img_section"> */}
-            {/* <img src={image1.src} alt="image" /> */}
-            {/* </div> */}
+                if (data && data.data && data.data.length > 0) {
 
-            {/* <div className="mid_section"> */}
+                    const aiMlDept = data.data.find(dept => dept.attributes && dept.attributes.Dept_name === 'AI_ML') || data.data[0];
 
-            {/* <div className="info_section"> */}
+                    let facultyArray;
+                    if (aiMlDept.attributes && aiMlDept.attributes.Faculty && aiMlDept.attributes.Faculty.data) {
 
-            <table className="faculty_table_desktop">
+                        facultyArray = aiMlDept.attributes.Faculty.data.map(item => ({
+                            ...item.attributes,
+                            id: item.id
+                        }));
+                    } else if (aiMlDept.Faculty && Array.isArray(aiMlDept.Faculty)) {
 
-                <tbody>
-
-                    <tr className='headrow'>
-                        <td></td>
-                        <td>Name</td>
-                        <td>Qualification</td>
-                        <td>Designation</td>
-                        <td>Specialization</td>
-                    </tr>
-
-                    {
-                        faculty.map((singleFaculty, index) => {
-                            return (
-
-                                <tr key = {index}>
-
-                                    <td> 
-                                        <div className="faculty_img_container">
-                                            <img 
-                                                src={`/assets/images/departments/faculty/civil/${singleFaculty[0]}`} 
-                                                alt="image" 
-                                                className="faculty_img"
-                                            /> 
-                                        </div>
-                                    </td>
-                                    {/* <td> <img src= {image.src} alt="image" /> </td> */}
-                                    {/* <td> <img src= {"/assets/images/departments/faculty/cs/cs_f1.jpg"} alt="image" /> </td> */}
-                                    <td>{singleFaculty[1]}</td>
-                                    <td>{singleFaculty[2]}</td>
-                                    <td>{singleFaculty[3]}</td>
-                                    <td>{singleFaculty[4]}</td>
-
-
-                                </tr>
-                            )
-                        })
+                        facultyArray = aiMlDept.Faculty;
+                    } else {
+                        throw new Error('Faculty data not found in the expected structure');
                     }
 
-                </tbody>
+                    // Sort by Priority if available
+                    const sortedFaculty = [...facultyArray].sort((a, b) => {
+                        // Sort by Priority, nulls go to the end
+                        if (a.Priority === null && b.Priority === null) return 0;
+                        if (a.Priority === null) return 1;
+                        if (b.Priority === null) return -1;
+                        return a.Priority - b.Priority;
+                    });
 
-            </table>
+                    setFaculty(sortedFaculty);
+                } else {
+                    throw new Error('Invalid API response structure');
+                }
+
+                setLoading(false);
+            } catch (err) {
+                console.error('Error fetching faculty data:', err);
+                setError(`API error: ${err.message}`);
+                setLoading(false);
+            }
+        };
+
+        fetchFaculty();
+    }, []);
 
 
-            <div className="faculty_table_mobile">
+    const handleImageError = (e) => {
+        e.target.onerror = null;
+        e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='25' fill='%23ccc'/%3E%3Cpath d='M15,85 Q50,65 85,85 Z' fill='%23ccc'/%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23ccc' stroke-width='2'/%3E%3C/svg%3E";
+    };
 
-                
 
-                {
-                    faculty.map((singleFaculty ,index ) => {
+    const getImageUrl = (member) => {
 
-                        return (
-                           
-                           
+        if (member.Faculty_image) {
 
-                            <div className="single_faculty" key = {index}>
+            return `${process.env.NEXT_PUBLIC_STRAPI}${member.Faculty_image.url}`;
+        } else {
 
-                            
+            return '';
+        }
+    };
 
+    return (
+        <div className={`cs_department_faculty ${poppins.className}`}>
+            {loading ? (
+                <div>Loading faculty information...</div>
+            ) : error ? (
+                <div className="error-message">{error}</div>
+            ) : (
+                <>
+                    <table className="faculty_table_desktop">
+                        <tbody>
+                            <tr className='headrow'>
+                                <td>Profile</td>
+                                <td>Name</td>
+                                <td>Qualification</td>
+                                <td>Designation</td>
+                                <td>Specialization</td>
+                            </tr>
+
+                            {faculty.map((member, index) => (
+                                <tr key={index}>
+                                    <td>
+                                        <div className="faculty_img_container">
+                                            <img
+                                                src={getImageUrl(member)}
+                                                alt={member.Faculty_Name}
+                                                className="faculty_img"
+                                                onError={handleImageError}
+                                            />
+                                        </div>
+                                    </td>
+                                    <td>{member.Faculty_Name}</td>
+                                    <td>{member.Qualification}</td>
+                                    <td>{member.Designation}</td>
+                                    <td>{member.Specialization}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                    <div className="faculty_table_mobile">
+                        {faculty.map((member, index) => (
+                            <div className="single_faculty" key={index}>
                                 <div className="img_section">
                                     <div className="faculty_img_container">
-                                        <img 
-                                            src={`/assets/images/departments/faculty/civil/${singleFaculty[0]}`} 
-                                            alt="" 
+                                        <img
+                                            src={getImageUrl(member)}
+                                            alt={member.Faculty_Name}
                                             className="faculty_img"
+                                            onError={handleImageError}
                                         />
                                     </div>
                                 </div>
 
                                 <div className="details_section">
-                                    <h3 className="faculty_name">{singleFaculty[1]}</h3>
-                                    <h3 className="faculty_qualification">{singleFaculty[2]}</h3>
-                                    <h3 className="faculty_designation">{singleFaculty[3]}</h3>
-                                    <h3 className="faculty_specialization">{singleFaculty[4]}</h3>
+                                    <h3 className="faculty_name">{member.Faculty_Name}</h3>
+                                    <h3 className="faculty_qualification">{member.Qualification}</h3>
+                                    <h3 className="faculty_designation">{member.Designation}</h3>
+                                    <h3 className="faculty_specialization">{member.Specialization}</h3>
                                 </div>
-
                             </div>
-
-                        )
-
-
-
-                    })
-                }
-
-
-
-            </div>
-
-            {/* <a href = "" className="faculty_profile">Faculty Profile</a> */}
+                        ))}
+                    </div>
+                </>
+            )}
 
             <style jsx>{`
                 .faculty_img_container {
@@ -145,12 +165,24 @@ export default function ComputerScienceDepartmentFaculty() {
                     border-radius: 50%;
                     overflow: hidden;
                     margin: 0 auto;
+                    background-color: #f0f0f0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
                 
                 .faculty_img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+                }
+                
+                .error-message {
+                    background-color: #f8d7da;
+                    color: #721c24;
+                    padding: 12px;
+                    border-radius: 4px;
+                    margin-bottom: 16px;
                 }
                 
                 @media (max-width: 768px) {

@@ -77,33 +77,33 @@ export default function ComputerScienceDepartment() {
         </div>
         
         <section className="cs-dept-section">
-          <h2 className="cs-dept-section-title">Department Profile</h2>
-          <div className="cs-dept-profile-content">
-            <div className="cs-dept-profile-text">
-             
-             <p>Established in 2020 with an initial intake of 30 students, the Department of Food Technology is dedicated to providing cutting-edge education in food science, processing, and safety. Guided by the principles of the National Education Policy, the department emphasizes a multidisciplinary, flexible, and skill-based curriculum, equipping students for careers in both industry and research.</p>
-             
-             <p>With a strong focus on Outcome-Based Education (OBE), the curriculum ensures graduates develop industry-relevant competencies, critical thinking abilities, and problem-solving skills. As an autonomous institution, the department continuously updates its programs to align with global food industry trends and regulatory standards.</p>
+  <h2 className="cs-dept-section-title">Department Profile</h2>
+  <div className="cs-dept-profile-content">
+    <div className="cs-dept-profile-text">
+     
+     <p style={{ textAlign: "justify" }}>Established in 2020 with an initial intake of 30 students, the Department of Food Technology is dedicated to providing cutting-edge education in food science, processing, and safety. Guided by the principles of the National Education Policy, the department emphasizes a multidisciplinary, flexible, and skill-based curriculum, equipping students for careers in both industry and research.</p>
+     
+     <p style={{ textAlign: "justify" }}>With a strong focus on Outcome-Based Education (OBE), the curriculum ensures graduates develop industry-relevant competencies, critical thinking abilities, and problem-solving skills. As an autonomous institution, the department continuously updates its programs to align with global food industry trends and regulatory standards.</p>
 
-             <p>A student-centric approach is at the heart of the department’s pedagogy, integrating experiential learning, industry collaborations, and research-driven projects. Faculty members, specializing in areas such as food safety, processing, biotechnology, and sustainable packaging, actively engage in research and consultancy, providing students with real-world exposure.</p>
+     <p style={{ textAlign: "justify" }}>A student-centric approach is at the heart of the department&apos;s pedagogy, integrating experiential learning, industry collaborations, and research-driven projects. Faculty members, specializing in areas such as food safety, processing, biotechnology, and sustainable packaging, actively engage in research and consultancy, providing students with real-world exposure.</p>
 
-             <p>With a commitment to innovation and societal impact, the department nurtures professionals who contribute to food security, safety, and sustainability, shaping graduates into leaders in the food technology sector.</p>
-             
-            </div>
-            {/* <div className="cs-dept-profile-images">
-              {buildingImages.map((img, index) => (
-                <div key={index} className="cs-dept-building-image">
-                  <Image 
-                    src={img} 
-                    alt={`Computer Science Department Building ${index + 1}`}
-                    width={400}
-                    height={300}
-                  />
-                </div>
-              ))}
-            </div> */}
-          </div>
-        </section>
+     <p style={{ textAlign: "justify" }}>With a commitment to innovation and societal impact, the department nurtures professionals who contribute to food security, safety, and sustainability, shaping graduates into leaders in the food technology sector.</p>
+     
+    </div>
+    {/* <div className="cs-dept-profile-images">
+      {buildingImages.map((img, index) => (
+        <div key={index} className="cs-dept-building-image">
+          <Image 
+            src={img} 
+            alt={`Computer Science Department Building ${index + 1}`}
+            width={400}
+            height={300}
+          />
+        </div>
+      ))}
+    </div> */}
+  </div>
+</section>
         
         <section className="cs-dept-section">
   <h2 className="cs-dept-section-title">Highlights of the Department</h2>

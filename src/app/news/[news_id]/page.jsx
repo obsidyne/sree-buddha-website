@@ -8,6 +8,7 @@ export default function NewsDetailPage() {
     const [news, setNews] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [imageAspectRatio, setImageAspectRatio] = useState(null);
     const params = useParams();
     const newsId = params.news_id;
     
@@ -67,6 +68,51 @@ export default function NewsDetailPage() {
         return new Date(dateString).toLocaleDateString('en-US', options);
     };
     
+    // Handle image load to determine aspect ratio
+    const handleImageLoad = (e) => {
+        const img = e.target;
+        const aspectRatio = img.naturalWidth / img.naturalHeight;
+        setImageAspectRatio(aspectRatio);
+    };
+    
+    // Get CSS class based on aspect ratio
+    const getImageContainerClass = () => {
+        if (imageAspectRatio === null) return 'image'; // Default while loading
+        
+       if (imageAspectRatio > 2.0) {
+    console.log('Aspect Ratio > 2.0 → image-ultra-wide');
+    return 'image image-ultra-wide'; // Very wide images (banners, panoramic)
+} else if (imageAspectRatio > 1.5) {
+    console.log('Aspect Ratio > 1.5 → image-wide');
+    return 'image image-wide'; // Wide landscape images
+} else if (imageAspectRatio > 1.2) {
+    console.log('Aspect Ratio > 1.2 → image-landscape');
+    return 'image image-landscape'; // Moderately rectangular
+} else if (imageAspectRatio > 0.8) {
+    console.log('Aspect Ratio > 0.8 → image-square');
+    return 'image image-square'; // Nearly square
+} else if (imageAspectRatio > 0.65) {
+    console.log('Aspect Ratio > 0.65 → image-portrait');
+    return 'image image-portrait'; // Portrait orientation
+} else if (imageAspectRatio > 0.5) {
+    console.log('Aspect Ratio > 0.5 → image-mobile-vertical');
+    return 'image image-mobile-vertical'; // Mobile/vertical video ratios (9:16, etc.)
+} else if (imageAspectRatio > 0.4) {
+    console.log('Aspect Ratio > 0.4 → image-poster');
+    return 'image image-poster'; // Poster ratio (2:3, 3:4)
+} else if (imageAspectRatio > 0.25) {
+    console.log('Aspect Ratio > 0.25 → image-tall-poster');
+    return 'image image-tall-poster'; // Very tall posters (movie posters, etc.)
+} else if (imageAspectRatio > 0.15) {
+    console.log('Aspect Ratio > 0.15 → image-skyscraper');
+    return 'image image-skyscraper'; // Skyscraper banners, tall infographics
+} else {
+    console.log('Aspect Ratio ≤ 0.15 → image-ultra-tall');
+    return 'image image-ultra-tall'; // Extremely tall images
+}
+
+    };
+    
     if (loading) {
         return (
             <div className="page">
@@ -91,17 +137,28 @@ export default function NewsDetailPage() {
         );
     }
     
-    // Handle image URL with fallback
+    // Construct the full image URL
     const getImageUrl = () => {
         if (!news.News_media) return null;
         
-        // First try to use the environment variable
-        if (process.env.NEXT_PUBLIC_STRAPI) {
+        // Try to get medium format first
+        if (news.News_media.formats?.medium?.url) {
+            return `${process.env.NEXT_PUBLIC_STRAPI}${news.News_media.formats.medium.url}`;
+        }
+        // Fallback to small format
+        else if (news.News_media.formats?.small?.url) {
+            return `${process.env.NEXT_PUBLIC_STRAPI}${news.News_media.formats.small.url}`;
+        }
+        // Fallback to thumbnail
+        else if (news.News_media.formats?.thumbnail?.url) {
+            return `${process.env.NEXT_PUBLIC_STRAPI}${news.News_media.formats.thumbnail.url}`;
+        }
+        // Last resort: use the original URL if available
+        else if (news.News_media.url) {
             return `${process.env.NEXT_PUBLIC_STRAPI}${news.News_media.url}`;
         }
         
-        // Fallback to direct URL 
-        return `${process.env.NEXT_PUBLIC_STRAPI}${news.News_media.url}`;
+        return null;
     };
     
     const imageUrl = getImageUrl();
@@ -110,10 +167,11 @@ export default function NewsDetailPage() {
         <div className="page">
             <div className="news">
                 {imageUrl && (
-                    <div className="image">
+                    <div className={getImageContainerClass()}>
                         <img 
                             src={imageUrl} 
                             alt={news.Heading || 'News image'} 
+                            onLoad={handleImageLoad}
                             onError={(e) => {
                                 console.error('Image failed to load');
                                 e.target.style.display = 'none';

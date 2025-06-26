@@ -8,6 +8,7 @@ export default function EventDetailPage() {
     const [event, setEvent] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [imageAspectRatio, setImageAspectRatio] = useState(null);
     const params = useParams();
     const router = useRouter();
     const eventId = params.event_id;
@@ -68,6 +69,40 @@ export default function EventDetailPage() {
         return new Date(dateString).toLocaleDateString('en-US', options);
     };
     
+    // Handle image load to determine aspect ratio
+    const handleImageLoad = (e) => {
+        const img = e.target;
+        const aspectRatio = img.naturalWidth / img.naturalHeight;
+        setImageAspectRatio(aspectRatio);
+    };
+    
+    // Get CSS class based on aspect ratio
+    const getImageContainerClass = () => {
+        if (imageAspectRatio === null) return 'image'; // Default while loading
+        
+        if (imageAspectRatio > 2.0) {
+            return 'image image-ultra-wide'; // Very wide images (banners, panoramic)
+        } else if (imageAspectRatio > 1.5) {
+            return 'image image-wide'; // Wide landscape images
+        } else if (imageAspectRatio > 1.2) {
+            return 'image image-landscape'; // Moderately rectangular
+        } else if (imageAspectRatio > 0.8) {
+            return 'image image-square'; // Nearly square
+        } else if (imageAspectRatio > 0.65) {
+            return 'image image-portrait'; // Portrait orientation
+        } else if (imageAspectRatio > 0.5) {
+            return 'image image-mobile-vertical'; // Mobile/vertical video ratios (9:16, etc.)
+        } else if (imageAspectRatio > 0.4) {
+            return 'image image-poster'; // Poster ratio (2:3, 3:4)
+        } else if (imageAspectRatio > 0.25) {
+            return 'image image-tall-poster'; // Very tall posters (movie posters, etc.)
+        } else if (imageAspectRatio > 0.15) {
+            return 'image image-skyscraper'; // Skyscraper banners, tall infographics
+        } else {
+            return 'image image-ultra-tall'; // Extremely tall images
+        }
+    };
+    
     if (loading) {
         return (
             <div className="page">
@@ -122,10 +157,11 @@ export default function EventDetailPage() {
         <div className="page">
             <div className="event">
                 {imageUrl && (
-                    <div className="image">
+                    <div className={getImageContainerClass()}>
                         <img 
                             src={imageUrl} 
                             alt={event.Heading || 'Event image'} 
+                            onLoad={handleImageLoad}
                             onError={(e) => {
                                 console.error('Image failed to load');
                                 e.target.style.display = 'none';

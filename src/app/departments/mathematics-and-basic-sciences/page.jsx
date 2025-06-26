@@ -81,7 +81,7 @@ export default function ComputerScienceDepartment() {
           <h2 className="cs-dept-section-title">Department Profile</h2>
           <div className="cs-dept-profile-content">
             <div className="cs-dept-profile-text">
-              <p>
+              <p style={{ textAlign: "justify" }}>
               The department with its vibrant and dynamic faculty under the strong leadership of R.Pradeep Kumar, HOD of Mathematics & Basic Sciences serves as one of the pioneering departments of the college. The department has well experienced faculties with appropriate qualifications from prestigious institutions. The faculty members regularly update their skills by attending refresher courses, seminars, workshops etc.The department offers subjects such as Mathematics, Physics and Chemistry which strive to equip students with relevant skills required to excel in engineering.</p>
               <br />
               

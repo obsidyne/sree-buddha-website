@@ -1,271 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-
-
-// Publication data structure
-const publicationsData = [
-  {
-    id: 1,
-    authors: ["Athira Sankar", "Soumya Murali"],
-    title: "A Survey On An Efficient Privacy-preserving Ranked Keyword Search Method",
-    publication: "International Research Journal Of Engineering And Technology (IRJET)",
-    details: "Volume-4, Issue 11, November 2017, ISSN:2395-0072",
-    year: 2017,
-    type: "journal",
-    featured: true
-  },
-  {
-    id: 2,
-    authors: ["Soumya Murali"],
-    title: "A Privacy Preserving Approach For Multikeyword Search Method Over Encrypted Cloud",
-    publication: "KETCON 2018",
-    details: "January 23, 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 3,
-    authors: ["Soumya Murali"],
-    title: "A Privacy Preserving Hierarchical Clustering Keyword Rank Search Method Over An Encrypted Cloud",
-    publication: "National Conference On Advanced Computing And Communication E2F2",
-    details: "SBCE PATTOOR",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 4,
-    authors: ["Soumya Murali"],
-    title: "An Efficient Privacy Preserving Hierarchical Ranked Keyword Search Method",
-    publication: "International Conference On Electrical, Electronics, Computer Communication, Mechanical And Computing (EECCMC 2018)",
-    details: "IEEE CONFERENCE, 28 January 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 5,
-    authors: ["Deepthi S", "Arun P S"],
-    title: "A survey on IP traceback techniques",
-    publication: "International Research Journal of Engineering and Technology (IRJET)",
-    details: "Volume 4, Issue No.10, pp 1643-1644, October 2017",
-    year: 2017,
-    type: "journal"
-  },
-  {
-    id: 6,
-    authors: ["Arun P S"],
-    title: "Token Based Authentication Mechanism for IP traceback",
-    publication: "National conference on recent trends in computing technologies",
-    details: "Feb 26, 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 7,
-    authors: ["Arun P S"],
-    title: "An Efficient Token Based Authentication Mechanism for IP traceback",
-    publication: "National Conference on Advanced Computing and Communication E2F2",
-    details: "April 16, 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 8,
-    authors: ["Arun P S"],
-    title: "AN EFFICIENT TOKEN BASED AUTHENTICATION MECHANISM FOR IP TRACEBACK",
-    publication: "International Conference on Soft Computing Systems 2018 (ICSCS 2018)",
-    details: "Springer, 19 April 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 9,
-    authors: ["Gopu Darsan"],
-    title: "Exploring Topic Experts in Twitter via Different Relations",
-    publication: "IJESC (International Journal of Engineering Science and Computing)",
-    details: "Volume 7, Issue No.4, April 2017",
-    year: 2017,
-    type: "journal",
-    featured: true
-  },
-  {
-    id: 10,
-    authors: ["Gopu Darsan"],
-    title: "Enhanced Expert Finding using Behavioural aspects",
-    publication: "KETCON 2018",
-    details: "February 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 11,
-    authors: ["Gopu Darsan"],
-    title: "An Efficient NLP based Topic Expert Identification in Social Networks",
-    publication: "Engineering Education for Facing the Future 2018 (E2F2 2018) National Conference on Eco-friendly Technological Innovations for Sustainable Development (NCETISD)",
-    details: "April 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 12,
-    authors: ["Gopu Darsan", "Akhila Krishnan A", "Reeba R"],
-    title: "Finding of Experts using Behavioural aspects + Vehicle Tracking With Car Following Models &Vs-Imm",
-    publication: "Springer International Conference on Soft Computing Systems (ICSCS-2018) + International Journal of Engineering and Technology(IRJET) Publication",
-    details: "April 2018 + vol. 4 Issue No.10, October 2017",
-    year: 2018,
-    type: "multiple"
-  },
-  {
-    id: 13,
-    authors: ["Akhila Krishnan A", "Reeba R"],
-    title: "Trustworthy Parking Community System",
-    publication: "International Journal of Engineering and Technology(IRJET) Publication",
-    details: "vol. 4 Issue No.10, October 2017",
-    year: 2017,
-    type: "journal"
-  },
-  {
-    id: 14,
-    authors: ["Akhila Krishnan A", "Reeba R"],
-    title: "Efficient trustworthy parking community system with QR code",
-    publication: "KETCON 2018",
-    details: "February 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 15,
-    authors: ["Akhila Krishnan A", "Reeba R"],
-    title: "Hybrid Factor Route Recommendation",
-    publication: "Engineering Education for Facing the Future 2018 (E2F22018) National Conference on Eco-friendly Technological Innovations for Sustainable Development (NCETISD)",
-    details: "April 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 16,
-    authors: ["Anaswara R", "Dhanya Sreedharan"],
-    title: "An Investigation on Myocardial Infract Localization in Medical Images",
-    publication: "International Research Journal of Engineering and Technology (IRJET) Publication",
-    details: "Vol 4 Issue 11, November 2017",
-    year: 2017,
-    type: "journal"
-  },
-  {
-    id: 17,
-    authors: ["Anaswara R", "Dhanya Sreedharan"],
-    title: "An Investigation on Human Organ Localization in Medical Images",
-    publication: "International Research Journal of Engineering and Technology (IRJET) Publication",
-    details: "Vol 4 Issue 11, Jan 2018",
-    year: 2018,
-    type: "journal"
-  },
-  {
-    id: 18,
-    authors: ["Anaswara R", "Dhanya Sreedharan"],
-    title: "Accurate Anatomical Landmark Localization In Cardiac Mr Images Using Stratified Decision Forests",
-    publication: "KETCON 2018",
-    details: "January 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 19,
-    authors: ["Anaswara R", "Dhanya Sreedharan"],
-    title: "Cardiac Land Marking: An Application Of Decision Forests",
-    publication: "E2F2 2018, National Conference on Advanced Computing and Communication(NCACC'18)",
-    details: "April 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 20,
-    authors: ["Parvathy R", "Anil A R"],
-    title: "A Survey on Ultrasound Beamforming Strategies",
-    publication: "International Research Journal of Engineering and Technology (IRJET)",
-    details: "Volume: 04 Issue: 10, Dec 2017",
-    year: 2017,
-    type: "journal"
-  },
-  {
-    id: 21,
-    authors: ["Parvathy R", "Anil A R"],
-    title: "A Survey on Needle Tip Estimation in Ultrasound",
-    publication: "International Research Journal of Engineering and Technology (IRJET)",
-    details: "Volume: 04 Issue: 10, Jan 2018",
-    year: 2018,
-    type: "journal"
-  },
-  {
-    id: 22,
-    authors: ["Parvathy R", "Anil A R"],
-    title: "Real Time Needle Tracking In Ultrasound Images By Statistical Filtering",
-    publication: "KETCON 2018",
-    details: "January 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 23,
-    authors: ["Parvathy R", "Anil A R"],
-    title: "Robust Real-Time Needle Tip Estimation and Tracking in 2-D Ultrasound Images Using Statistical Filtering",
-    publication: "Engineering Education for Facing the Future 2018 (E2F2 2018) National Conference on Advanced Computing and Communication (NCACC'18)",
-    details: "April 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 24,
-    authors: ["Anusree Radhakrishnan", "Minu Lalitha Madhav"],
-    title: "Survey on A Secure Anti Collusion Data sharing Scheme for Dynamic groups in the cloud",
-    publication: "International Research Journal of Engineering and Technology Science (IRJET)",
-    details: "Volume-4, Issue-11, November 2017, ISSN: 2395-0072",
-    year: 2017,
-    type: "journal"
-  },
-  {
-    id: 25,
-    authors: ["Minu Lalitha Madhav"],
-    title: "Effective data sharing scheme for dynamic groups in the cloud with revocation mechanism",
-    publication: "KETCON 2018",
-    details: "January 23, 2018",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 26,
-    authors: ["Minu Lalitha Madhav"],
-    title: "Cloud data sharing scheme for dynamic groups with revocation mechanism",
-    publication: "National Conference on Advanced Computing and Communication E2F2",
-    details: "SBCE PATTOOR",
-    year: 2018,
-    type: "conference"
-  },
-  {
-    id: 27,
-    authors: ["Minu Lalitha Madhav"],
-    title: "A secure cloud data sharing scheme for dynamic groups with revocation mechanism",
-    publication: "International Conference on Soft Computing Systems 2018 (ICSCS 2018)",
-    details: "Springer, 19 April 2018",
-    year: 2018,
-    type: "conference",
-    featured: true
-  }
-];
-
-// Faculty members for filtering
-const facultyMembers = [
-  "Soumya Murali", 
-  "Arun P S", 
-  "Gopu Darsan", 
-  "Reeba R", 
-  "Dhanya Sreedharan", 
-  "Anil A R", 
-  "Minu Lalitha Madhav"
-];
-
 
 // Reusable components
 const SectionTitle = ({ children }) => (
@@ -275,12 +11,12 @@ const SectionTitle = ({ children }) => (
 );
 
 const SectionSubtitle = ({ children }) => (
-  <div className="flex flex-col sm:flex-row justify-center items-center mb-8 sm:mb-12">
-    <div className="w-16 h-1 bg-yellow-900 mb-4 sm:mb-0 sm:mr-4 hidden sm:block"></div>
+  <div className="flex justify-center items-center mb-8 md:mb-12 px-2">
+    <div className="w-8 sm:w-12 md:w-16 h-1 bg-yellow-900 mr-2 md:mr-4 hidden sm:block"></div>
     <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-700 text-center">
       {children}
     </h3>
-    <div className="w-16 h-1 bg-yellow-900 mt-4 sm:mt-0 sm:ml-4 hidden sm:block"></div>
+    <div className="w-8 sm:w-12 md:w-16 h-1 bg-yellow-900 ml-2 md:ml-4 hidden sm:block"></div>
   </div>
 );
 
@@ -288,9 +24,9 @@ const FilterButton = ({ active, onClick, children }) => (
   <button
     onClick={onClick}
     className={`px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-colors ${active
-        ? 'bg-yellow-900 text-white'
-        : 'bg-yellow-50 text-yellow-900 hover:bg-yellow-100'
-      }`}
+      ? 'bg-yellow-900 text-white'
+      : 'bg-yellow-50 text-yellow-900 hover:bg-yellow-100'
+      } mb-2 mr-2`}
   >
     {children}
   </button>
@@ -309,28 +45,30 @@ const PublicationCard = ({ publication, highlight = false }) => {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <div className="flex flex-col md:flex-row justify-between">
-        <div className="md:w-5/6">
+      <div className="flex flex-col">
+        <div className="w-full">
           <h4 className="font-bold text-base sm:text-lg mb-2 text-gray-900">
-            {publication.title}
+            {publication.publication_description}
           </h4>
           <p className="text-yellow-900 mb-2 sm:mb-3 text-sm sm:text-base">
-            {publication.authors.join(", ")}
+            {publication.Publisher_name}
           </p>
           <p className="text-gray-700 mb-1 text-sm sm:text-base">
-            <span className="font-medium">Publication:</span> {publication.publication}
+            <span className="font-medium">Publication:</span> {publication.publish_at}
           </p>
-          <p className="text-gray-600 text-xs sm:text-sm">
-            {publication.details}
-          </p>
+          {publication.publication_link && (
+            <p className="text-gray-600 text-xs sm:text-sm">
+              {publication.publication_link}
+            </p>
+          )}
         </div>
-        <div className="flex flex-row md:flex-col items-start md:items-end justify-between md:justify-center mt-4 md:mt-0 md:w-1/6">
-          <div className="bg-yellow-100 text-yellow-900 px-2 sm:px-3 py-1 rounded-full text-center text-xs sm:text-sm font-medium mb-0 md:mb-2">
-            {publication.type === 'journal' ? 'Journal' : 'Conference'}
+        <div className="flex flex-row justify-between items-center mt-4">
+          <div className="bg-yellow-100 text-yellow-900 px-2 sm:px-3 py-1 rounded-full text-center text-xs sm:text-sm font-medium">
+            {publication.Category}
           </div>
-          <p className="text-gray-500 font-bold text-sm sm:text-base">{publication.year}</p>
+          <p className="text-gray-500 font-bold text-sm sm:text-base">{publication.publication_date}</p>
           {publication.featured && (
-            <div className="mt-2 text-xs bg-yellow-900 text-white px-2 py-1 rounded hidden md:block">
+            <div className="text-xs bg-yellow-900 text-white px-2 py-1 rounded">
               Featured
             </div>
           )}
@@ -344,10 +82,10 @@ const PublicationStats = ({ publications }) => {
   // Calculate statistics
   const stats = useMemo(() => {
     const totalPubs = publications.length;
-    const journalPubs = publications.filter(p => p.type === 'journal').length;
-    const conferencePubs = publications.filter(p => p.type === 'conference').length;
+    const journalPubs = publications.filter(p => p.Category === 'Journal').length;
+    const conferencePubs = publications.filter(p => p.Category === 'Conference').length;
     const yearCounts = publications.reduce((acc, pub) => {
-      acc[pub.year] = (acc[pub.year] || 0) + 1;
+      acc[pub.publication_date] = (acc[pub.publication_date] || 0) + 1;
       return acc;
     }, {});
 
@@ -359,121 +97,255 @@ const PublicationStats = ({ publications }) => {
     };
   }, [publications]);
 
-  const yearStats = Object.entries(stats.yearCounts).sort((a, b) => b[0] - a[0]);
 
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
-      <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow border border-gray-100">
-        <div className="text-3xl sm:text-4xl font-bold text-yellow-900 mb-1 sm:mb-2">{stats.totalPubs}</div>
-        <div className="text-sm sm:text-base text-gray-700">Total Publications</div>
-      </div>
-      <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow border border-gray-100">
-        <div className="flex justify-between items-center">
-          <div>
-            <div className="text-3xl sm:text-4xl font-bold text-yellow-900 mb-1 sm:mb-2">{stats.journalPubs}</div>
-            <div className="text-sm sm:text-base text-gray-700">Journals</div>
-          </div>
-          <div>
-            <div className="text-3xl sm:text-4xl font-bold text-yellow-900 mb-1 sm:mb-2">{stats.conferencePubs}</div>
-            <div className="text-sm sm:text-base text-gray-700">Conferences</div>
-          </div>
-        </div>
-      </div>
-      <div className="col-span-1 sm:col-span-2 md:col-span-1 bg-white rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow border border-gray-100">
-        <div className="mb-2 text-sm sm:text-base">Publications by Year</div>
-        <div className="flex flex-wrap gap-2">
-          {yearStats.map(([year, count]) => (
-            <div key={year} className="bg-yellow-50 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">
-              <span className="font-medium">{year}: </span>
-              <span>{count}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+
 };
 
 // Main component
-export default function CsPaperPublications() {
+export default function CSEDepartmentPaperPublications() {
   const [filter, setFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [yearFilter, setYearFilter] = useState('all');
   const [authorFilter, setAuthorFilter] = useState('all');
-  const [publications, setPublications] = useState(publicationsData);
+  const [publications, setPublications] = useState([]);
+  const [filteredPublications, setFilteredPublications] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_STRAPI}/api/cse-depts?filters[Dept_name][$eq]=CSE&populate[Publication]=*`
+        );
+
+
+        if (!response.ok) {
+          throw new Error(`API request failed with status ${response.status}`);
+        }
+
+        const responseData = await response.json();
+        console.log("Full API Response:", responseData);
+
+        // Extract publications from the correct path in the data structure based on the provided sample
+        if (responseData &&
+          responseData.data &&
+          Array.isArray(responseData.data) &&
+          responseData.data.length > 0 &&
+          responseData.data[0].Publication &&
+          Array.isArray(responseData.data[0].Publication)) {
+
+          const publicationsData = responseData.data[0].Publication;
+          console.log("Found publications:", publicationsData);
+
+          setPublications(publicationsData);
+          setFilteredPublications(publicationsData);
+        } else {
+          console.error("Could not find Publications array in the response structure:", responseData);
+          setError("Could not find publications data in the API response.");
+        }
+      } catch (err) {
+        setError(err.message);
+        console.error('Error fetching publications:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // Get unique years for filter
   const years = useMemo(() => {
-    const uniqueYears = [...new Set(publicationsData.map(pub => pub.year))];
+    if (!publications.length) return [];
+    const uniqueYears = [...new Set(publications.map(pub => pub.publication_date))];
     return uniqueYears.sort((a, b) => b - a); // Sort in descending order
-  }, []);
+  }, [publications]);
+
+  // Get unique authors for filter
+  const authors = useMemo(() => {
+    if (!publications.length) return [];
+    const uniqueAuthors = [...new Set(publications.map(pub => pub.Publisher_name))];
+    return uniqueAuthors.sort();
+  }, [publications]);
 
   // Filter publications
   useEffect(() => {
-    let filteredData = [...publicationsData];
+    let result = [...publications];
 
     // Filter by publication type
     if (filter !== 'all') {
-      filteredData = filteredData.filter(pub => pub.type === filter);
+      result = result.filter(pub => pub.Category && pub.Category.toLowerCase() === filter.toLowerCase());
     }
 
     // Filter by year
     if (yearFilter !== 'all') {
-      filteredData = filteredData.filter(pub => pub.year === parseInt(yearFilter));
+      result = result.filter(pub => pub.publication_date === parseInt(yearFilter));
     }
 
     // Filter by author
     if (authorFilter !== 'all') {
-      filteredData = filteredData.filter(pub =>
-        pub.authors.some(author => author === authorFilter)
-      );
+      result = result.filter(pub => pub.Publisher_name === authorFilter);
     }
 
     // Filter by search term
     if (searchTerm.trim()) {
       const term = searchTerm.toLowerCase();
-      filteredData = filteredData.filter(pub =>
-        pub.title.toLowerCase().includes(term) ||
-        pub.publication.toLowerCase().includes(term) ||
-        pub.authors.some(author => author.toLowerCase().includes(term))
+      result = result.filter(pub =>
+        (pub.publication_description && pub.publication_description.toLowerCase().includes(term)) ||
+        (pub.publish_at && pub.publish_at.toLowerCase().includes(term)) ||
+        (pub.Publisher_name && pub.Publisher_name.toLowerCase().includes(term))
       );
     }
 
-    setPublications(filteredData);
-  }, [filter, searchTerm, yearFilter, authorFilter]);
+    setFilteredPublications(result);
+  }, [filter, searchTerm, yearFilter, authorFilter, publications]);
 
   return (
-
     <div className="bg-white min-h-screen">
       {/* Header Section */}
       <header className="relative bg-gradient-to-b from-yellow-50 to-white">
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 bg-yellow-900/10 pattern-diagonal-lines pattern-yellow-500/20 pattern-bg-white pattern-size-4" aria-hidden="true" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-gray-900 mb-3 sm:mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-gray-900 mb-4">
+
               Department Of Computer Science And Engineering
             </h1>
-            <div className="w-24 sm:w-32 md:w-40 h-1 bg-yellow-900 mx-auto mb-4 sm:mb-8" aria-hidden="true" />
+            <div className="w-20 sm:w-40 h-1 bg-yellow-900 mx-auto mb-4 sm:mb-8" aria-hidden="true" />
 
             <SectionSubtitle>PUBLICATIONS/CONFERENCE DETAILS</SectionSubtitle>
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-12">
+        {/* Filter and Search Section */}
+        <section className="mb-8 sm:mb-12">
+          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md border border-gray-100">
+            <div className="flex flex-wrap justify-between items-center mb-4">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-0">Filter Publications</h3>
+
+            </div>
+
+            {/* Search Box */}
+            <div className="relative mb-4">
+              <input
+                type="text"
+                placeholder="Search publications, authors, journals..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-900 focus:border-yellow-900 transition-colors text-sm sm:text-base"
+              />
+              <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Expanded Filter Options */}
+            {isFilterMenuOpen && (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                {/* Publication Type Filter */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Publication Type</label>
+                  <select
+                    value={filter}
+                    onChange={(e) => setFilter(e.target.value)}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-900 focus:border-yellow-900"
+                  >
+                    <option value="all">All Types</option>
+                    <option value="journal">Journal</option>
+                    <option value="conference">Conference</option>
+                  </select>
+                </div>
+
+                {/* Year Filter */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Year</label>
+                  <select
+                    value={yearFilter}
+                    onChange={(e) => setYearFilter(e.target.value)}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-900 focus:border-yellow-900"
+                  >
+                    <option value="all">All Years</option>
+                    {years.map(year => (
+                      <option key={year} value={year}>{year}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Author Filter */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Author</label>
+                  <select
+                    value={authorFilter}
+                    onChange={(e) => setAuthorFilter(e.target.value)}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-900 focus:border-yellow-900"
+                  >
+                    <option value="all">All Authors</option>
+                    {authors.map(author => (
+                      <option key={author} value={author}>{author}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            )}
+
+            {/* Quick Filter Buttons */}
+            <div>
+              <div className="flex flex-wrap">
+                <FilterButton active={filter === 'all'} onClick={() => setFilter('all')}>
+                  All
+                </FilterButton>
+                <FilterButton active={filter === 'journal'} onClick={() => setFilter('journal')}>
+                  Journals
+                </FilterButton>
+                <FilterButton active={filter === 'conference'} onClick={() => setFilter('conference')}>
+                  Conferences
+                </FilterButton>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Publication Stats */}
+        {!loading && !error && filteredPublications.length > 0 && <PublicationStats publications={filteredPublications} />}
+
         {/* Publications List */}
         <section>
-          {publications.length > 0 ? (
+          {loading ? (
+            <div className="flex justify-center items-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-900"></div>
+            </div>
+          ) : error ? (
+            <div className="text-center py-8 sm:py-16">
+              <div className="text-6xl sm:text-9xl mb-4">⚠️</div>
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-2">Error Loading Data</h3>
+              <p className="text-gray-600 text-sm sm:text-base">{error}</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="mt-4 sm:mt-6 px-4 sm:px-6 py-2 bg-yellow-900 text-white rounded-lg hover:bg-yellow-800 transition-colors text-sm sm:text-base"
+              >
+                Retry
+              </button>
+            </div>
+          ) : filteredPublications.length > 0 ? (
             <div className="space-y-4 sm:space-y-6">
-              {publications.map(pub => (
+              {filteredPublications.map(pub => (
                 <PublicationCard key={pub.id} publication={pub} />
               ))}
             </div>
           ) : (
-            <div className="text-center py-8 sm:py-12 md:py-16">
-              <div className="text-6xl sm:text-7xl md:text-9xl mb-3 sm:mb-4">🔍</div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-1 sm:mb-2">No publications found</h3>
-              <p className="text-sm sm:text-base text-gray-600">Try adjusting your filters or search terms</p>
+            <div className="text-center py-8 sm:py-16">
+              <div className="text-6xl sm:text-9xl mb-4">🔍</div>
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-700 mb-2">No publications found</h3>
+              <p className="text-gray-600 text-sm sm:text-base">Try adjusting your filters or search terms</p>
               <button
                 onClick={() => {
                   setFilter('all');
@@ -481,7 +353,7 @@ export default function CsPaperPublications() {
                   setAuthorFilter('all');
                   setSearchTerm('');
                 }}
-                className="mt-4 sm:mt-6 px-4 sm:px-6 py-1.5 sm:py-2 bg-yellow-900 text-white text-sm sm:text-base rounded-lg hover:bg-yellow-800 transition-colors"
+                className="mt-4 sm:mt-6 px-4 sm:px-6 py-2 bg-yellow-900 text-white rounded-lg hover:bg-yellow-800 transition-colors text-sm sm:text-base"
               >
                 Reset All Filters
               </button>
@@ -489,23 +361,22 @@ export default function CsPaperPublications() {
           )}
         </section>
 
-        {publications.length > 0 && (
+        {!loading && !error && filteredPublications.length > 0 && (
           <div className="mt-6 sm:mt-8 text-center text-xs sm:text-sm text-gray-500">
-            Showing {publications.length} of {publicationsData.length} publications
+            Showing {filteredPublications.length} of {publications.length} publications
           </div>
         )}
       </main>
 
       <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 p-2 rounded-full bg-yellow-900 text-white shadow-lg hover:bg-yellow-800 transition-colors"
-          aria-label="Scroll to top"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-          </svg>
-        </button>
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 p-2 rounded-full bg-yellow-900 text-white shadow-lg hover:bg-yellow-800 transition-colors z-10"
+        aria-label="Scroll to top"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+      </button>
     </div>
-
   );
 }

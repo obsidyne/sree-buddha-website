@@ -1,99 +1,162 @@
 "use client"
 
-import React from 'react'
-
-
+import React, { useState, useEffect } from 'react'
+import { Poppins } from 'next/font/google'
 import "../../department_style.css"
 import "./style.css"
 
+// Initialize Poppins font
+const poppins = Poppins({
+    weight: ['400', '500', '600', '700'],
+    subsets: ['latin'],
+    display: 'swap',
+})
+
+export default function MEDepartmentFaculty() {
+    const [faculty, setFaculty] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchFaculty = async () => {
+            try {
+                const response = await fetch(
+                    `${process.env.NEXT_PUBLIC_STRAPI}/api/cse-depts?filters[Dept_name][$eq]=me&populate[Faculty][populate]=Faculty_image`
+                );
+
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch faculty data: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response:', data);
 
 
-export default function MechDepartmentFaculty() {
+                if (data && data.data && data.data.length > 0) {
 
-    const faculty = [
-        ["mech_faculty_6.jpg", "Mr. Anilkumar A V", "M.Tech", "HOD", "Industrial Refrigeration and Cryogenic Engineering"],
-        ["mech_faculty_1.jpg", "Dr. K Krishnakumar", "Ph.D", "Professor", "Heat Transfer and Thermal Engineering"],
-        ["mech_faculty_2.jpg", "Dr. Saji Varghese", "Ph.D", "Professor", "Manufacturing Engineering"],
-        ["mech_faculty_3.jpg", "Dr. M. S. Senthil Saravanan", "Ph.D", "Professor", "Thermal Engineering"],
-        ["mech_faculty_4.jpg", "Dr. Trijo Tharayil", "Ph.D", "Associate Professor", "Thermal Engineering"],
-        ["mech_faculty_5.jpg", "Dr. J.B. Sajin", "Ph.D", "Associate Professor", "Manufacturing Engineering"],
-        
-        ["mech_faculty_7.jpg", "Ms. Vidya V", "M.E", "Assistant Professor", "Mechatronics"],
-        ["mech_faculty_8.jpg", "Mr. Venugopal N", "M.Tech", "Assistant Professor", "Industrial Refrigeration and Cryogenic Engineering"],
-        ["mech_faculty_9.jpg", "Mr. Sreekumar E N", "M.Tech", "Assistant Professor", "Industrial Refrigeration and Cryogenic Engineering"],
-        ["mech_faculty_10.jpg", "Mr. Kalesh K K", "M.Tech", "Assistant Professor", "Production Engineering"],
-        ["mech_faculty_14.jpg", "Mr. Ratheesh R", "M.Tech", "Assistant Professor", "Industrial Engineering and Management"],
-        ["mech_faculty_15.jpg", "Mr. Vaisakh P S", "M.Tech", "Assistant Professor", "Production and Industrial Engineering"],
-        ["mech_faculty_16.jpg", "Mr. Jinan S", "M.Tech", "Assistant Professor", "Industrial Refrigeration and Cryogenic Engineering"],
-        ["mech_faculty_17.jpg", "Ms. Kalpana Ashokan", "M.Tech", "Assistant Professor", "IC Engines and Turbo Machinery"],
-        ["mech_faculty_18.jpg", "Mr. Harikrishnan G", "M.Tech", "Assistant Professor", "Machine Design"],
-        ["mech_faculty_20.jpg", "Mr. Prasanth V", "M.Tech", "Assistant Professor", "Propulsion Engineering"]
-    ];
+                    const aiMlDept = data.data.find(dept => dept.attributes && dept.attributes.Dept_name === 'AI_ML') || data.data[0];
 
+                    let facultyArray;
+                    if (aiMlDept.attributes && aiMlDept.attributes.Faculty && aiMlDept.attributes.Faculty.data) {
+
+                        facultyArray = aiMlDept.attributes.Faculty.data.map(item => ({
+                            ...item.attributes,
+                            id: item.id
+                        }));
+                    } else if (aiMlDept.Faculty && Array.isArray(aiMlDept.Faculty)) {
+
+                        facultyArray = aiMlDept.Faculty;
+                    } else {
+                        throw new Error('Faculty data not found in the expected structure');
+                    }
+
+                    // Sort by Priority if available
+                    const sortedFaculty = [...facultyArray].sort((a, b) => {
+                        // Sort by Priority, nulls go to the end
+                        if (a.Priority === null && b.Priority === null) return 0;
+                        if (a.Priority === null) return 1;
+                        if (b.Priority === null) return -1;
+                        return a.Priority - b.Priority;
+                    });
+
+                    setFaculty(sortedFaculty);
+                } else {
+                    throw new Error('Invalid API response structure');
+                }
+
+                setLoading(false);
+            } catch (err) {
+                console.error('Error fetching faculty data:', err);
+                setError(`API error: ${err.message}`);
+                setLoading(false);
+            }
+        };
+
+        fetchFaculty();
+    }, []);
+
+
+    const handleImageError = (e) => {
+        e.target.onerror = null;
+        e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='25' fill='%23ccc'/%3E%3Cpath d='M15,85 Q50,65 85,85 Z' fill='%23ccc'/%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23ccc' stroke-width='2'/%3E%3C/svg%3E";
+    };
+
+
+    const getImageUrl = (member) => {
+
+        if (member.Faculty_image) {
+
+            return `${process.env.NEXT_PUBLIC_STRAPI}${member.Faculty_image.url}`;
+        } else {
+
+            return '';
+        }
+    };
 
     return (
-        <div className="cs_department_faculty">
+        <div className={`cs_department_faculty ${poppins.className}`}>
+            {loading ? (
+                <div>Loading faculty information...</div>
+            ) : error ? (
+                <div className="error-message">{error}</div>
+            ) : (
+                <>
+                    <table className="faculty_table_desktop">
+                        <tbody>
+                            <tr className='headrow'>
+                                <td>Profile</td>
+                                <td>Name</td>
+                                <td>Qualification</td>
+                                <td>Designation</td>
+                                <td>Specialization</td>
+                            </tr>
 
-            <table className="faculty_table_desktop">
-                <tbody>
-                    <tr className='headrow'>
-                        <td></td>
-                        <td>Name</td>
-                        <td>Qualification</td>
-                        <td>Designation</td>
-                        <td>Specialization</td>
-                    </tr>
-
-                    {
-                        faculty.map((singleFaculty, index) => {
-                            return (
+                            {faculty.map((member, index) => (
                                 <tr key={index}>
                                     <td>
                                         <div className="faculty_img_container">
                                             <img
-                                                src={`/assets/images/departments/faculty/mech/${singleFaculty[0]}`}
-                                                alt={`${singleFaculty[1]}`}
+                                                src={getImageUrl(member)}
+                                                alt={member.Faculty_Name}
                                                 className="faculty_img"
+                                                onError={handleImageError}
                                             />
                                         </div>
                                     </td>
-                                    <td>{singleFaculty[1]}</td>
-                                    <td>{singleFaculty[2]}</td>
-                                    <td>{singleFaculty[3]}</td>
-                                    <td>{singleFaculty[4]}</td>
+                                    <td>{member.Faculty_Name}</td>
+                                    <td>{member.Qualification}</td>
+                                    <td>{member.Designation}</td>
+                                    <td>{member.Specialization}</td>
                                 </tr>
-                            )
-                        })
-                    }
-                </tbody>
-            </table>
+                            ))}
+                        </tbody>
+                    </table>
 
-            <div className="faculty_table_mobile">
-                {
-                    faculty.map((singleFaculty, index) => {
-                        return (
+                    <div className="faculty_table_mobile">
+                        {faculty.map((member, index) => (
                             <div className="single_faculty" key={index}>
                                 <div className="img_section">
                                     <div className="faculty_img_container">
                                         <img
-                                            src={`/assets/images/departments/faculty/mech/${singleFaculty[0]}`}
-                                            alt={`${singleFaculty[1]}`}
+                                            src={getImageUrl(member)}
+                                            alt={member.Faculty_Name}
                                             className="faculty_img"
+                                            onError={handleImageError}
                                         />
                                     </div>
                                 </div>
 
                                 <div className="details_section">
-                                    <h3 className="faculty_name">{singleFaculty[1]}</h3>
-                                    <h3 className="faculty_qualification">{singleFaculty[2]}</h3>
-                                    <h3 className="faculty_designation">{singleFaculty[3]}</h3>
-                                    <h3 className="faculty_specialization">{singleFaculty[4]}</h3>
+                                    <h3 className="faculty_name">{member.Faculty_Name}</h3>
+                                    <h3 className="faculty_qualification">{member.Qualification}</h3>
+                                    <h3 className="faculty_designation">{member.Designation}</h3>
+                                    <h3 className="faculty_specialization">{member.Specialization}</h3>
                                 </div>
                             </div>
-                        )
-                    })
-                }
-            </div>
+                        ))}
+                    </div>
+                </>
+            )}
 
             <style jsx>{`
                 .faculty_img_container {
@@ -102,9 +165,10 @@ export default function MechDepartmentFaculty() {
                     border-radius: 50%;
                     overflow: hidden;
                     margin: 0 auto;
+                    background-color: #f0f0f0;
                     display: flex;
-                    justify-content: center;
                     align-items: center;
+                    justify-content: center;
                 }
                 
                 .faculty_img {
@@ -113,35 +177,18 @@ export default function MechDepartmentFaculty() {
                     object-fit: cover;
                 }
                 
+                .error-message {
+                    background-color: #f8d7da;
+                    color: #721c24;
+                    padding: 12px;
+                    border-radius: 4px;
+                    margin-bottom: 16px;
+                }
+                
                 @media (max-width: 768px) {
                     .faculty_img_container {
-                        width: 80px;
-                        height: 80px;
-                    }
-                    
-                    .single_faculty {
-                        display: flex;
-                        padding: 15px;
-                        border-bottom: 1px solid #eaeaea;
-                    }
-                    
-                    .img_section {
-                        margin-right: 15px;
-                        display: flex;
-                        align-items: center;
-                    }
-                    
-                    .details_section {
-                        flex: 1;
-                    }
-                    
-                    .details_section h3 {
-                        margin: 5px 0;
-                        font-size: 14px;
-                    }
-                    
-                    .faculty_name {
-                        font-weight: bold;
+                        width: 100px;
+                        height: 100px;
                     }
                 }
             `}</style>

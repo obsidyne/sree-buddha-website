@@ -76,29 +76,29 @@ export default function ComputerScienceDepartment() {
         </div>
         
         <section className="cs-dept-section">
-          <h2 className="cs-dept-section-title">Department Profile</h2>
-          <div className="cs-dept-profile-content">
-            <div className="cs-dept-profile-text">
-              <p>Sree Buddha College of Engineering stands at the forefront as one of the first institutions in Kerala to introduce a Bachelor&apos;s program in Electronics and Computer Engineering. Established in 2023, the Department of Electronics & Computer Engineering has quickly distinguished itself by offering a cutting-edge instructional program, With a sanctioned intake of 30 students.</p>
+  <h2 className="cs-dept-section-title">Department Profile</h2>
+  <div className="cs-dept-profile-content">
+    <div className="cs-dept-profile-text">
+      <p style={{ textAlign: "justify" }}>Sree Buddha College of Engineering stands at the forefront as one of the first institutions in Kerala to introduce a Bachelor&apos;s program in Electronics and Computer Engineering. Established in 2023, the Department of Electronics & Computer Engineering has quickly distinguished itself by offering a cutting-edge instructional program, With a sanctioned intake of 30 students.</p>
 
-              <p>The <b>Department of Electronics and Computer Engineering (ER)</b> at Sree Buddha College of Engineering is a centre for blending the core principles of electronics and computer engineering. A team of highly skilled faculty members from both the domains provides students with holistic and interdisciplinary education, integrating hardware and software expertise to prepare them for the rapidly advancing tech industry. This multidisciplinary program, strengthened by robust industry collaborations, equips students with cutting-edge expertise in fields such as AI, IoT, embedded systems, robotics, and cybersecurity. By combining theoretical foundations with hands-on industry exposure, the department is shaping future-ready engineers who can excel in Industry 4.0 and beyond.</p>
-            </div>
+      <p style={{ textAlign: "justify" }}>The <b>Department of Electronics and Computer Engineering (ER)</b> at Sree Buddha College of Engineering is a centre for blending the core principles of electronics and computer engineering. A team of highly skilled faculty members from both the domains provides students with holistic and interdisciplinary education, integrating hardware and software expertise to prepare them for the rapidly advancing tech industry. This multidisciplinary program, strengthened by robust industry collaborations, equips students with cutting-edge expertise in fields such as AI, IoT, embedded systems, robotics, and cybersecurity. By combining theoretical foundations with hands-on industry exposure, the department is shaping future-ready engineers who can excel in Industry 4.0 and beyond.</p>
+    </div>
 
-            {/* <div className="cs-dept-profile-images">
-              {buildingImages.map((img, index) => (
-                <div key={index} className="cs-dept-building-image">
-                  <Image 
-                    src={img} 
-                    alt={`Computer Science Department Building ${index + 1}`}
-                    width={400}
-                    height={300}
-                  />
-                </div>
-              ))}
-            </div> */}
+    {/* <div className="cs-dept-profile-images">
+      {buildingImages.map((img, index) => (
+        <div key={index} className="cs-dept-building-image">
+          <Image 
+            src={img} 
+            alt={`Computer Science Department Building ${index + 1}`}
+            width={400}
+            height={300}
+          />
+        </div>
+      ))}
+    </div> */}
 
-          </div>
-        </section>
+  </div>
+</section>
         
         <section className="cs-dept-section">
   <h2 className="cs-dept-section-title">Department Highlights</h2>

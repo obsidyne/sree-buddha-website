@@ -80,25 +80,25 @@ export default function ComputerScienceDepartment() {
         </div>
         
         <section className="cs-dept-section">
-          <h2 className="cs-dept-section-title">Department Profile</h2>
-          <div className="cs-dept-profile-content">
-            <div className="cs-dept-profile-text">
-              <p>The department of Civil Engineering was started in Sree Buddha College of Engineering in the
-                year 2008 with a sanctioned student intake of 60. The department also offers a PG programme in
-                Structural Engineering with a sanctioned student intake of 24 in the year 2013.</p>
-                            
-              <p>The department provides quality instruction and teaching to both UG and PG levels and technical advisory
-                support for research and development activities covering the areas of Building Materials and
-                Construction, Surveying, Hydraulics Engineering, Concrete Technology, Structural Engineering,
-                Transportation Engineering, Water Resources Engineering, Geotechnical Engineering and
-                Environmental Engineering.</p>
-                            
-              <p>This department is accredited by NBA since November 2019.
-                Following an outcome based learning and National Educational Policy, the department sets a
-                standard in curriculum and industrial interactions.</p>
-            </div>
-          </div>
-        </section>
+  <h2 className="cs-dept-section-title">Department Profile</h2>
+  <div className="cs-dept-profile-content">
+    <div className="cs-dept-profile-text">
+      <p style={{ textAlign: "justify" }}>The department of Civil Engineering was started in Sree Buddha College of Engineering in the
+        year 2008 with a sanctioned student intake of 60. The department also offers a PG programme in
+        Structural Engineering with a sanctioned student intake of 24 in the year 2013.</p>
+                    
+      <p style={{ textAlign: "justify" }}>The department provides quality instruction and teaching to both UG and PG levels and technical advisory
+        support for research and development activities covering the areas of Building Materials and
+        Construction, Surveying, Hydraulics Engineering, Concrete Technology, Structural Engineering,
+        Transportation Engineering, Water Resources Engineering, Geotechnical Engineering and
+        Environmental Engineering.</p>
+                    
+      <p style={{ textAlign: "justify" }}>This department is accredited by NBA since November 2019.
+        Following an outcome based learning and National Educational Policy, the department sets a
+        standard in curriculum and industrial interactions.</p>
+    </div>
+  </div>
+</section>
         
         <section className="cs-dept-section">
           <h2 className="cs-dept-section-title">Department Highlights</h2>

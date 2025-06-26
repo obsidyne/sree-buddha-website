@@ -74,19 +74,19 @@ export default function ComputerScienceDepartment() {
       </div>
 
       <section className="cs-dept-section">
-        <h2 className="cs-dept-section-title">Department Profile</h2>
-        <div className="cs-dept-profile-content">
-        <div className="cs-dept-profile-text">
-  <p>Established in 2002, the Department of Biotechnology & Biochemical Engineering at Sree Buddha College of Engineering is a recognized centre for excellence in interdisciplinary education and research. Accredited by the NBA since 2019 and reaccredited in 2023, the department integrates molecular life sciences with engineering principles to address real-world challenges.</p>
-  
-  <p>It offers a four-year B.Tech, a two-year M.Tech, and Ph.D. programs, designed to equip students with strong theoretical foundations and practical skills. Emphasizing research-led teaching, industry collaboration, and hands-on learning, the department prepares graduates for impactful careers in biotechnology, healthcare, and sustainable development.</p>
-  
-  <p>The department houses two advanced research labs and specialized laboratories that offer hands-on training and support student-led projects under faculty guidance. Collaborations with reputed organizations enhance interdisciplinary research in areas like molecular diagnostics, nanotechnology, bioprocessing, and biofuels.</p>
-  
-  <p>Student research often results in publications in reputed journals. With a focus on academic rigor, research, and industry collaboration, the department equips students to become skilled, innovative, and industry-ready professionals.</p>
-</div>
-        </div>
-      </section>
+  <h2 className="cs-dept-section-title">Department Profile</h2>
+  <div className="cs-dept-profile-content">
+    <div className="cs-dept-profile-text">
+      <p style={{ textAlign: "justify" }}>Established in 2002, the Department of Biotechnology & Biochemical Engineering at Sree Buddha College of Engineering is a recognized centre for excellence in interdisciplinary education and research. Accredited by the NBA since 2019 and reaccredited in 2023, the department integrates molecular life sciences with engineering principles to address real-world challenges.</p>
+      
+      <p style={{ textAlign: "justify" }}>It offers a four-year B.Tech, a two-year M.Tech, and Ph.D. programs, designed to equip students with strong theoretical foundations and practical skills. Emphasizing research-led teaching, industry collaboration, and hands-on learning, the department prepares graduates for impactful careers in biotechnology, healthcare, and sustainable development.</p>
+      
+      <p style={{ textAlign: "justify" }}>The department houses two advanced research labs and specialized laboratories that offer hands-on training and support student-led projects under faculty guidance. Collaborations with reputed organizations enhance interdisciplinary research in areas like molecular diagnostics, nanotechnology, bioprocessing, and biofuels.</p>
+      
+      <p style={{ textAlign: "justify" }}>Student research often results in publications in reputed journals. With a focus on academic rigor, research, and industry collaboration, the department equips students to become skilled, innovative, and industry-ready professionals.</p>
+    </div>
+  </div>
+</section>
 
       <section className="cs-dept-section">
         <h2 className="cs-dept-section-title">Department Highlights</h2>

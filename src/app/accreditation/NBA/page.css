@@ -1,263 +1,71 @@
-/* Base Layout */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Additional custom styles for NBA page */
 .containers {
-  margin: 65px 150px;
-  padding: 20px;
+  @apply font-sans text-gray-800;
 }
 
-.line {
-  width: 60dvw;
-  height: 2px;
-  background-color: #E6B66E;
-  margin: 10px 0 20px 0;
+/* Animation for hover effects */
+@keyframes subtle-bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
 }
 
-/* Images */
-.img-tag {
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* For the NBA logo */
+.nba-logo-container:hover img {
+  @apply scale-105;
 }
 
-.img1 {
-  max-width: 100%;
-  height: auto;
+/* Department animations */
+.department-header {
+  @apply transition-all duration-300 ease-in-out;
+}
+.department-header:hover {
+  @apply bg-blue-50;
 }
 
-.NBA {
-  margin: 50px;
-  max-width: 250px;
-  height: auto;
+/* File link animations */
+.file-link {
+  @apply transition-all duration-200;
+}
+.file-link:hover {
+  @apply translate-x-1;
 }
 
-/* Typography */
-p {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #333;
-  margin-bottom: 20px;
+/* Custom border styles */
+.border-l-6 {
+  border-left-width: 6px;
 }
 
-.page_heading {
-  color: #9A6B2B;
-  font-size: 32px;
-  margin-bottom: 15px;
-}
-
-.caption {
-  font-weight: 700;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 15px 0;
-}
-
-.con {
-  text-align: center;
-  max-width: 800px;
-}
-
-.sub-heading {
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  color: #9A6B2B;
-  border-bottom: 2px solid #E6B66E;
-  padding-bottom: 8px;
-  display: inline-block;
-}
-
-.content {
-  font-size: 16px;
-  line-height: 1.5;
-  margin: 20px 0;
-}
-
-/* List Styles - Fixed bullet points */
-ul {
-  list-style-type: none;
-  padding-left: 25px;
-  margin-bottom: 25px;
-}
-
-ul li {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #333;
-  margin-bottom: 10px;
-  position: relative;
-  padding-left: 5px;
-}
-
-ul li::before {
-  content: "•";
-  position: absolute;
-  left: -20px;
-  color: #E6B66E;
-  font-size: 20px;
-}
-
-/* Links */
-.a-tags {
-  padding-top: 20px;
-  text-decoration: none;
-  color: #B3852F;
-  display: inline-block;
-  margin-bottom: 20px;
-}
-
-.a-tags:hover {
-  text-decoration: underline;
-}
-
-/* NBA Departments Section - Fixed styling */
-.nba-departments {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
-
-.nba-department {
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.nba-department:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.dept-heading {
-  color: #9A6B2B;
-  font-size: 20px;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #E6B66E;
-}
-
-/* Fixed file items to avoid bullet point issues */
-.nba-files-container {
-  padding-left: 10px;
-}
-
-.nba-file-item {
-  margin-bottom: 12px;
-  padding: 8px;
-  background-color: #FDF6EA;
-  border-left: 3px solid #E6B66E;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-}
-
-.nba-file-item:hover {
-  background-color: #FCF0D9;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 1200px) {
-  .containers {
-    margin: 50px 100px;
+/* Custom loader animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
-@media (max-width: 992px) {
-  .containers {
-    margin: 40px 60px;
+/* Responsive text styles */
+@media (max-width: 640px) {
+  h1 {
+    @apply text-3xl;
   }
-  
-  .line {
-    width: 80dvw;
+  h2 {
+    @apply text-2xl;
   }
-  
-  .page_heading {
-    font-size: 28px;
-  }
-}
-
-@media (max-width: 768px) {
-  .containers {
-    margin: 30px 30px;
-    padding: 15px;
-  }
-  
-  .nba-department {
-    padding: 1.2rem;
-  }
-  
-  .dept-heading {
-    font-size: 18px;
-  }
-  
-  .sub-heading {
-    font-size: 18px;
-  }
-  
-  .caption {
-    font-size: 16px;
-  }
-  
-  .NBA {
-    margin: 30px;
+  .description-text {
+    @apply text-base;
   }
 }
 
-@media (max-width: 576px) {
-  .containers {
-    margin: 20px 15px;
-    padding: 10px;
+/* Custom padding for mobile */
+@media (max-width: 640px) {
+  .container-padding {
+    @apply px-3 py-4;
   }
-  
-  .line {
-    width: 95dvw;
-  }
-  
-  .page_heading {
-    font-size: 24px;
-  }
-  
-  p, ul li {
-    font-size: 15px;
-  }
-  
-  .sub-heading {
-    font-size: 17px;
-    margin-top: 25px;
-  }
-  
-  .dept-heading {
-    font-size: 17px;
-  }
-  
-  .nba-department {
-    padding: 1rem;
-  }
-}
-.nba-department .dept-heading:hover {
-  text-decoration: underline;
-}
-
-.nba-files {
-  margin-top: 1rem;
-  padding-left: 10px;
-  list-style-type: none;
-}
-
-.nba-file-item a {
-  color: #9A6B2B;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.nba-file-item a:hover {
-  text-decoration: underline;
-}
-.para-style{
-  font-style: bold;
-  font-weight: 600;
 }

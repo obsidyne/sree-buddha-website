@@ -17,7 +17,7 @@
     text-align: justify !important;
 }
 
-/* Image container with enforced sizing */
+/* Base image container with enforced sizing */
 .image {
     width: 40% !important;
     position: relative !important;
@@ -37,7 +37,7 @@
     height: 100% !important;
     object-fit: cover !important; /* This ensures the image covers the area without distortion */
     object-position: center !important;
-    transition: opacity 0.3s ease !important;
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
     /* Ensure img takes up full space of container */
     position: absolute !important;
     top: 0 !important;
@@ -46,10 +46,150 @@
     bottom: 0 !important;
 }
 
+.image img:hover {
+    transform: scale(1.05) !important;
+}
+
+/* Ultra-wide images (aspect ratio > 2.0) - banners, panoramic */
+.image-ultra-wide {
+    height: 220px !important;
+    min-height: 220px !important;
+}
+
+.image-ultra-wide img {
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Wide/landscape images (aspect ratio 1.5 - 2.0) */
+.image-wide {
+    height: 280px !important;
+    min-height: 280px !important;
+}
+
+.image-wide img {
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Moderately rectangular images (aspect ratio 1.2 - 1.5) */
+.image-landscape {
+    height: 320px !important;
+    min-height: 320px !important;
+}
+
+.image-landscape img {
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Square-ish images (aspect ratio 0.8 - 1.2) */
+.image-square {
+    height: 350px !important;
+    min-height: 350px !important;
+}
+
+.image-square img {
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Portrait images (aspect ratio 0.65 - 0.8) */
+.image-portrait {
+    height: 530px !important;
+    min-height: 530px !important;
+}
+
+.image-portrait img {
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Mobile/vertical video ratios (aspect ratio 0.5 - 0.65) - 9:16, etc. */
+.image-mobile-vertical {
+    height: 480px !important;
+    min-height: 480px !important;
+    width: 32% !important; /* Narrower width for mobile vertical ratios */
+}
+
+.image-mobile-vertical img {
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Poster ratio images (aspect ratio 0.4 - 0.5) - like 2:3, 3:4 ratios */
+.image-poster {
+    height: 520px !important;
+    min-height: 520px !important;
+    width: 30% !important; /* Reduce width for poster ratios */
+}
+
+.image-poster img {
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Very tall poster images (aspect ratio 0.25 - 0.4) - movie posters, etc. */
+.image-tall-poster {
+    height: 550px !important;
+    min-height: 550px !important;
+    width: 30% !important; /* Even narrower width for very tall images */
+}
+
+.image-tall-poster img {
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Skyscraper images (aspect ratio 0.15 - 0.25) - tall banners, infographics */
+.image-skyscraper {
+    height: 600px !important;
+    min-height: 600px !important;
+    width: 25% !important; /* Very narrow width for skyscraper images */
+}
+
+.image-skyscraper img {
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+/* Ultra-tall images (aspect ratio < 0.15) - extremely tall images */
+.image-ultra-tall {
+    height: 650px !important;
+    min-height: 650px !important;
+    width: 20% !important; /* Extremely narrow width */
+}
+
+.image-ultra-tall img {
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
 .details {
     padding: 20px !important;
     width: 60% !important;
     flex-grow: 1 !important;
+}
+
+/* Adjust details width for poster ratios */
+.image-mobile-vertical ~ .details {
+    width: 68% !important;
+}
+
+.image-poster ~ .details {
+    width: 70% !important;
+}
+
+.image-tall-poster ~ .details {
+    width: 70% !important;
+}
+
+.image-skyscraper ~ .details {
+    width: 75% !important;
+}
+
+.image-ultra-tall ~ .details {
+    width: 80% !important;
 }
 
 .headline {
@@ -110,10 +250,75 @@
         flex-direction: column !important;
     }
     
-    .image {
+    /* Base mobile styling - all images take full width */
+    .image,
+    .image-ultra-wide,
+    .image-wide,
+    .image-landscape,
+    .image-square,
+    .image-portrait,
+    .image-mobile-vertical,
+    .image-poster,
+    .image-tall-poster,
+    .image-skyscraper,
+    .image-ultra-tall {
         width: 100% !important;
-        max-height: 250px !important;
         margin-bottom: 15px !important;
+    }
+    
+    /* Landscape and wide images - shorter on mobile */
+    .image-ultra-wide {
+        height: 180px !important;
+        min-height: 180px !important;
+    }
+    
+    .image-wide {
+        height: 200px !important;
+        min-height: 200px !important;
+    }
+    
+    .image-landscape {
+        height: 220px !important;
+        min-height: 220px !important;
+    }
+    
+    /* Square images */
+    .image,
+    .image-square {
+        height: 250px !important;
+        min-height: 250px !important;
+    }
+    
+    /* Portrait images - maintain their vertical nature */
+    .image-portrait {
+        height: 550px !important;
+        min-height: 550px !important;
+    }
+    
+    /* Vertical images - keep them tall to preserve aspect ratio */
+    .image-mobile-vertical {
+        height: 420px !important;
+        min-height: 420px !important;
+    }
+    
+    .image-poster {
+        height: 480px !important;
+        min-height: 480px !important;
+    }
+    
+    .image-tall-poster {
+        height: 550px !important;
+        min-height: 550px !important;
+    }
+    
+    .image-skyscraper {
+        height: 620px !important;
+        min-height: 620px !important;
+    }
+    
+    .image-ultra-tall {
+        height: 700px !important;
+        min-height: 700px !important;
     }
     
     .details {
@@ -127,5 +332,75 @@
     
     .news_content {
         font-size: 14px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .page {
+        padding: 10px !important;
+    }
+    
+    .news {
+        padding: 15px !important;
+    }
+    
+    /* Smaller mobile - reduce heights but maintain proportional differences */
+    .image-ultra-wide {
+        height: 150px !important;
+        min-height: 150px !important;
+    }
+    
+    .image-wide {
+        height: 170px !important;
+        min-height: 170px !important;
+    }
+    
+    .image-landscape {
+        height: 190px !important;
+        min-height: 190px !important;
+    }
+    
+    .image,
+    .image-square {
+        height: 200px !important;
+        min-height: 200px !important;
+    }
+    
+    .image-portrait {
+        height: 380px !important;
+        min-height: 380px !important;
+    }
+    
+    .image-mobile-vertical {
+        height: 360px !important;
+        min-height: 360px !important;
+    }
+    
+    .image-poster {
+        height: 420px !important;
+        min-height: 420px !important;
+    }
+    
+    .image-tall-poster {
+        height: 480px !important;
+        min-height: 480px !important;
+    }
+    
+    .image-skyscraper {
+        height: 540px !important;
+        min-height: 540px !important;
+    }
+    
+    .image-ultra-tall {
+        height: 600px !important;
+        min-height: 600px !important;
+    }
+    
+    .headline {
+        font-size: 18px !important;
+    }
+    
+    .news_content {
+        font-size: 13px !important;
     }
 }

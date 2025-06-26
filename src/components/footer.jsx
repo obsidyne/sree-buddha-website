@@ -33,10 +33,10 @@ export default function Footer() {
               Information
             </h3>
             <ul className="space-y-3 text-center md:text-left">
-              <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">NIRF</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">NBA</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">NAAC</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">AICTE EoA</a></li>
+              <li><a href="/accreditation/NIRF" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">NIRF</a></li>
+              <li><a href="/accreditation/NBA" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">NBA</a></li>
+              <li><a href="/accreditation/NAAC/Cycle1" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">NAAC</a></li>
+              <li><a href="/about-us/EoA" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">AICTE EoA</a></li>
               
             </ul>
           </div>

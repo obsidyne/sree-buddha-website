@@ -18,8 +18,8 @@ export default function BiotechnologyBiochemicalEngineeringPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             PROGRAM EDUCATIONAL OBJECTIVES (PEOs)
           </h3>
-          <p className="font-medium mb-2">The graduates will:</p>
-          <ul className="space-y-3">
+          <p className="font-medium mb-2" style={{ textAlign: "justify" }}>The graduates will:</p>
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">PEO I: </span>
               Be able to design, develop and provide solutions for products and processes in Biotechnology and Biochemical Engineering and allied fields through quality education
@@ -40,8 +40,8 @@ export default function BiotechnologyBiochemicalEngineeringPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             PROGRAM OUTCOMES (POs)
           </h3>
-          <p className="mb-3">The graduates of the program will be able to:</p>
-          <ul className="space-y-3">
+          <p className="mb-3" style={{ textAlign: "justify" }}>The graduates of the program will be able to:</p>
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">1. Engineering knowledge: </span>
               Apply the knowledge of mathematics, science, engineering fundamentals, and an engineering specialization to the solution of complex engineering problems.
@@ -98,8 +98,8 @@ export default function BiotechnologyBiochemicalEngineeringPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             PROGRAM SPECIFIC OUTCOMES (PSOs)
           </h3>
-          <p className="mb-3">Biotechnology and Biochemical Engineering Graduates will be able to:</p>
-          <ul className="space-y-3">
+          <p className="mb-3" style={{ textAlign: "justify" }}>Biotechnology and Biochemical Engineering Graduates will be able to:</p>
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">PSO1: </span>
               Design and develop solutions to environmental and biochemical industrial problems
@@ -123,8 +123,8 @@ export default function BiotechnologyBiochemicalEngineeringPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             PROGRAM EDUCATIONAL OBJECTIVES (PEOs)
           </h3>
-          <p className="font-medium mb-2">The graduates will:</p>
-          <ul className="space-y-3">
+          <p className="font-medium mb-2" style={{ textAlign: "justify" }}>The graduates will:</p>
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">PEO I: </span>
               Be able to apply relevant tools to solve real life problems in the field of Biotechnology and Biochemical Engineering.
@@ -145,8 +145,8 @@ export default function BiotechnologyBiochemicalEngineeringPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             PROGRAM OUTCOMES (POs)
           </h3>
-          <p className="mb-3">The graduates of the program will be able to:</p>
-          <ul className="space-y-3">
+          <p className="mb-3" style={{ textAlign: "justify" }}>The graduates of the program will be able to:</p>
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">PO1: </span>
               Independently carry out research / investigation and development work to solve practical problems
@@ -179,8 +179,8 @@ export default function BiotechnologyBiochemicalEngineeringPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             PROGRAM SPECIFIC OUTCOMES (PSOs)
           </h3>
-          <p className="mb-3">Biotechnology and Biochemical Engineering graduates will be able to:</p>
-          <ul className="space-y-3">
+          <p className="mb-3" style={{ textAlign: "justify" }}>Biotechnology and Biochemical Engineering graduates will be able to:</p>
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">PSO1: </span>
               Develop and deliver novel designs/processes/products that could cater to the Biotechnology and Biochemical industrial demands to improve the social ecosystems.

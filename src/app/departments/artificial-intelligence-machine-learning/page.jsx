@@ -73,17 +73,17 @@ export default function ArtificialIntelligenceDepartment() {
             </div>
 
             <section className="cs-dept-section">
-                <h2 className="cs-dept-section-title">Department Profile</h2>
-                <div className="cs-dept-profile-content">
-                    <div className="cs-dept-profile-text">
-                        <p>The Department of Artificial Intelligence and Machine Learning was founded in 2020 and offers an undergraduate program B.Tech Computer Science and Engineering (Artificial Intelligence and Machine Learning) through APJ Abdul Kalam Technological University in Kerala.</p>
-                        
-                        <p>SBCE thrives to impart an effective technical education by means of experiential learning and develop concrete infrastructure with efficient faculty and dynamic student community for achieving higher target level in Higher education in India. It insists on implementing Outcome Based Education (OBE) throughout the tenure of under graduation by means of getting university ranks, higher placement records, and improved Higher order thinking. We are concerned with constructing top-to-bottom and bottom-to-top models of human-level intelligence; building systems that can provide intelligent tutoring; creating adaptive and intelligent entertainment systems; making systems that understand their own behavior; growing our understanding of how to build autonomous agents that can adapt in dynamic environments involving multitudes of other intelligent agents; modeling and predicting human behavior; automating creativity; and addressing a variety of other problems. To emphasize on lifelong learning and applying knowledge on solving real world problems, we conduct various technical events like hackathons, coding competitions, training programs, workshops and seminars. We strive to teach our best in terms of knowledge dissemination and bring out our students with a enriched experience.</p>
-                      
-                        <p>Our initiatives will undoubtedly shape students so that they can face the outside world with prompt technical, interpersonal, and problem-solving skills. We collaborate with various firms and regularly organize various activities such as industry visits, technical talks, and real-time projects to hone the students&apos; technical and soft skills in order to prepare industry ready students with holistic personalities.</p>
-                    </div>
-                </div>
-            </section>
+    <h2 className="cs-dept-section-title">Department Profile</h2>
+    <div className="cs-dept-profile-content">
+        <div className="cs-dept-profile-text">
+            <p style={{ textAlign: "justify" }}>The Department of Artificial Intelligence and Machine Learning was founded in 2020 and offers an undergraduate program B.Tech Computer Science and Engineering (Artificial Intelligence and Machine Learning) through APJ Abdul Kalam Technological University in Kerala.</p>
+            
+            <p style={{ textAlign: "justify" }}>SBCE thrives to impart an effective technical education by means of experiential learning and develop concrete infrastructure with efficient faculty and dynamic student community for achieving higher target level in Higher education in India. It insists on implementing Outcome Based Education (OBE) throughout the tenure of under graduation by means of getting university ranks, higher placement records, and improved Higher order thinking. We are concerned with constructing top-to-bottom and bottom-to-top models of human-level intelligence; building systems that can provide intelligent tutoring; creating adaptive and intelligent entertainment systems; making systems that understand their own behavior; growing our understanding of how to build autonomous agents that can adapt in dynamic environments involving multitudes of other intelligent agents; modeling and predicting human behavior; automating creativity; and addressing a variety of other problems. To emphasize on lifelong learning and applying knowledge on solving real world problems, we conduct various technical events like hackathons, coding competitions, training programs, workshops and seminars. We strive to teach our best in terms of knowledge dissemination and bring out our students with a enriched experience.</p>
+          
+            <p style={{ textAlign: "justify" }}>Our initiatives will undoubtedly shape students so that they can face the outside world with prompt technical, interpersonal, and problem-solving skills. We collaborate with various firms and regularly organize various activities such as industry visits, technical talks, and real-time projects to hone the students&apos; technical and soft skills in order to prepare industry ready students with holistic personalities.</p>
+        </div>
+    </div>
+</section>
 
             <section className="cs-dept-section">
                 <h2 className="cs-dept-section-title">Department Highlights</h2>
@@ -126,7 +126,7 @@ export default function ArtificialIntelligenceDepartment() {
             </section>
 
            <section className="container mx-auto px-4 py-10">
-                           <h2 className="text-3xl font-bold text-amber-800 pb-3 border-b-2 text-yellow-900 mb-6">
+                           <h2 className="text-3xl font-bold text-amber-800 pb-3 border-b-2 mb-6">
                              Department Gallery
                            </h2>
                    

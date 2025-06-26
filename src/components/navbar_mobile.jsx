@@ -47,7 +47,6 @@ export default function NavbarMobile() {
             visible: false,
             links: [
                 { name: "About Autonomy", link: "/autonomous/about_autonomy",visible:false },
-
                 { name: "Conferments", link: "/autonomous/conferments", visible: false },
                 { name: "Governing Body", link: "/autonomous/governing_body", visible: false },
                 { name: "Academic Council", link: "/autonomous/academic_council", visible: false },
@@ -63,7 +62,7 @@ export default function NavbarMobile() {
             name: "Academics",
             visible: false,
             links: [
-                { name: "Courses Offered", link: "/academics/courses" },
+                { name: "Courses Offered", link: "/academics/courses", visible: false },
                 { name: "Advisory System", link: "/academics/advisory_system", visible: false },
                 { name: "Academic Calendar", link: "/academics/academic_calendar", visible: false },
                 { name: "Professional Bodies", link: "/academics/professional_bodies", visible: false },
@@ -77,16 +76,16 @@ export default function NavbarMobile() {
             name: "Departments",
             visible: false,
             links: [
+                { name: "Basic Science and Mathematics", link: "/departments/mathematics-and-basic-sciences", visible: false },
+                { name: "Biotechnology and Biochemical Engineering", link: "/departments/biotechnology-biochemical-engineering", visible: false },
+                { name: "Civil Engineering", link: "/departments/civil-engineering", visible: false },
                 { name: "Computer Science and Engineering", link: "/departments/computer-science-engineering", visible: false },
+                { name: "Computer Science and Engineering (Artificial Intelligence & Machine learning)", link: "/departments/artificial-intelligence-machine-learning", visible: false },
                 { name: "Electrical and Electronics Engineering", link: "/departments/electrical-electronics-engineering", visible: false },
                 { name: "Electronics and Communication Engineering", link: "/departments/electronics-communication-engineering", visible: false },
-                { name: "Mechanical", link: "/departments/mechanical-engineering", visible: false },
-                { name: "Computer Science and Engineering (Artificial Intelligence & Machine learning)", link: "/departments/artificial-intelligence-machine-learning", visible: false },
                 { name: "Electronics and Computer Engineering", link: "/departments/electronics-computer-engineering", visible: false },
-                { name: "Civil Engineering", link: "/departments/civil-engineering", visible: false },
-                { name: "Basic Science and Mathematics", link: "/departments/mathematics-and-basic-sciences", visible: false },
                 { name: "Food Technology", link: "/departments/food-technology", visible: false },
-                { name: "Biotechnology and Biochemical Engineering", link: "/departments/biotechnology-biochemical-engineering", visible: false },
+                { name: "Mechanical Engineering", link: "/departments/mechanical-engineering", visible: false },
             ],
         },
         {
@@ -183,9 +182,7 @@ export default function NavbarMobile() {
     ]);
 
     return (
-
         <>
-
         <div className="relative w-full bg-white shadow-md navbar_mobile">
             <div className="flex items-center justify-between p-4 --bg-green-200 w-full">
                <Link href = "/"><div className="flex items-center">
@@ -238,7 +235,7 @@ export default function NavbarMobile() {
                             </button>
                             
                             <div 
-                                className={`overflow-hidden transition-all duration-300 ${menu_link.visible ? 'max-h-96' : 'max-h-0'}`}
+                                className={`overflow-hidden transition-all duration-300 ${menu_link.visible ? 'max-h-screen' : 'max-h-0'}`}
                             >
                                 <div className="bg-gray-50 pl-4">
                                     {menu_link.links.map((menu_linkl2, index2) => {
@@ -248,6 +245,7 @@ export default function NavbarMobile() {
                                                     key={index2} 
                                                     href={menu_linkl2.link}
                                                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                    onClick={() => setSidebarVisible(false)}
                                                 >
                                                     {menu_linkl2.name}
                                                 </Link>
@@ -283,6 +281,7 @@ export default function NavbarMobile() {
                                                                     key={index3} 
                                                                     href={menu_linkl3.link}
                                                                     className="block px-4 py-2 text-xs text-gray-600 hover:bg-gray-200"
+                                                                    onClick={() => setSidebarVisible(false)}
                                                                 >
                                                                     {menu_linkl3.name}
                                                                 </Link>
@@ -307,8 +306,6 @@ export default function NavbarMobile() {
                     onClick={() => setSidebarVisible(false)}
                 ></div>
             )}
-
-
         </div>
         </>
     );

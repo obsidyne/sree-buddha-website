@@ -17,8 +17,8 @@ export default function CivilEngineeringPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             PROGRAM EDUCATIONAL OBJECTIVES (PEOs)
           </h3>
-          <p className="font-medium mb-2">The graduates will:</p>
-          <ul className="space-y-3">
+          <p className="font-medium mb-2" style={{ textAlign: "justify" }}>The graduates will:</p>
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">PEO1: </span>
               Have the attributes to pursue successful employment in Civil Engineering
@@ -39,8 +39,8 @@ export default function CivilEngineeringPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             PROGRAM OUTCOMES (POs)
           </h3>
-          <p className="mb-3">The graduates of the program should be able to:</p>
-          <ul className="space-y-3">
+          <p className="mb-3" style={{ textAlign: "justify" }}>The graduates of the program should be able to:</p>
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">PO1. Engineering Knowledge: </span>
               Apply the knowledge of mathematics, science, engineering fundamentals, to the solution of complex problems in Civil Engineering
@@ -97,8 +97,8 @@ export default function CivilEngineeringPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             PROGRAM SPECIFIC OUTCOMES (PSOs)
           </h3>
-          <p className="mb-3">Civil Engineering graduates will be able to:</p>
-          <ul className="space-y-3">
+          <p className="mb-3" style={{ textAlign: "justify" }}>Civil Engineering graduates will be able to:</p>
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">PSO1: </span>
               Design, develop and maintain sustainable solutions for problems in Civil engineering using state of the art technologies and in conformity with ethical standards.
@@ -122,9 +122,9 @@ export default function CivilEngineeringPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             PROGRAM EDUCATIONAL OBJECTIVES (PEOs)
           </h3>
-          <p className="mb-2">The Program Educational Objectives (PEOs) of the Post Graduate degree (M.Tech) in Structural Engineering (SE) program are presented below.</p>
-          <p className="font-medium mb-2">The graduates will:</p>
-          <ul className="space-y-3">
+          <p className="mb-2" style={{ textAlign: "justify" }}>The Program Educational Objectives (PEOs) of the Post Graduate degree (M.Tech) in Structural Engineering (SE) program are presented below.</p>
+          <p className="font-medium mb-2" style={{ textAlign: "justify" }}>The graduates will:</p>
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">PEO I: </span>
               Be competent for the analysis and design of structural systems considering the aspects of safety and sustainability.
@@ -145,8 +145,8 @@ export default function CivilEngineeringPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             PROGRAM OUTCOMES (POs)
           </h3>
-          <p className="mb-2">The graduates will be able to:</p>
-          <ul className="space-y-3">
+          <p className="mb-2" style={{ textAlign: "justify" }}>The graduates will be able to:</p>
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">PO1: </span>
               Independently carry out research / investigation and development work to solve practical problems
@@ -179,8 +179,8 @@ export default function CivilEngineeringPEOSPSO() {
           <h3 className="text-xl md:text-2xl font-semibold text-gray-700 mb-3">
             PROGRAM SPECIFIC OUTCOMES (PSOs)
           </h3>
-          <p className="mb-2">Structural Engineering graduates will be able to:</p>
-          <ul className="space-y-3">
+          <p className="mb-2" style={{ textAlign: "justify" }}>Structural Engineering graduates will be able to:</p>
+          <ul className="space-y-3" style={{ textAlign: "justify" }}>
             <li>
               <span className="font-semibold">PSO1: </span>
               Apply research methodologies to critically analyze complex problems in the field of structural engineering and arrive at technically feasible solutions
