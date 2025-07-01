@@ -120,7 +120,7 @@ export default function ElectricalDepartment() {
         throw new Error("STRAPI API URL not configured");
       }
       
-      const response = await fetch(`${strapiUrl}/api/galleries?populate=*`);
+      const response = await fetch(`${strapiUrl}/api/galleries?populate=*&pagination[limit]=500`);
       
       if (!response.ok) {
         throw new Error(`API returned status: ${response.status}`);

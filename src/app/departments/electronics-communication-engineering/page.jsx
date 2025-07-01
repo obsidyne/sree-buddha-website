@@ -12,7 +12,7 @@ const [images, setImages] = useState([]);
 useEffect(() => {
   async function fetchImages() {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI}/api/galleries?populate=*`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI}/api/galleries?populate=*&pagination[limit]=500`);
       const data = await response.json();
 
       console.log("API Response:", data); // Debugging output
