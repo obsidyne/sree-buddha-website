@@ -1,10 +1,54 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import './style.css';
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 // import React, { useEffect, useState } from 'react';
+const generateAndDownloadPDF = async (formData, applicationNo) => {
+  const content = document.getElementById("pdf-content");
+  if (!content) return;
+
+  content.style.display = "block";
+  const canvas = await html2canvas(content, {
+    scale: 1.7,
+    useCORS: true,
+    allowTaint: true
+  });
+  content.style.display = "none";
+
+  const imgData = canvas.toDataURL("image/png");
+  const pdf = new jsPDF("p", "mm", "a4");
+
+  const pdfWidth = pdf.internal.pageSize.getWidth();
+  const pdfHeight = pdf.internal.pageSize.getHeight();
+
+  const imgProps = pdf.getImageProperties(imgData);
+  const imgWidth = pdfWidth;
+  const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+
+  let heightLeft = imgHeight;
+  let position = 0;
+
+  // First page
+  pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+  heightLeft -= pdfHeight;
+
+  // Additional pages
+  while (heightLeft > 0) {
+    position -= pdfHeight;
+    pdf.addPage();
+    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+    heightLeft -= pdfHeight;
+  }
+
+  const filename = `${applicationNo}.pdf`;
+  pdf.save(filename);
+};
 
 
 const ApplicationForm = () => {
+  const [applicationNo, setApplicationNo] = useState('');
+
 
 
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -404,6 +448,13 @@ const ApplicationForm = () => {
          
           
           setSubmitSuccess(true);
+          setSubmitSuccess(true);
+const today = new Date();
+const datePart = today.toISOString().slice(2, 10).replace(/-/g, '');
+const newApplicationNo = `SBCE25-UG-${datePart}${String(responseData.data.id).padStart(4, '0')}`;
+setApplicationNo(newApplicationNo); // ✅ set it
+await generateAndDownloadPDF(formData, newApplicationNo);
+
         } catch (apiError) {
           console.error('API error:', apiError);
           throw apiError; // Re-throw to be caught by the outer catch block
@@ -1249,7 +1300,7 @@ const ApplicationForm = () => {
               <div className="mb-8">
                 <h3 className="form-section-title">Branch Preferred*</h3>
                 <div className="form-check-group sm:grid-cols-2 md:grid-cols-3">
-                  {['Computer Science', 'Information Technology', 'Electronics', 'Electrical', 'Mechanical', 'Civil', 'Chemical', 'Biomedical', 'Aerospace'].map((branch) => (
+                  {['Computer Science  & Engineering (CS)', 'Biotechnology & Biochemical Engineering (BB)', 'Food Technology (FT)', 'Electronics & Communication Engineering', 'Computer Science & Engg. (Artificial Intelligence & Machine Learning) ', 'Civil Engineering', 'Electrical & Electronics Engineering', 'Electronics & Computer Engineering', 'Mechanical Engineering'].map((branch) => (
                     <label key={branch} className="form-check-label">
                       <input
                         type="radio"
@@ -1495,6 +1546,62 @@ const ApplicationForm = () => {
           </div>
         </form>
       </div>
+<div id="pdf-content" style={{ display: "none", background: "white", padding: "30px", width: "800px", fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>
+  <div style={{ textAlign: "center" }}>
+    <img src="/20a20944-c1b7-49d8-8e18-dfc3e2cddbc1.png" alt="College Logo" style={{ height: 80 }} />
+    <h2 style={{ margin: "10px 0" }}>SREE BUDDHA COLLEGE OF ENGINEERING, PATTOOR</h2>
+    <h3 style={{ textDecoration: "underline" }}>B.Tech Online Application</h3>
+  </div>
+  <br/>
+  <p><strong>Application No:</strong> {applicationNo}</p>
+
+  <p><strong>Name of the Applicant:</strong> {formData.name}</p>
+  <p><strong>Date of Birth:</strong> {formData.dob}</p>
+  <p><strong>Gender:</strong> {formData.gender}</p>
+  <p><strong>Nationality:</strong> {formData.nationality}</p>
+  <p><strong>Religion:</strong> {formData.religion}</p>
+  <p><strong>Community:</strong> {formData.community}</p>
+  <p><strong>Mother Tongue:</strong> {formData.motherTongue}</p>
+  <p><strong>Name of Parent/Guardian:</strong> {formData.parentName}</p>
+  <p><strong>Relationship:</strong> {formData.relationship}</p>
+  <p><strong>Address for Communication:</strong> {formData.address}</p>
+  <p><strong>Pin Code:</strong> {formData.pinCode}</p>
+  <p><strong>Telephone:</strong> {formData.telephone || "-"}</p>
+  <p><strong>Mobile:</strong> {formData.mobile}</p>
+  <p><strong>Email:</strong> {formData.email}</p>
+
+  <br/>
+  <h4>Details of Mark / Grade Obtained in the Qualifying Exam</h4>
+  <p><strong>10th:</strong> {formData.tenthBoard}, {formData.tenthInstitution}, {formData.tenthPassingDate} — {formData.tenthMarks}/{formData.tenthMaxMarks} ({formData.tenthPercentage}%)</p>
+  <p><strong>12th:</strong> {formData.twelfthBoard}, {formData.twelfthInstitution}, {formData.twelfthPassingDate} — {formData.twelfthMarks}/{formData.twelfthMaxMarks} ({formData.twelfthPercentage}%)</p>
+  <p><strong>Diploma:</strong> {formData.boardDiploma}, {formData.institutionDiploma}, {formData.dateDiploma} — {formData.diplomaMarks}/{formData.diplomaMaxMarks}</p>
+
+  <br/>
+  <h4>Marks Secured for Mathematics, Physics & Chemistry</h4>
+  <p><strong>Total Mark Secured:</strong> {formData.mpcMarks} / {formData.mpcMaxMarks}</p>
+
+  <br/>
+  <h4>Entrance Examination (Not applicable for NRI/OCI applicants)</h4>
+  <p><strong>Name of the Examination:</strong> {formData.entranceExam}</p>
+  <p><strong>Register No:</strong> {formData.entranceRegNo}</p>
+  <p><strong>Rank:</strong> {formData.entranceRank}</p>
+
+  <p><strong>Branch Preferred:</strong> {formData.branchPreference}</p>
+  <p><strong>Admission Sought Under:</strong> {formData.admissionType}</p>
+
+  <br/>
+  <p>I hereby declare, I shall abide by the rules and regulations of the College and the information furnished above are true to the best of my knowledge.</p>
+
+  <div style={{ display: "flex", justifyContent: "space-between", marginTop: "40px" }}>
+    <p><strong>Signature of Parent/Guardian</strong></p>
+    <p><strong>Signature of Applicant</strong></p>
+  </div>
+
+  {/* <p style={{ marginTop: "30px" }}>Date: {(new Date()).toLocaleDateString()}</p> */}
+  <div style={{ height: "100px" }}></div>
+
+</div>
+
     </div>
   );
 };
