@@ -6,19 +6,21 @@ import jsPDF from "jspdf";
 // import React, { useEffect, useState } from 'react';
 const generateAndDownloadPDF = async (formData, applicationNo) => {
   const content = document.getElementById("pdf-content");
-  if (!content) return;
+  if (!content) return null;
 
+  // ✅ Use lower scale to reduce image size (adjust if needed)
   content.style.display = "block";
   const canvas = await html2canvas(content, {
-    scale: 1.7,
+    scale: 1.2, // Lowered from 1.7
     useCORS: true,
     allowTaint: true
   });
   content.style.display = "none";
 
-  const imgData = canvas.toDataURL("image/png");
-  const pdf = new jsPDF("p", "mm", "a4");
+  // ✅ Use JPEG instead of PNG for better compression
+  const imgData = canvas.toDataURL("image/jpeg", 0.75); // 75% quality
 
+  const pdf = new jsPDF("p", "mm", "a4");
   const pdfWidth = pdf.internal.pageSize.getWidth();
   const pdfHeight = pdf.internal.pageSize.getHeight();
 
@@ -30,20 +32,25 @@ const generateAndDownloadPDF = async (formData, applicationNo) => {
   let position = 0;
 
   // First page
-  pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+  pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
   heightLeft -= pdfHeight;
 
-  // Additional pages
+  // Additional pages (if needed)
   while (heightLeft > 0) {
     position -= pdfHeight;
     pdf.addPage();
-    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+    pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight);
     heightLeft -= pdfHeight;
   }
 
   const filename = `${applicationNo}.pdf`;
-  pdf.save(filename);
+  const pdfBlob = pdf.output("blob");
+  const file = new File([pdfBlob], filename, { type: "application/pdf" });
+
+  return file;
 };
+
+
 
 
 const ApplicationForm = () => {
@@ -52,9 +59,9 @@ const ApplicationForm = () => {
 
 
   const [isSignedIn, setIsSignedIn] = useState(false);
-  
+
   //  initializing google drive 
-  
+
   const [formData, setFormData] = useState({
     name: '',
     dob: '',
@@ -86,7 +93,7 @@ const ApplicationForm = () => {
     institutionDiploma: '',
     dateDiploma: '',
     diplomaMarks: '',
-    diplomaMaxMarks : '',
+    diplomaMaxMarks: '',
     // diplomaPercentage: '',
     mpcMarks: '',
     mpcMaxMarks: '',
@@ -100,6 +107,7 @@ const ApplicationForm = () => {
     parentSignature: null,
     parentSignaturePreview: null,
     applicantSignature: null,
+    pdf: null,
     applicantSignaturePreview: null
   });
 
@@ -124,17 +132,17 @@ const ApplicationForm = () => {
       const percentage = ((parseFloat(formData.tenthMarks) / parseFloat(formData.tenthMaxMarks)) * 100).toFixed(2);
       setFormData(prev => ({ ...prev, tenthPercentage: percentage }));
     }
-    
+
     if (formData.twelfthMarks && formData.twelfthMaxMarks) {
       const percentage = ((parseFloat(formData.twelfthMarks) / parseFloat(formData.twelfthMaxMarks)) * 100).toFixed(2);
       setFormData(prev => ({ ...prev, twelfthPercentage: percentage }));
     }
-    
+
     if (formData.diplomaMarks && formData.diplomaMaxMarks) {
       const percentage = ((parseFloat(formData.diplomaMarks) / parseFloat(formData.diplomaMaxMarks)) * 100).toFixed(2);
       setFormData(prev => ({ ...prev, diplomaPercentage: percentage }));
     }
-    
+
     // Clean up any created object URLs when component unmounts
     return () => {
       if (formData.photoPreview) URL.revokeObjectURL(formData.photoPreview);
@@ -154,7 +162,7 @@ const ApplicationForm = () => {
       ...formData,
       [name]: value
     });
-    
+
     // Clear error for this field when user makes changes
     if (errors[name]) {
       setErrors({
@@ -176,7 +184,7 @@ const ApplicationForm = () => {
         });
         return;
       }
-      
+
       // Validate file size (max 2MB)
       if (files[0].size > 2 * 1024 * 1024) {
         setErrors({
@@ -188,13 +196,13 @@ const ApplicationForm = () => {
 
       // Create URL for preview
       const fileUrl = URL.createObjectURL(files[0]);
-      
+
       setFormData(prev => ({
         ...prev,
         [name]: files[0],
         [`${name}Preview`]: fileUrl
       }));
-      
+
       if (errors[name]) {
         setErrors({
           ...errors,
@@ -249,7 +257,7 @@ const ApplicationForm = () => {
   const validateSection = (sectionIndex) => {
     let tempErrors = {};
     let isValid = true;
-    
+
     // Fields to validate for each section
     const sectionFields = {
       0: ['name', 'dob', 'gender', 'nationality', 'religion', 'community', 'motherTongue'],
@@ -259,18 +267,18 @@ const ApplicationForm = () => {
       4: ['branchPreference', 'admissionType'],
       5: ['photo', 'parentSignature', 'applicantSignature']
     };
-    
+
     // Check required fields for this section
     sectionFields[sectionIndex].forEach(field => {
-      if (['name', 'dob', 'gender', 'nationality', 'religion', 'community', 'motherTongue', 
-           'parentName', 'relationship', 'address', 'pinCode', 'mobile', 'email',
-           'mpcMarks', 'mpcMaxMarks', 'branchPreference', 'admissionType', 'photo',
-           'parentSignature', 'applicantSignature'].includes(field) && !formData[field]) {
+      if (['name', 'dob', 'gender', 'nationality', 'religion', 'community', 'motherTongue',
+        'parentName', 'relationship', 'address', 'pinCode', 'mobile', 'email',
+        'mpcMarks', 'mpcMaxMarks', 'branchPreference', 'admissionType', 'photo',
+        'parentSignature', 'applicantSignature'].includes(field) && !formData[field]) {
         tempErrors[field] = 'This field is required';
         isValid = false;
       }
     });
-    
+
     // Section-specific validations
     if (sectionIndex === 2) {
       // Email validation
@@ -278,29 +286,29 @@ const ApplicationForm = () => {
         tempErrors.email = 'Please enter a valid email address';
         isValid = false;
       }
-      
+
       // Mobile validation
       if (formData.mobile && !/^\d{10}$/.test(formData.mobile)) {
         tempErrors.mobile = 'Please enter a valid 10-digit mobile number';
         isValid = false;
       }
-      
+
       // Pin code validation
       if (formData.pinCode && !/^\d{6}$/.test(formData.pinCode)) {
         tempErrors.pinCode = 'Please enter a valid 6-digit PIN code';
         isValid = false;
       }
     }
-    
+
     // Update errors state with the new errors
     setErrors(prev => ({
       ...prev,
       ...tempErrors
     }));
-    
+
     return isValid;
   };
-  
+
   // Handle section navigation with validation
   const handleNavigateSection = (nextIndex) => {
     // If moving forward, validate current section first
@@ -314,181 +322,161 @@ const ApplicationForm = () => {
         return; // Don't proceed if validation fails
       }
     }
-    
+
     // If validation passes or moving backward, navigate to the next section
     navigateSection(nextIndex);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm()) {
-      setIsSubmitting(true);
-      
-      try {
 
-      const file1 = formData.photo;
-      const parentSignature = formData.parentSignature;
-      const applicantSignature = formData.applicantSignature;
-      // Create a new FormData and append files with correct field names
-      const file_upload_form_data = new FormData();
-      if (file1) file_upload_form_data.append('files', file1);
-      if (parentSignature) file_upload_form_data.append('files', parentSignature);
-      if (applicantSignature) file_upload_form_data.append('files', applicantSignature);
-
-        await fetch(`${process.env.NEXT_PUBLIC_STRAPI}/api/upload`, {
-          method : "POST",
-          body: file_upload_form_data
-        }).then((response)=>{
-          return response.json()
-        }).then(async (data)=>{
-          console.log(data) 
-
-          const jsonData = {
-            data: {
-              name: formData.name,
-              dob: formData.dob,
-              gender: formData.gender,
-              nationality: formData.nationality,
-              religion: formData.religion,
-              community: formData.community,
-              motherTongue: formData.motherTongue,
-              parent: formData.parentName,
-              relationship: formData.relationship,
-              address: formData.address,
-              pincode: formData.pinCode,
-              telephone: formData.telephone || '',
-              mobile: formData.mobile,
-              email: formData.email,
-              
-              // Educational Information
-              board10: formData.tenthBoard || '',
-              institution10: formData.tenthInstitution || '',
-              marks10: formData.tenthMarks || '',
-              maximumMarks10: formData.tenthMaxMarks || '',
-              percentage10: formData.tenthPercentage || '',
-              date10: formData.tenthPassingDate || '',
-              
-              board12: formData.twelfthBoard || '',
-              institution12: formData.twelfthInstitution || '',
-              marks12: formData.twelfthMarks || '',
-              maximumMarks12: formData.twelfthMaxMarks || '',
-              percentage12: formData.twelfthPercentage || '',
-              date12: formData.twelfthPassingDate || '',
-              
-              boardDiploma: formData.boardDiploma || '',
-              institutionDiploma: formData.institutionDiploma || '',
-              markDiploma: formData.diplomaMarks || '',
-              maximumMarksDiploma: formData.diplomaMaxMarks || '',
-              dateDiploma: formData.dateDiploma || '',
-              
-              pcm: formData.mpcMarks,
-              maximumMarksPCM: formData.mpcMaxMarks,
-              
-              // Entrance & Preferences
-              entrance: formData.entranceExam || '',
-              regNo: formData.entranceRegNo || '',
-              rank: formData.entranceRank || '',
-              branchPrefered: formData.branchPreference,
-              admissionType: formData.admissionType, 
-
-              photo: data[0]['id'],
-              parentSignature: data[1]['id'],
-              applicantSignature: data[2]['id'],   
-            }
-          };
-          
-          console.log('Submitting JSON data:', jsonData);
-
-                  // Submit to API
-        try {
-          const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI}/api/btech-admissions`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify(jsonData)
-          });
-          
-          // Log the response status for debugging
-          console.log('Response status:', response.status);
-          
-          // Get response text first (safer than trying to parse JSON directly)
-          const responseText = await response.text();
-          console.log('Response text:', responseText);
-          
-          // Try to parse the response text as JSON if it's valid
-          let responseData;
-          try {
-            if (responseText) {
-              responseData = JSON.parse(responseText);
-              console.log('Response data:', responseData);
-            }
-          } catch (parseError) {
-            console.error('Error parsing response as JSON:', parseError);
-          }
-          
-          if (!response.ok) {
-            let errorMessage = 'Submission failed';
-            
-            // Use parsed JSON data if available, otherwise use text
-            if (responseData) {
-              errorMessage = responseData.error?.message || 
-                            responseData.message || 
-                            'API returned an error';
-            } else if (responseText) {
-              errorMessage = responseText;
-            }
-            
-            throw new Error(errorMessage);
-          }
-          
-          console.log('Form submitted successfully');
-          
-         
-          
-          setSubmitSuccess(true);
-          setSubmitSuccess(true);
-const today = new Date();
-const datePart = today.toISOString().slice(2, 10).replace(/-/g, '');
-const newApplicationNo = `SBCE25-UG-${datePart}${String(responseData.data.id).padStart(4, '0')}`;
-setApplicationNo(newApplicationNo); // ✅ set it
-await generateAndDownloadPDF(formData, newApplicationNo);
-
-        } catch (apiError) {
-          console.error('API error:', apiError);
-          throw apiError; // Re-throw to be caught by the outer catch block
-        }
-        })
-      } catch (error) {
-        console.error('Submission error:', error);
-        
-        // Safely extract error message
-        let errorMessage = 'Failed to submit the form';
-        if (error instanceof Error) {
-          errorMessage = `${errorMessage}: ${error.message}`;
-        } else if (typeof error === 'object') {
-          try {
-            errorMessage = `${errorMessage}: ${JSON.stringify(error)}`;
-          } catch (e) {
-            errorMessage = `${errorMessage}: Unknown error object`;
-          }
-        }
-        
-        setErrors({
-          submit: errorMessage
-        });
-      } finally {
-        setIsSubmitting(false);
-      }
-    } else {
-      // Scroll to the first error
+    if (!validateForm()) {
       const firstErrorField = document.querySelector('.form-error');
       if (firstErrorField) {
         firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Step 1: Upload images
+      const { photo, parentSignature, applicantSignature } = formData;
+      const fileUploadFormData = new FormData();
+
+      if (photo) fileUploadFormData.append('files', photo);
+      if (parentSignature) fileUploadFormData.append('files', parentSignature);
+      if (applicantSignature) fileUploadFormData.append('files', applicantSignature);
+
+      const imageUploadResponse = await fetch(`${process.env.NEXT_PUBLIC_STRAPI}/api/upload`, {
+        method: "POST",
+        body: fileUploadFormData
+      });
+
+      const imageUploadData = await imageUploadResponse.json();
+      console.log("Image upload response:", imageUploadData);
+
+      // Step 2: Generate PDF
+      
+      const today = new Date();
+      const datePart = today.toISOString().slice(2, 10).replace(/-/g, '');
+      const newApplicationNo = `SBCE25-UG-${datePart}${String(imageUploadData[0].id).padStart(4, '0')}`;
+      setApplicationNo(newApplicationNo);
+      
+      const pdfFile = await generateAndDownloadPDF(formData, newApplicationNo);
+
+      // Step 3: Upload PDF
+      const pdfFormData = new FormData();
+      pdfFormData.append("files", pdfFile);
+
+      const pdfUploadResponse = await fetch(`${process.env.NEXT_PUBLIC_STRAPI}/api/upload`, {
+        method: "POST",
+        body: pdfFormData
+      });
+
+      const pdfUploadData = await pdfUploadResponse.json();
+      console.log("PDF upload response:", pdfUploadData);
+
+      // Step 4: Submit JSON data
+      const jsonData = {
+        data: {
+          name: formData.name,
+          dob: formData.dob,
+          gender: formData.gender,
+          nationality: formData.nationality,
+          religion: formData.religion,
+          community: formData.community,
+          motherTongue: formData.motherTongue,
+          parent: formData.parentName,
+          relationship: formData.relationship,
+          address: formData.address,
+          pincode: formData.pinCode,
+          telephone: formData.telephone || '',
+          mobile: formData.mobile,
+          email: formData.email,
+
+          // Educational Information
+          board10: formData.tenthBoard || '',
+          institution10: formData.tenthInstitution || '',
+          marks10: formData.tenthMarks || '',
+          maximumMarks10: formData.tenthMaxMarks || '',
+          percentage10: formData.tenthPercentage || '',
+          date10: formData.tenthPassingDate || '',
+
+          board12: formData.twelfthBoard || '',
+          institution12: formData.twelfthInstitution || '',
+          marks12: formData.twelfthMarks || '',
+          maximumMarks12: formData.twelfthMaxMarks || '',
+          percentage12: formData.twelfthPercentage || '',
+          date12: formData.twelfthPassingDate || '',
+
+          boardDiploma: formData.boardDiploma || '',
+          institutionDiploma: formData.institutionDiploma || '',
+          markDiploma: formData.diplomaMarks || '',
+          maximumMarksDiploma: formData.diplomaMaxMarks || '',
+          dateDiploma: formData.dateDiploma || '',
+
+          pcm: formData.mpcMarks,
+          maximumMarksPCM: formData.mpcMaxMarks,
+
+          // Entrance & Preferences
+          entrance: formData.entranceExam || '',
+          regNo: formData.entranceRegNo || '',
+          rank: formData.entranceRank || '',
+          branchPrefered: formData.branchPreference,
+          admissionType: formData.admissionType,
+
+          // Uploaded file references
+          photo: imageUploadData[0]?.id,
+          parentSignature: imageUploadData[1]?.id,
+          applicantSignature: imageUploadData[2]?.id,
+          pdf: pdfUploadData[0]?.id,
+        }
+      };
+
+      console.log('Submitting JSON data:', jsonData);
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI}/api/btech-admissions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
+      });
+
+      const responseText = await response.text();
+      console.log('Response status:', response.status);
+      console.log('Response text:', responseText);
+
+      if (!response.ok) {
+        let errorMessage = 'Submission failed';
+        try {
+          const responseData = JSON.parse(responseText);
+          errorMessage = responseData.error?.message || responseData.message || errorMessage;
+        } catch (_) {
+          errorMessage = responseText || errorMessage;
+        }
+        throw new Error(errorMessage);
+      }
+
+      setSubmitSuccess(true);
+      console.log('Form submitted successfully');
+
+    } catch (error) {
+      console.error('Submission error:', error);
+      let errorMessage = 'Failed to submit the form';
+      if (error instanceof Error) {
+        errorMessage += `: ${error.message}`;
+      }
+      setErrors({ submit: errorMessage });
+
+    } finally {
+      setIsSubmitting(false);
     }
   };
+
 
   const navigateSection = (index) => {
     setActiveSection(index);
@@ -524,7 +512,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
           </div>
           <h2 className="success-title">Application Submitted!</h2>
           <p className="success-message">Your application has been successfully submitted. You will receive a confirmation email shortly.</p>
-          <button 
+          <button
             onClick={() => setSubmitSuccess(false)}
             className="btn btn-primary"
           >
@@ -569,7 +557,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
             <div className="form-section-header">
               <h2>Personal Information</h2>
             </div>
-            
+
             <div className="form-section-content">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="form-group">
@@ -587,7 +575,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   />
                   {errors.name && <p className="form-error">{errors.name}</p>}
                 </div>
-                
+
                 <div className="form-group">
                   <label className="form-label" htmlFor="dob">
                     Date of Birth*
@@ -602,7 +590,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   />
                   {errors.dob && <p className="form-error">{errors.dob}</p>}
                 </div>
-                
+
                 <div className="form-group">
                   <label className="form-label">
                     Gender*
@@ -633,7 +621,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   </div>
                   {errors.gender && <p className="form-error">{errors.gender}</p>}
                 </div>
-                
+
                 <div className="form-group">
                   <label className="form-label" htmlFor="nationality">
                     Nationality*
@@ -649,7 +637,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   />
                   {errors.nationality && <p className="form-error">{errors.nationality}</p>}
                 </div>
-                
+
                 <div className="form-group">
                   <label className="form-label" htmlFor="religion">
                     Religion*
@@ -665,7 +653,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   />
                   {errors.religion && <p className="form-error">{errors.religion}</p>}
                 </div>
-                
+
                 <div className="form-group">
                   <label className="form-label" htmlFor="community">
                     Community*
@@ -681,7 +669,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   />
                   {errors.community && <p className="form-error">{errors.community}</p>}
                 </div>
-                
+
                 <div className="form-group">
                   <label className="form-label" htmlFor="motherTongue">
                     Mother Tongue*
@@ -698,7 +686,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   {errors.motherTongue && <p className="form-error">{errors.motherTongue}</p>}
                 </div>
               </div>
-              
+
               <div className="mt-8 flex justify-end">
                 <button
                   type="button"
@@ -713,13 +701,13 @@ await generateAndDownloadPDF(formData, newApplicationNo);
               </div>
             </div>
           </div>
-          
+
           {/* Guardian Information */}
           <div id="section-1" className={`form-section ${activeSection === 1 ? 'block' : 'hidden'}`}>
             <div className="form-section-header">
               <h2>Guardian Information</h2>
             </div>
-            
+
             <div className="form-section-content">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="form-group">
@@ -737,7 +725,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   />
                   {errors.parentName && <p className="form-error">{errors.parentName}</p>}
                 </div>
-                
+
                 <div className="form-group">
                   <label className="form-label" htmlFor="relationship">
                     Relationship with Guardian*
@@ -754,7 +742,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   {errors.relationship && <p className="form-error">{errors.relationship}</p>}
                 </div>
               </div>
-              
+
               <div className="mt-8 flex justify-between">
                 <button
                   type="button"
@@ -779,13 +767,13 @@ await generateAndDownloadPDF(formData, newApplicationNo);
               </div>
             </div>
           </div>
-          
+
           {/* Contact Information */}
           <div id="section-2" className={`form-section ${activeSection === 2 ? 'block' : 'hidden'}`}>
             <div className="form-section-header">
               <h2>Contact Information</h2>
             </div>
-            
+
             <div className="form-section-content">
               <div className="form-group mb-6">
                 <label className="form-label" htmlFor="address">
@@ -802,7 +790,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                 ></textarea>
                 {errors.address && <p className="form-error">{errors.address}</p>}
               </div>
-              
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="form-group">
                   <label className="form-label" htmlFor="pinCode">
@@ -820,7 +808,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   />
                   {errors.pinCode && <p className="form-error">{errors.pinCode}</p>}
                 </div>
-                
+
                 <div className="form-group">
                   <label className="form-label" htmlFor="telephone">
                     Telephone
@@ -835,7 +823,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                     placeholder="Enter landline number (optional)"
                   />
                 </div>
-                
+
                 <div className="form-group">
                   <label className="form-label" htmlFor="mobile">
                     Mobile*
@@ -852,7 +840,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   />
                   {errors.mobile && <p className="form-error">{errors.mobile}</p>}
                 </div>
-                
+
                 <div className="form-group">
                   <label className="form-label" htmlFor="email">
                     Email*
@@ -869,7 +857,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   {errors.email && <p className="form-error">{errors.email}</p>}
                 </div>
               </div>
-              
+
               <div className="mt-8 flex justify-between">
                 <button
                   type="button"
@@ -894,13 +882,13 @@ await generateAndDownloadPDF(formData, newApplicationNo);
               </div>
             </div>
           </div>
-          
+
           {/* Educational Information */}
           <div id="section-3" className={`form-section ${activeSection === 3 ? 'block' : 'hidden'}`}>
             <div className="form-section-header">
               <h2>Educational Information</h2>
             </div>
-            
+
             <div className="form-section-content">
               {/* 10th Standard */}
               <div className="mb-8">
@@ -920,7 +908,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="e.g. CBSE, State Board"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="tenthInstitution">
                       Name of Institution
@@ -935,7 +923,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="Enter school name"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="tenthPassingDate">
                       Year and Month of Passing
@@ -949,7 +937,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       className="form-input"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="tenthMarks">
                       Marks Obtained
@@ -964,7 +952,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="Enter marks obtained"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="tenthMaxMarks">
                       Maximum Marks
@@ -979,7 +967,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="Enter maximum marks"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="tenthPercentage">
                       Percentage of Marks
@@ -997,7 +985,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   </div>
                 </div>
               </div>
-              
+
               {/* 12th Standard */}
               <div className="mb-8">
                 <h3 className="form-section-title">12th Standard</h3>
@@ -1016,7 +1004,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="e.g. CBSE, State Board"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="twelfthInstitution">
                       Name of Institution
@@ -1031,7 +1019,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="Enter school name"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="twelfthPassingDate">
                       Year and Month of Passing
@@ -1045,7 +1033,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       className="form-input"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="twelfthMarks">
                       Marks Obtained
@@ -1060,7 +1048,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="Enter marks obtained"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="twelfthMaxMarks">
                       Maximum Marks
@@ -1075,7 +1063,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="Enter maximum marks"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="twelfthPercentage">
                       Percentage of Marks
@@ -1111,7 +1099,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="e.g. CBSE, State Board"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="diplomaInstitution">
                       Name of Institution
@@ -1126,7 +1114,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="Enter Institution name"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="dateDiploma">
                       Year and Month of Passing
@@ -1140,7 +1128,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       className="form-input"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="diplomaMarks">
                       Marks Obtained
@@ -1155,7 +1143,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="Enter marks obtained"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="diplomaMaxMarks">
                       Maximum Marks
@@ -1170,11 +1158,11 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="Enter maximum marks"
                     />
                   </div>
-                  
-                  
+
+
                 </div>
               </div>
-              
+
               {/* MPC Marks */}
               <div className="mb-8">
                 <h3 className="form-section-title">Marks Secured for Mathematics, Physics & Chemistry</h3>
@@ -1194,7 +1182,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                     />
                     {errors.mpcMarks && <p className="form-error">{errors.mpcMarks}</p>}
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="mpcMaxMarks">
                       Out of*
@@ -1212,7 +1200,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   </div>
                 </div>
               </div>
-              
+
               <div className="mt-8 flex justify-between">
                 <button
                   type="button"
@@ -1237,13 +1225,13 @@ await generateAndDownloadPDF(formData, newApplicationNo);
               </div>
             </div>
           </div>
-          
+
           {/* Entrance & Preferences */}
           <div id="section-4" className={`form-section ${activeSection === 4 ? 'block' : 'hidden'}`}>
             <div className="form-section-header">
               <h2>Entrance Examination & Preferences</h2>
             </div>
-            
+
             <div className="form-section-content">
               {/* Entrance Examination */}
               <div className="mb-8">
@@ -1263,7 +1251,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="e.g. JEE Main, NEET"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="entranceRegNo">
                       Register No
@@ -1278,7 +1266,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                       placeholder="Enter registration number"
                     />
                   </div>
-                  
+
                   <div className="form-group">
                     <label className="form-label" htmlFor="entranceRank">
                       Rank
@@ -1295,7 +1283,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   </div>
                 </div>
               </div>
-              
+
               {/* Branch Preferences */}
               <div className="mb-8">
                 <h3 className="form-section-title">Branch Preferred*</h3>
@@ -1316,7 +1304,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                 </div>
                 {errors.branchPreference && <p className="form-error mt-2">{errors.branchPreference}</p>}
               </div>
-              
+
               {/* Admission Type */}
               <div className="mb-6">
                 <h3 className="form-section-title">Admission Sought Under*</h3>
@@ -1332,7 +1320,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                     />
                     <span className="ml-2">Management</span>
                   </label>
-                  
+
                   <label className="form-check-label">
                     <input
                       type="radio"
@@ -1347,7 +1335,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                 </div>
                 {errors.admissionType && <p className="form-error mt-2">{errors.admissionType}</p>}
               </div>
-              
+
               <div className="mt-8 flex justify-between">
                 <button
                   type="button"
@@ -1372,13 +1360,13 @@ await generateAndDownloadPDF(formData, newApplicationNo);
               </div>
             </div>
           </div>
-          
+
           {/* Document Uploads */}
           <div id="section-5" className={`form-section ${activeSection === 5 ? 'block' : 'hidden'}`}>
             <div className="form-section-header">
               <h2>Document Uploads</h2>
             </div>
-            
+
             <div className="form-section-content">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="form-group">
@@ -1408,9 +1396,9 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                         <p className="text-sm text-gray-700 mb-2">File selected: {formData.photo.name}</p>
                         {formData.photoPreview && (
                           <div className="photo-preview">
-                            <img 
-                              src={formData.photoPreview} 
-                              alt="Passport photo preview" 
+                            <img
+                              src={formData.photoPreview}
+                              alt="Passport photo preview"
                               className="img-cover"
                             />
                           </div>
@@ -1420,7 +1408,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   </div>
                   {errors.photo && <p className="form-error">{errors.photo}</p>}
                 </div>
-                
+
                 <div className="form-group">
                   <label className="form-label" htmlFor="parentSignature">
                     Signature of the Parent / Guardian*
@@ -1448,9 +1436,9 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                         <p className="text-sm text-gray-700 mb-2">File selected: {formData.parentSignature.name}</p>
                         {formData.parentSignaturePreview && (
                           <div className="signature-preview">
-                            <img 
-                              src={formData.parentSignaturePreview} 
-                              alt="Parent signature preview" 
+                            <img
+                              src={formData.parentSignaturePreview}
+                              alt="Parent signature preview"
                               className="img-contain"
                             />
                           </div>
@@ -1460,7 +1448,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   </div>
                   {errors.parentSignature && <p className="form-error">{errors.parentSignature}</p>}
                 </div>
-                
+
                 <div className="form-group">
                   <label className="form-label" htmlFor="applicantSignature">
                     Signature of Applicant*
@@ -1488,9 +1476,9 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                         <p className="text-sm text-gray-700 mb-2">File selected: {formData.applicantSignature.name}</p>
                         {formData.applicantSignaturePreview && (
                           <div className="signature-preview">
-                            <img 
-                              src={formData.applicantSignaturePreview} 
-                              alt="Applicant signature preview" 
+                            <img
+                              src={formData.applicantSignaturePreview}
+                              alt="Applicant signature preview"
                               className="img-contain"
                             />
                           </div>
@@ -1500,8 +1488,19 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   </div>
                   {errors.applicantSignature && <p className="form-error">{errors.applicantSignature}</p>}
                 </div>
+
+                <input
+                  id="pdf"
+                  type="file"
+                  style={{ display: 'hidden' }}
+                  name="pdf"
+                  // accept="image/*"
+                  onChange={handleFileChange}
+                  className="file-upload-input"
+                />
+
               </div>
-              
+
               <div className="mt-8 flex justify-between">
                 <button
                   type="button"
@@ -1536,7 +1535,7 @@ await generateAndDownloadPDF(formData, newApplicationNo);
                   )}
                 </button>
               </div>
-              
+
               {errors.submit && (
                 <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg">
                   <p className="text-red-500">{errors.submit}</p>
@@ -1546,61 +1545,61 @@ await generateAndDownloadPDF(formData, newApplicationNo);
           </div>
         </form>
       </div>
-<div id="pdf-content" style={{ display: "none", background: "white", padding: "30px", width: "800px", fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>
-  <div style={{ textAlign: "center" }}>
-    <img src="/20a20944-c1b7-49d8-8e18-dfc3e2cddbc1.png" alt="College Logo" style={{ height: 80 }} />
-    <h2 style={{ margin: "10px 0" }}>SREE BUDDHA COLLEGE OF ENGINEERING, PATTOOR</h2>
-    <h3 style={{ textDecoration: "underline" }}>B.Tech Online Application</h3>
-  </div>
-  <br/>
-  <p><strong>Application No:</strong> {applicationNo}</p>
+      <div id="pdf-content" style={{ display: "none", background: "white", padding: "30px", width: "800px", fontFamily: 'Arial, sans-serif', fontSize: '12px' }}>
+        <div style={{ textAlign: "center" }}>
+          <img src="/20a20944-c1b7-49d8-8e18-dfc3e2cddbc1.png" alt="College Logo" style={{ height: 80 }} />
+          <h2 style={{ margin: "10px 0" }}>SREE BUDDHA COLLEGE OF ENGINEERING, PATTOOR</h2>
+          <h3 style={{ textDecoration: "underline" }}>B.Tech Online Application</h3>
+        </div>
+        <br />
+        <p><strong>Application No:</strong> {applicationNo}</p>
 
-  <p><strong>Name of the Applicant:</strong> {formData.name}</p>
-  <p><strong>Date of Birth:</strong> {formData.dob}</p>
-  <p><strong>Gender:</strong> {formData.gender}</p>
-  <p><strong>Nationality:</strong> {formData.nationality}</p>
-  <p><strong>Religion:</strong> {formData.religion}</p>
-  <p><strong>Community:</strong> {formData.community}</p>
-  <p><strong>Mother Tongue:</strong> {formData.motherTongue}</p>
-  <p><strong>Name of Parent/Guardian:</strong> {formData.parentName}</p>
-  <p><strong>Relationship:</strong> {formData.relationship}</p>
-  <p><strong>Address for Communication:</strong> {formData.address}</p>
-  <p><strong>Pin Code:</strong> {formData.pinCode}</p>
-  <p><strong>Telephone:</strong> {formData.telephone || "-"}</p>
-  <p><strong>Mobile:</strong> {formData.mobile}</p>
-  <p><strong>Email:</strong> {formData.email}</p>
+        <p><strong>Name of the Applicant:</strong> {formData.name}</p>
+        <p><strong>Date of Birth:</strong> {formData.dob}</p>
+        <p><strong>Gender:</strong> {formData.gender}</p>
+        <p><strong>Nationality:</strong> {formData.nationality}</p>
+        <p><strong>Religion:</strong> {formData.religion}</p>
+        <p><strong>Community:</strong> {formData.community}</p>
+        <p><strong>Mother Tongue:</strong> {formData.motherTongue}</p>
+        <p><strong>Name of Parent/Guardian:</strong> {formData.parentName}</p>
+        <p><strong>Relationship:</strong> {formData.relationship}</p>
+        <p><strong>Address for Communication:</strong> {formData.address}</p>
+        <p><strong>Pin Code:</strong> {formData.pinCode}</p>
+        <p><strong>Telephone:</strong> {formData.telephone || "-"}</p>
+        <p><strong>Mobile:</strong> {formData.mobile}</p>
+        <p><strong>Email:</strong> {formData.email}</p>
 
-  <br/>
-  <h4>Details of Mark / Grade Obtained in the Qualifying Exam</h4>
-  <p><strong>10th:</strong> {formData.tenthBoard}, {formData.tenthInstitution}, {formData.tenthPassingDate} — {formData.tenthMarks}/{formData.tenthMaxMarks} ({formData.tenthPercentage}%)</p>
-  <p><strong>12th:</strong> {formData.twelfthBoard}, {formData.twelfthInstitution}, {formData.twelfthPassingDate} — {formData.twelfthMarks}/{formData.twelfthMaxMarks} ({formData.twelfthPercentage}%)</p>
-  <p><strong>Diploma:</strong> {formData.boardDiploma}, {formData.institutionDiploma}, {formData.dateDiploma} — {formData.diplomaMarks}/{formData.diplomaMaxMarks}</p>
+        <br />
+        <h4>Details of Mark / Grade Obtained in the Qualifying Exam</h4>
+        <p><strong>10th:</strong> {formData.tenthBoard}, {formData.tenthInstitution}, {formData.tenthPassingDate} — {formData.tenthMarks}/{formData.tenthMaxMarks} ({formData.tenthPercentage}%)</p>
+        <p><strong>12th:</strong> {formData.twelfthBoard}, {formData.twelfthInstitution}, {formData.twelfthPassingDate} — {formData.twelfthMarks}/{formData.twelfthMaxMarks} ({formData.twelfthPercentage}%)</p>
+        <p><strong>Diploma:</strong> {formData.boardDiploma}, {formData.institutionDiploma}, {formData.dateDiploma} — {formData.diplomaMarks}/{formData.diplomaMaxMarks}</p>
 
-  <br/>
-  <h4>Marks Secured for Mathematics, Physics & Chemistry</h4>
-  <p><strong>Total Mark Secured:</strong> {formData.mpcMarks} / {formData.mpcMaxMarks}</p>
+        <br />
+        <h4>Marks Secured for Mathematics, Physics & Chemistry</h4>
+        <p><strong>Total Mark Secured:</strong> {formData.mpcMarks} / {formData.mpcMaxMarks}</p>
 
-  <br/>
-  <h4>Entrance Examination (Not applicable for NRI/OCI applicants)</h4>
-  <p><strong>Name of the Examination:</strong> {formData.entranceExam}</p>
-  <p><strong>Register No:</strong> {formData.entranceRegNo}</p>
-  <p><strong>Rank:</strong> {formData.entranceRank}</p>
+        <br />
+        <h4>Entrance Examination (Not applicable for NRI/OCI applicants)</h4>
+        <p><strong>Name of the Examination:</strong> {formData.entranceExam}</p>
+        <p><strong>Register No:</strong> {formData.entranceRegNo}</p>
+        <p><strong>Rank:</strong> {formData.entranceRank}</p>
 
-  <p><strong>Branch Preferred:</strong> {formData.branchPreference}</p>
-  <p><strong>Admission Sought Under:</strong> {formData.admissionType}</p>
+        <p><strong>Branch Preferred:</strong> {formData.branchPreference}</p>
+        <p><strong>Admission Sought Under:</strong> {formData.admissionType}</p>
 
-  <br/>
-  <p>I hereby declare, I shall abide by the rules and regulations of the College and the information furnished above are true to the best of my knowledge.</p>
+        <br />
+        <p>I hereby declare, I shall abide by the rules and regulations of the College and the information furnished above are true to the best of my knowledge.</p>
 
-  <div style={{ display: "flex", justifyContent: "space-between", marginTop: "40px" }}>
-    <p><strong>Signature of Parent/Guardian</strong></p>
-    <p><strong>Signature of Applicant</strong></p>
-  </div>
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: "40px" }}>
+          <p><strong>Signature of Parent/Guardian</strong></p>
+          <p><strong>Signature of Applicant</strong></p>
+        </div>
 
-  {/* <p style={{ marginTop: "30px" }}>Date: {(new Date()).toLocaleDateString()}</p> */}
-  <div style={{ height: "100px" }}></div>
+        {/* <p style={{ marginTop: "30px" }}>Date: {(new Date()).toLocaleDateString()}</p> */}
+        <div style={{ height: "100px" }}></div>
 
-</div>
+      </div>
 
     </div>
   );
