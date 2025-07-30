@@ -104,7 +104,7 @@ export default function Carousel({ items, background, mediaField , type }) {
                             <div className="relative w-full h-64 md:h-72 lg:h-80">
                                 <img
 
-                                    src={`${  process.env.NEXT_PUBLIC_STRAPI}${   item[mediaField].url || "" }`}
+                                    src={ item[mediaField]? `${  process.env.NEXT_PUBLIC_STRAPI}${   item[mediaField].url || "" }` : null}
                                     alt={item.attributes?.Heading || "Event image"}
                                     width={800}
                                     height={1000}
