@@ -2,81 +2,168 @@
 import React, { useState, useEffect } from 'react';
 import DownloadButton from '@/components/common/DownloadButton';
 import { motion } from 'framer-motion';
-import { FaFileAlt, FaBell, FaPencilAlt, FaCalendarAlt, FaSearch } from 'react-icons/fa';
+import { FaFileAlt, FaBell, FaPencilAlt, FaCalendarAlt, FaSearch, FaExclamationTriangle } from 'react-icons/fa';
+
+// Utility function to normalize strings for comparison
+const normalizeString = (str) => {
+  return str.toLowerCase().replace(/\s+/g, '');
+};
+
+// Emoji mapping for exam types
+const examTypeEmojis = {
+  'series': '📝',
+  'seriesexam': '📝',
+  'semester': '📚',
+  'endsemester': '📚',
+  'mid': '📝', 
+  'midterm': '📝',
+  'final': '🎓',
+  'practical': '🔬',
+  'lab': '🔬',
+  'viva': '🗣️',
+  'project': '💻',
+  'assignment': '📋',
+  'quiz': '❓',
+  'test': '📊',
+  'examination': '📖',
+  'exam': '📖',
+  'retest': '🔄',
+  'registration': '📝',
+  'internal': '📝',
+  'external': '🎓',
+  'notification': '🔔',
+  'important': '⚠️'
+};
+
+// Function to get emoji for exam type
+const getExamEmoji = (examType) => {
+  if (!examType) return '📚';
+  
+  const normalizedExamType = normalizeString(examType);
+  
+  // Check direct matches first
+  for (const [key, emoji] of Object.entries(examTypeEmojis)) {
+    if (normalizedExamType.includes(key) || key.includes(normalizedExamType)) {
+      return emoji;
+    }
+  }
+  
+  // Default emoji if no match found
+  return '📚';
+};
+
+// Function to get icon component based on exam type
+const getExamIcon = (examType) => {
+  const normalizedType = normalizeString(examType);
+  
+  if (normalizedType.includes('series') || normalizedType.includes('retest')) {
+    return <FaPencilAlt className="text-blue-600" />;
+  }
+  if (normalizedType.includes('semester') || normalizedType.includes('final')) {
+    return <FaCalendarAlt className="text-green-600" />;
+  }
+  if (normalizedType.includes('registration')) {
+    return <FaBell className="text-red-600" />;
+  }
+  if (normalizedType.includes('important')) {
+    return <FaExclamationTriangle className="text-yellow-600" />;
+  }
+  
+  // Default icon
+  return <FaCalendarAlt className="text-yellow-600" />;
+};
 
 export default function Page() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState('notifications');
   const [isLoading, setIsLoading] = useState(true);
-  
-  useEffect(() => {
-    // Simulate loading delay
-    const timer = setTimeout(() => {
+  const [notifications, setNotifications] = useState([]);
+  const [forms, setForms] = useState([]);
+  const [apiError, setApiError] = useState(null);
+
+  // Fetch exam notifications and forms from API
+  const fetchExamData = async () => {
+    setIsLoading(true);
+    setApiError(null);
+    
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI}/api/exam-notifications?pagination[page]=1&pagination[pageSize]=300&populate=file`,
+        {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      if (data && data.data && Array.isArray(data.data)) {
+        // Separate notifications and forms
+        const notificationsData = [];
+        const formsData = [];
+        
+        data.data.forEach(item => {
+          if (item.notification === true) {
+            // Transform for notifications
+            notificationsData.push({
+              id: item.id,
+              path: item.file ? `${process.env.NEXT_PUBLIC_STRAPI}${item.file.url}` : null,
+              title: item.Heading || 'Notification',
+              date: item.Notification_date,
+              type: item.exam_type || 'Notification',
+              icon: getExamIcon(item.exam_type),
+              emoji: getExamEmoji(item.exam_type),
+              important: item.Important || false,
+              fileSize: item.file ? Math.round(item.file.size / 1024) : null,
+              fileName: item.file ? item.file.name : null
+            });
+          } else {
+            // Transform for forms (only heading and file)
+            if (item.file) {
+              formsData.push({
+                id: item.id,
+                path: `${process.env.NEXT_PUBLIC_STRAPI}${item.file.url}`,
+                title: item.Heading || 'Form',
+                description: `Download ${item.Heading || 'form'}`,
+                icon: <FaFileAlt className={`text-${['indigo', 'teal', 'orange', 'purple', 'green'][formsData.length % 5]}-600`} />,
+                fileSize: Math.round(item.file.size / 1024),
+                fileName: item.file.name
+              });
+            }
+          }
+        });
+        
+        // Sort notifications by date, newest first
+        notificationsData.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        setNotifications(notificationsData);
+        setForms(formsData);
+      } else {
+        console.warn('Unexpected API response structure:', data);
+        setNotifications([]);
+        setForms([]);
+      }
+    } catch (error) {
+      console.error('Error fetching exam data:', error);
+      setApiError(`Failed to load data: ${error.message}`);
+      setNotifications([]);
+      setForms([]);
+    } finally {
       setIsLoading(false);
-    }, 800);
-    return () => clearTimeout(timer);
+    }
+  };
+
+  // Fetch data on component mount
+  useEffect(() => {
+    fetchExamData();
   }, []);
-
-  const notifications = [
-    {
-      id: 1,
-      path: "/assets/documents/autonomous/examination_cell/notification-auto.pdf",
-      title: "First Series Examination – Oct 2024 Notification",
-      date: "2024-10-01",
-      type: "Series Exam",
-      icon: <FaCalendarAlt className="text-yellow-600" />,
-      important: true
-    },
-    {
-      id: 2,
-      path: "/assets/documents/autonomous/examination_cell/notification-auto3.pdf",
-      title: "Retest – Nov 2024 Notification",
-      date: "2024-11-15",
-      type: "Retest",
-      icon: <FaPencilAlt className="text-blue-600" />
-    },
-    {
-      id: 3,
-      path: "/assets/documents/autonomous/examination_cell/Registration-Notification.pdf",
-      title: "End Semester Registration Notification – Jan 2025",
-      date: "2025-01-05",
-      type: "Registration",
-      icon: <FaBell className="text-red-600" />,
-      important: true
-    },
-    {
-      id: 4,
-      path: "/assets/documents/autonomous/examination_cell/S1-PG-END-SEMESTER-EXAMINATION-NOTIFICATION.pdf",
-      title: "S1 PG End Semester Examination Notification – Jan 2025",
-      date: "2025-01-10",  // Fixed date format error
-      type: "End Semester",
-      icon: <FaCalendarAlt className="text-green-600" />
-    }
-  ];
-
-  const forms = [
-    {
-      id: 1,
-      path: "/assets/documents/autonomous/examination_cell/APPLICATION-FORM-OF-ATTENDANCE.pdf",
-      title: "Application Form of Attendance",
-      description: "Form for attendance related matters",
-      icon: <FaFileAlt className="text-indigo-600" />
-    },
-    {
-      id: 2,
-      path: "/assets/documents/autonomous/examination_cell/APPLICATION-FORM-TO-AVAIL-THE-SERVICE-OF-SCRIBE.pdf",
-      title: "Application Form to Avail the Service of Scribe",
-      description: "Special arrangements for examinations",
-      icon: <FaFileAlt className="text-teal-600" />
-    },
-    {
-      id: 3,
-      path: "/assets/documents/autonomous/examination_cell/RETEST-FORM-2024.pdf",
-      title: "Retest Form – 2024",
-      description: "Application for retest examination",
-      icon: <FaFileAlt className="text-orange-600" />
-    }
-  ];
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -106,12 +193,16 @@ export default function Page() {
 
   // Format date to be more readable
   const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+    } catch (error) {
+      return dateString;
+    }
   };
 
   return (
@@ -193,6 +284,22 @@ export default function Page() {
           </div>
         ) : (
           <>
+            {/* API Error Display */}
+            {apiError && (
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                <div className="flex items-center">
+                  <FaExclamationTriangle className="text-red-500 mr-2" />
+                  <p className="text-red-700">{apiError}</p>
+                </div>
+                <button 
+                  onClick={fetchExamData}
+                  className="mt-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+                >
+                  Retry
+                </button>
+              </div>
+            )}
+
             {/* Notifications Section */}
             {activeTab === 'notifications' && (
               <motion.section
@@ -216,7 +323,9 @@ export default function Page() {
                 
                 {filteredNotifications.length === 0 ? (
                   <div className="bg-white rounded-xl shadow-md p-8 text-center">
-                    <p className="text-gray-500">No notifications match your search.</p>
+                    <p className="text-gray-500">
+                      {notifications.length === 0 ? 'No notifications available.' : 'No notifications match your search.'}
+                    </p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -233,12 +342,18 @@ export default function Page() {
                         <div className="p-6">
                           <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center">
-                              <span className="text-2xl mr-3">{notification.icon}</span>
+                              <span className="text-2xl mr-3" title={`${notification.type} ${notification.emoji}`}>
+                                {notification.icon}
+                              </span>
                               <div>
                                 <div className="flex items-center">
-                                  <p className="text-sm font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 mr-2">{notification.type}</p>
+                                  <p className="text-sm font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-600 mr-2">
+                                    {notification.emoji} {notification.type}
+                                  </p>
                                   {notification.important && (
-                                    <span className="px-2 py-0.5 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">Important</span>
+                                    <span className="px-2 py-0.5 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">
+                                      Important
+                                    </span>
                                   )}
                                 </div>
                                 <h3 className="text-lg font-semibold text-gray-900 mt-1">{notification.title}</h3>
@@ -246,14 +361,25 @@ export default function Page() {
                             </div>
                           </div>
                           <div className="flex items-center justify-between">
-                            <p className="text-sm text-gray-500">
-                              Date: {formatDate(notification.date)}
-                            </p>
-                            <DownloadButton
-                              title="Download"
-                              link={notification.path}
-                              className="inline-flex items-center px-4 py-2 bg-yellow-900 text-white rounded-md hover:bg-yellow-800 transition-colors"
-                            />
+                            <div>
+                              <p className="text-sm text-gray-500">
+                                Date: {formatDate(notification.date)}
+                              </p>
+                              {notification.fileSize && (
+                                <p className="text-xs text-gray-400 mt-1">
+                                  File: {notification.fileName} ({notification.fileSize} KB)
+                                </p>
+                              )}
+                            </div>
+                            {notification.path ? (
+                              <DownloadButton
+                                title="Download"
+                                link={notification.path}
+                                className="inline-flex items-center px-4 py-2 bg-yellow-900 text-white rounded-md hover:bg-yellow-800 transition-colors"
+                              />
+                            ) : (
+                              <span className="text-xs text-gray-400 italic">No file available</span>
+                            )}
                           </div>
                         </div>
                       </motion.div>
