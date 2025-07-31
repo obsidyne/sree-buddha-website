@@ -109,7 +109,7 @@ export default function EventsPage() {
                   >
                     <div className="relative h-48">
                     <img 
-  src={`${process.env.NEXT_PUBLIC_STRAPI}${event.News_media.formats.medium.url}`}
+  src={ event.News_media?   `${process.env.NEXT_PUBLIC_STRAPI}${event.News_media.formats.medium.url}` : ''}
 
   
   alt={event.Heading} 
