@@ -56,6 +56,7 @@ export default function NavbarMobile() {
                 { name: "Academic Calendar", link: "/autonomous/academic_calendar", visible: false },
                 { name: "Examinations Cell", link: "/autonomous/examinations_cell", visible: false },
                 { name: "Curriculum and Syllabus", link: "/autonomous/curriculum_and_syllabus", visible: false },
+                { name: "Audits", link: "/autonomous/audits", visible: false },
             ],
         },
         {

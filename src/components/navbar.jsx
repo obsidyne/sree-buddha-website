@@ -66,6 +66,10 @@ export default function Navbar() {
           name: "Curriculum and Syllabus",
           link: "/autonomous/curriculum_and_syllabus",
         },
+         {
+          name: "Audits",
+          link: "/autonomous/audits",
+        },
       ],
     },
     {
