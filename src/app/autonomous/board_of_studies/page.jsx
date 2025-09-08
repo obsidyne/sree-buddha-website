@@ -1,126 +1,64 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import DownloadButton from '@/components/common/DownloadButton'
 
-export default function page() {
+export default function Page() {
+  const [boardDocs, setBoardDocs] = useState([])
+  const [firstMeetingDocs, setFirstMeetingDocs] = useState([])
 
-    const pdfDocuments = [
-        {
-            title: "Board of Studies (AI & ML)",
-            link: "/assets/documents/autonomous/board_of_studies/BOS-AIML-8.pdf"
-        },
-        {
-            title: "Board of Studies (Biotechnology)",
-            link: "/assets/documents/autonomous/board_of_studies/BOS-BT-4.pdf"
-        },
-        {
-            title: "Board of Studies (Civil Engineering)",
-            link: "/assets/documents/autonomous/board_of_studies/BOS-CE-1.pdf"
-        },
-        {
-            title: "Board of Studies (Computer Science & Engineering)",
-            link: "/assets/documents/autonomous/board_of_studies/BOS-CSE-5.pdf"
-        },
-        {
-            title: "Board of Studies (Electronics & Communication Engineering)",
-            link: "/assets/documents/autonomous/board_of_studies/BOS-ECE-6.pdf"
-        },
-        {
-            title: "Board of Studies (Electronics and Robotics)",
-            link: "/assets/documents/autonomous/board_of_studies/BOS-ECR-7.pdf"
-        },
-        {
-            title: "Board of Studies (Electrical & Electronics Engineering)",
-            link: "/assets/documents/autonomous/board_of_studies/BOS-EEE-3.pdf"
-        },
-        {
-            title: "Board of Studies (Food Technology)",
-            link: "/assets/documents/autonomous/board_of_studies/BOS-FT-9.pdf"
-        },
-        {
-            title: "Board of Studies (Humanities & Basic Science)",
-            link: "/assets/documents/autonomous/board_of_studies/BOS-HBS-10.pdf"
-        },
-        {
-            title: "Board of Studies (Mechanical Engineering)",
-            link: "/assets/documents/autonomous/board_of_studies/BOS-ME-2.pdf"
+  useEffect(() => {
+    const fetchBoardOfStudies = async () => {
+      try {
+        // Fetch Board_of_studies
+        const res1 = await fetch(
+          "http://91.99.112.1:1337/api/autonomous?populate[Board_of_studies][populate]=PDF"
+        )
+        const data1 = await res1.json()
+        if (data1?.data?.Board_of_studies) {
+          setBoardDocs(data1.data.Board_of_studies)
         }
-    ];
 
-    const pdfDocuments2 = [
-        {
-            title: "Board of Studies Constitution",
-            link: "/assets/documents/autonomous/board_of_studies/Board-of-studies-Constitution.pdf"
-        },
-        {
-            title: "Board of Studies First Meeting (AI & ML)",
-            link: "/assets/documents/autonomous/board_of_studies/BOARD-OF-STUDIES-MEETING-AI-ML-6.pdf"
-        },
-        {
-            title: "Board of Studies First Meeting (Humanities & Basic Science)",
-            link: "/assets/documents/autonomous/board_of_studies/BOARD-OF-STUDIES-MEETING-BS-H-10.pdf"
-        },
-        {
-            title: "Board of Studies First Meeting (Civil Engineering)",
-            link: "/assets/documents/autonomous/board_of_studies/BOARD-OF-STUDIES-MEETING-CE-1-.pdf"
-        },
-        {
-            title: "Board of Studies First Meeting (Computer Science & Engineering)",
-            link: "/assets/documents/autonomous/board_of_studies/BOARD-OF-STUDIES-MEETING-CSE-2.pdf"
-        },
-        {
-            title: "Board of Studies First Meeting (Electronics & Communication Engineering)",
-            link: "/assets/documents/autonomous/board_of_studies/BOARD-OF-STUDIES-MEETING-ECE-7.pdf"
-        },
-        {
-            title: "Board of Studies First Meeting (Electrical & Electronics Engineering)",
-            link: "/assets/documents/autonomous/board_of_studies/BOARD-OF-STUDIES-MEETING-EEE-5 (1).pdf"
-        },
-        {
-            title: "Board of Studies First Meeting (Electrical & Electronics Engineering)",
-            link: "/assets/documents/autonomous/board_of_studies/BOARD-OF-STUDIES-MEETING-EEE-5.pdf"
-        },
-        {
-            title: "Board of Studies First Meeting (Electronics and Robotics)",
-            link: "/assets/documents/autonomous/board_of_studies/BOARD-OF-STUDIES-MEETING-ER-8.pdf"
-        },
-        {
-            title: "Board of Studies First Meeting (Food Technology)",
-            link: "/assets/documents/autonomous/board_of_studies/BOARD-OF-STUDIES-MEETING-FT-4.pdf"
-        },
-        {
-            title: "Board of Studies First Meeting (Mechanical Engineering)",
-            link: "/assets/documents/autonomous/board_of_studies/BOARD-OF-STUDIES-MEETING-ME-9.pdf"
-        },
-    ]
+        // Fetch board_of_studies_first_meeting
+        const res2 = await fetch(
+          "http://91.99.112.1:1337/api/autonomous?populate[board_of_studies_first_meeting][populate]=file"
+        )
+        const data2 = await res2.json()
+        if (data2?.data?.board_of_studies_first_meeting) {
+          setFirstMeetingDocs(data2.data.board_of_studies_first_meeting)
+        }
+      } catch (error) {
+        console.error("Error fetching Board of Studies documents:", error)
+      }
+    }
 
-    return (
-        <div className='page'>
+    fetchBoardOfStudies()
+  }, [])
 
-            <h3 className='page_heading'>Board of Studies</h3>
+  return (
+    <div className='page'>
+      <h3 className='page_heading'>Board of Studies</h3>
+      <div>
+        {boardDocs.map((doc) => (
+          <DownloadButton
+            key={doc.id}
+            title={doc.Tittle}
+            link={`${process.env.NEXT_PUBLIC_STRAPI}${doc.PDF?.url}`}
+          />
+        ))}
+      </div>
 
-            <div>
-                {
-                    pdfDocuments.map((document , index) => {
-                        return (
-                            <DownloadButton key = {index} title={document.title} link={document.link} />
-                        )
-                    })
-                }
-
-            </div>
-
-            <h2 className='page_heading2'>Board of Studies First Meeting</h2>
-
-            <div>
-                {
-                    pdfDocuments2.map((document, index) => {
-                        return (
-                            <DownloadButton key = {index} title={document.title} link={document.link} />
-                        )
-                    })
-                }
-            </div>
-
-        </div>
-    )
+      <h3 className='page_heading2'>Board of Studies First Meeting</h3>
+      <div>
+        {firstMeetingDocs.map((doc) =>
+          doc.file?.map((f) => (
+            <DownloadButton
+              key={f.id}
+              title={doc.title}
+              link={`${process.env.NEXT_PUBLIC_STRAPI}${f.url}`}
+            />
+          ))
+        )}
+      </div>
+    </div>
+  )
 }

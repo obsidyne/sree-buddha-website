@@ -1,43 +1,41 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import DownloadButton from '@/components/common/DownloadButton'
 
-export default function page() {
+export default function Page() {
+  const [documents, setDocuments] = useState([])
 
-  const pdfDocuments = [
-    {
-      title: "First Academic Council Agenda",
-      link: "/assets/documents/autonomous/academic_council/Academic-Council-Meeting-AC1Agenda.pdf"
-    },
-    {
-      title: "Academic Council Constitution",
-      link: "/assets/documents/autonomous/academic_council/Constitution-of-Academic-Council-and-finance-committee (1).pdf"
-    },
-    {
-      title: "Academic Council Constitution",
-      link: "/assets/documents/autonomous/academic_council/Constitution-of-Academic-Council-and-finance-committee.pdf"
-    },
-    {
-      title: "Second Academic Council Minutes",
-      link: "/assets/documents/autonomous/academic_council/MINUTES-OF-AC2.pdf"
-    },
-    {
-      title: "First Academic Council Minutes",
-      link: "/assets/documents/autonomous/academic_council/MINUTES-OF-THE-FIRST-MEETING-OF-THE-ACADEMIC-COUNCIL-AUTONOMUS.pdf"
+  useEffect(() => {
+    const fetchDocuments = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI}/api/autonomous?populate[Academic_council][populate]=PDF`)
+        const data = await res.json()
+
+        if (data?.data?.Academic_council) {
+          setDocuments(data.data.Academic_council)
+        }
+      } catch (error) {
+        console.error("Error fetching Academic Council documents:", error)
+      }
     }
-  ]
-        
+
+    fetchDocuments()
+  }, [])
+
   return (
     <div className='page'>
       <h3 className='page_heading'>Academic Council</h3>
 
       <div>
-        {
-          pdfDocuments.map((document, index) => {
-            return (
-              <DownloadButton key={index} title={document.title} link={document.link} />
-            )
-          })
-        }
+        {documents.map((doc) => (
+          <DownloadButton
+            key={doc.id}
+            title={doc.Tittle}
+            // prepend Strapi base URL to PDF url
+            // link={`http://91.99.112.1:1337${doc.PDF?.url}`}
+            link={`${process.env.NEXT_PUBLIC_STRAPI}${doc.PDF?.url}`}
+          />
+        ))}
       </div>
     </div>
   )

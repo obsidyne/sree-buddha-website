@@ -54,7 +54,7 @@ const getExamEmoji = (examType) => {
 
 // Function to get icon component based on exam type
 const getExamIcon = (examType) => {
-  const normalizedType = normalizeString(examType);
+  const normalizedType = normalizeString(examType || '');
   
   if (normalizedType.includes('series') || normalizedType.includes('retest')) {
     return <FaPencilAlt className="text-blue-600" />;
@@ -81,14 +81,15 @@ export default function Page() {
   const [forms, setForms] = useState([]);
   const [apiError, setApiError] = useState(null);
 
-  // Fetch exam notifications and forms from API
+  // Fetch exam notifications and forms from the new API endpoints
   const fetchExamData = async () => {
     setIsLoading(true);
     setApiError(null);
     
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_STRAPI}/api/exam-notifications?pagination[page]=1&pagination[pageSize]=300&populate=file`,
+      // Fetch notifications
+      const notificationsResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI}/api/autonomous?populate[examination_cell][populate][notifications][populate]=PDF`,
         {
           method: 'GET',
           headers: {
@@ -98,58 +99,66 @@ export default function Page() {
         }
       );
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      // Fetch forms
+      const formsResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_STRAPI}/api/autonomous?populate[examination_cell][populate][forms][populate]=PDF`,
+        {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      if (!notificationsResponse.ok || !formsResponse.ok) {
+        throw new Error(`HTTP error! Notifications: ${notificationsResponse.status}, Forms: ${formsResponse.status}`);
       }
 
-      const data = await response.json();
+      const notificationsData = await notificationsResponse.json();
+      const formsData = await formsResponse.json();
       
-      if (data && data.data && Array.isArray(data.data)) {
-        // Separate notifications and forms
-        const notificationsData = [];
-        const formsData = [];
-        
-        data.data.forEach(item => {
-          if (item.notification === true) {
-            // Transform for notifications
-            notificationsData.push({
-              id: item.id,
-              path: item.file ? `${process.env.NEXT_PUBLIC_STRAPI}${item.file.url}` : null,
-              title: item.Heading || 'Notification',
-              date: item.Notification_date,
-              type: item.exam_type || 'Notification',
-              icon: getExamIcon(item.exam_type),
-              emoji: getExamEmoji(item.exam_type),
-              important: item.Important || false,
-              fileSize: item.file ? Math.round(item.file.size / 1024) : null,
-              fileName: item.file ? item.file.name : null
-            });
-          } else {
-            // Transform for forms (only heading and file)
-            if (item.file) {
-              formsData.push({
-                id: item.id,
-                path: `${process.env.NEXT_PUBLIC_STRAPI}${item.file.url}`,
-                title: item.Heading || 'Form',
-                description: `Download ${item.Heading || 'form'}`,
-                icon: <FaFileAlt className={`text-${['indigo', 'teal', 'orange', 'purple', 'green'][formsData.length % 5]}-600`} />,
-                fileSize: Math.round(item.file.size / 1024),
-                fileName: item.file.name
-              });
-            }
-          }
-        });
-        
-        // Sort notifications by date, newest first
-        notificationsData.sort((a, b) => new Date(b.date) - new Date(a.date));
-        
-        setNotifications(notificationsData);
-        setForms(formsData);
-      } else {
-        console.warn('Unexpected API response structure:', data);
-        setNotifications([]);
-        setForms([]);
+      // Process notifications
+      let processedNotifications = [];
+      if (notificationsData?.data?.examination_cell[0].notifications && Array.isArray(notificationsData.data.examination_cell[0].notifications)) {
+        processedNotifications = notificationsData.data.examination_cell[0].notifications.map((item, index) => ({
+          id: item.id || `notification-${index}`,
+          path: item.PDF ? `${process.env.NEXT_PUBLIC_STRAPI}${item.PDF.url}` : null,
+          title: item.Tittle || item.Title || 'Notification',
+          date: item.createdAt || item.updatedAt || new Date().toISOString(),
+          type: item.exam_type || 'Notification',
+          icon: getExamIcon(item.exam_type),
+          emoji: getExamEmoji(item.exam_type),
+          important: item.Important || false,
+          fileSize: item.PDF ? Math.round(item.PDF.size / 1024) : null,
+          fileName: item.PDF ? item.PDF.name : null
+        }));
       }
+
+      // Process forms
+      let processedForms = [];
+      if (formsData?.data?.examination_cell[0].forms && Array.isArray(formsData.data.examination_cell[0].forms)) {
+        processedForms = formsData.data.examination_cell[0].forms.map((item, index) => ({
+          id: item.id || `form-${index}`,
+          path: item.PDF ? `${process.env.NEXT_PUBLIC_STRAPI}${item.PDF.url}` : null,
+          title: item.Tittle || item.Title || 'Form',
+          description: `Download ${item.Tittle || item.Title || 'form'}`,
+          icon: <FaFileAlt className={`text-${['indigo', 'teal', 'orange', 'purple', 'green'][index % 5]}-600`} />,
+          fileSize: item.PDF ? Math.round(item.PDF.size / 1024) : null,
+          fileName: item.PDF ? item.PDF.name : null
+        }));
+      }
+
+      console.log()
+      console.log(processedForms)
+      console.log(processedNotifications)
+      
+      // Sort notifications by date, newest first
+      processedNotifications.sort((a, b) => new Date(b.date) - new Date(a.date));
+      
+      setNotifications(processedNotifications);
+      setForms(processedForms);
+      
     } catch (error) {
       console.error('Error fetching exam data:', error);
       setApiError(`Failed to load data: ${error.message}`);
@@ -412,7 +421,9 @@ export default function Page() {
                 
                 {filteredForms.length === 0 ? (
                   <div className="bg-white rounded-xl shadow-md p-8 text-center">
-                    <p className="text-gray-500">No forms match your search.</p>
+                    <p className="text-gray-500">
+                      {forms.length === 0 ? 'No forms available.' : 'No forms match your search.'}
+                    </p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -430,11 +441,22 @@ export default function Page() {
                             <h3 className="text-lg font-semibold text-gray-900">{form.title}</h3>
                           </div>
                           <p className="text-gray-600 mb-6">{form.description}</p>
-                          <DownloadButton
-                            title="Download Form"
-                            link={form.path}
-                            className="w-full inline-flex items-center justify-center px-4 py-2 bg-yellow-900 text-white rounded-md hover:bg-yellow-800 transition-colors"
-                          />
+                          <div className="flex flex-col space-y-2">
+                            {form.fileSize && (
+                              <p className="text-xs text-gray-400">
+                                File: {form.fileName} ({form.fileSize} KB)
+                              </p>
+                            )}
+                            {form.path ? (
+                              <DownloadButton
+                                title="Download Form"
+                                link={form.path}
+                                className="w-full inline-flex items-center justify-center px-4 py-2 bg-yellow-900 text-white rounded-md hover:bg-yellow-800 transition-colors"
+                              />
+                            ) : (
+                              <span className="text-xs text-gray-400 italic text-center">No file available</span>
+                            )}
+                          </div>
                         </div>
                       </motion.div>
                     ))}
