@@ -19,7 +19,7 @@ export default function Events2( ) {
 
     useEffect(()=>{
 
-        fetch( `${process.env.NEXT_PUBLIC_STRAPI}/api/newss?populate=News_media`).then((response)=>{
+        fetch( `${process.env.NEXT_PUBLIC_STRAPI}/api/newss?populate=News_media&pagination[pageSize]=800`).then((response)=>{
             return response.json()
         }).then(data=>{
 

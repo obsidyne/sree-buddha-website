@@ -6,8 +6,8 @@ export default function EventsPage() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const API_URL = `${process.env.NEXT_PUBLIC_STRAPI}/api/events?populate=Event_media`;
-
+  // const API_URL = `${process.env.NEXT_PUBLIC_STRAPI}/api/events?populate=Event_media`;
+  const API_URL = `${process.env.NEXT_PUBLIC_STRAPI}/api/events?populate=Event_media&pagination[pageSize]=1200`;
   useEffect(() => {
     const fetchEvents = async () => {
       try {
