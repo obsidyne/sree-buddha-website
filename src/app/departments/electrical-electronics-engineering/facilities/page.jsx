@@ -22,23 +22,23 @@ export default function EEEDepartmentFacilities() {
             description: 'Basic Electrical engineering workshop is intended to make the students aware of the basics of electrical engineering which includes different types of wiring, measurement of energy, etc.',
             image: '/assets/images/departments/facilities/eee/eee_facility1.jpg',
             inCharge: 'Ms. Chama R Chandran',
-            staff: 'Mr. Sudheesh M S'
+            staff: 'Mr. P. Parameshwara Panicker'
         },
         {
             id: 'electrical-machines',
             name: 'Electrical Machines Lab',
             description: 'This lab facilitates different AC and DC machines. This lab gives students an idea of starting, speed controlling, loading, and different other experiments in electrical machines.',
             image: '/assets/images/departments/facilities/eee/eee_facility2.jpg',
-            inCharge: 'Mr. Sheleel F',
-            staff: 'Ms. Chithra P B'
+            inCharge: 'Ms. Sindhu V',
+            staff: 'Mr. P. Parameshwara Panicker'
         },
         {
             id: 'power-system',
             name: 'Power System & High Voltage Engg Lab',
             description: 'This lab facilitates different hardware and software experiments in power systems, including major experiments like impulse waveform generation, different types of relays, earth resistance measurement, cable, and transformer oil testing.',
             image: '/assets/images/departments/facilities/eee/eee_facility3.jpg',
-            inCharge: 'Ms. Gayathri V',
-            staff: 'Ms. Chithra P B'
+            inCharge: 'Ms. Athira B',
+            staff: 'Mr. P. Parameshwara Panicker'
         },
         {
             id: 'measurement',
@@ -46,7 +46,7 @@ export default function EEEDepartmentFacilities() {
             description: 'This lab facilitates different types of transducers used for measurement in the field of electrical engineering.',
             image: '/assets/images/departments/facilities/eee/eee_facility4.jpg',
             inCharge: 'Ms. Juna John Daniel',
-            staff: 'Ms. Chithra P B'
+            staff: 'Mr. P. Parameshwara Panicker'
         },
         {
             id: 'electronics',
@@ -54,39 +54,39 @@ export default function EEEDepartmentFacilities() {
             description: 'This lab facilitates different electronic circuits using semiconductor switches like op-amp, diodes, MOSFET, JFET, ICs, etc.',
             image: '/assets/images/departments/facilities/eee/eee_facility5.jpg',
             inCharge: 'Mr. Ananthu V',
-            staff: 'Mr. Sudheesh M S'
+            staff: 'Ms. Bindu L'
         },
         {
             id: 'power-electronics',
             name: 'Power Electronics Lab',
             description: 'This lab facilitates different types of firing circuits of SCR, DIAC, TRIAC, MOSFET, and drives for DC motors. It also includes software simulation of variable speed control of different motors.',
             image: '/assets/images/departments/facilities/eee/eee_facility6.jpg',
-            inCharge: 'Ms. Vijina K',
-            staff: 'Ms. Chithra P B'
+            inCharge: 'Ms. Athira B',
+            staff: 'Mr. Sudheesh M S'
         },
         {
             id: 'systems-control',
             name: 'Systems and Control Lab',
             description: 'This lab facilitates different types of servomotors, time response circuits, controllers, and control circuits.',
             image: '/assets/images/departments/facilities/eee/eee_facility7.jpg',
-            inCharge: 'Mr. Vishnu J',
-            staff: 'Mr. Ratheesh R'
+            inCharge: 'Ms. Atheena A',
+            staff: 'Mr. P. Parameshwara Panicker'
         },
         {
             id: 'digital-embedded',
             name: 'Digital Circuits and Embedded Systems Lab',
             description: 'This lab facilitates microprocessors 8085 and 8086, microcontroller 8051, and experiments in IC trainer kits.',
             image: '/assets/images/departments/facilities/eee/eee_facility7.jpg',
-            inCharge: 'Mr. Sreekanth P K',
-            staff: 'Mr. Ratheesh R'
+            inCharge: 'Ms. Atheena A',
+            staff: 'Ms. Bindu L'
         },
         {
             id: 'pg-systems',
             name: 'PG Systems Lab',
             description: 'This lab facilitates different simulation software like MATLAB, Maxwell, and PSIM.',
             image: '/assets/images/departments/facilities/eee/eee_facility8.jpg',
-            inCharge: 'Ms. Abhilasha Parthan',
-            staff: 'Mr. Ratheesh R'
+            inCharge: 'Ms. Juna John Daniel',
+            staff: 'Ms. Bindu L'
         },
         {
             id: 'research',
