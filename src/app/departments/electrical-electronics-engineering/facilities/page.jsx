@@ -93,8 +93,8 @@ export default function EEEDepartmentFacilities() {
             name: 'PG Research Lab',
             description: 'This lab facilitates different special electrical machines with their driver circuit and software supporting them.',
             image: '/assets/images/departments/facilities/eee/eee_facility9.jpg',
-            inCharge: 'Ms. Abhilasha Parthan',
-            staff: 'Mr. Ratheesh R'
+            inCharge: 'Anisha CG',
+            staff: 'Bindu L'
         },
         {
             id: 'seminar',
