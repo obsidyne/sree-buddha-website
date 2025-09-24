@@ -92,42 +92,57 @@ export default function ComputerScienceDepartment() {
         <h2 className="cs-dept-section-title">Department Highlights</h2>
         <div className="cs-dept-highlights-content">
   <div className="highlights-card">
-    <h3 className="highlight-category">Infrastructure & Resources</h3>
+    <h3 className="highlight-category">Expert Faculty & Research</h3>
     <ul>
-      <li>Well-equipped Research laboratories & Specialized laboratories.</li>
-      <li>Highly qualified, experienced and dedicated faculty.</li>
-      <li>Department library with a comprehensive collection of prescribed textbooks.</li>
-      <li>ICT-enabled smart classrooms.</li>
+      <li>Committed and experienced faculty team comprising five Ph.D. holders and two research scholars.</li>
+      <li>High expertise in diverse fields of Biotechnology and Biochemical engineering driving academic and research excellence</li>
+      <li>Consistent advancement in Teaching-Learning Process by hosting sponsored Faculty Development Programs and technical workshops.</li>
+      <li>Secured competitive research fundings from AICTE, ANERT, KTU, KSCSTE, DBT Bio-Care, AYUSH, and other agencies.</li>
+      <li>Vibrant scholarly output, including highly reputed journal articles with significant impact factor and granted patents through continuous encouragement for research and innovative projects.</li>
     </ul>
   </div>
 
   <div className="highlights-card">
-    <h3 className="highlight-category">Industry & Research Collaborations</h3>
+    <h3 className="highlight-category">Collaborations & Skill Development</h3>
     <ul>
-      <li>Students gain industry insights through seminars, workshops, Industrial trainings and internships at University of Sains Malaysia, ZETA Biosystem Bangalore, Biocon Bangalore, CFTRI Mysore, Synthite chemicals Kochi, NIIST Trivandrum, IIPM Bangalore, NIFTEM Thanjavur, CTCRI Trivandrum, CFRD Cochin etc to enhance research opportunities.</li>
-      <li>Ayush, DBT-Biocare, ANERT, and KTU-CERD serve as key research collaborators, fostering increased student participation in research activities.</li>
+      <li>Research collaborations with National and International Universities. (Universiti Sains Malayasia, IIT BHU, NITT, NITK, NITC, NIFTEM-T etc.)</li>
+      <li>Collaborations with major Biotech Industries (Zeta Biosystems, Synthite etc.,)</li>
+      <li>Collaborations with Research Laboratories (CSIR-CECRI, CSIR-NIIST etc.,)</li>
+      <li>Add-on courses and Workshops, invited lectures, and seminars to enhance technical skills and placement opportunities.</li>
+      <li>Internship in Major Biotechnology and Biochemical industries (NIMS, Synthite etc.)</li>
+      <li>Membership in professional bodies like ISTE, IEI, IIChE, & BRSI.</li>
     </ul>
   </div>
 
   <div className="highlights-card">
-    <h3 className="highlight-category">Professional Memberships</h3>
+    <h3 className="highlight-category">State-of-the-Art Infrastructure</h3>
     <ul>
-      <li>The department holds memberships with IEI, Biotech Research Society of India (BRSI), Indian Institute of Chemical Engineers (IIChE) student chapter and ISTE Student Chapter, promoting professional growth.</li>
+      <li>Smart classrooms and Innovative teaching methodologies.</li>
+      <li>Department is equipped with modern laboratories, project labs, research labs, and specialized Labs.</li>
+      <li>Access to simulation tools and software.</li>
+      <li>Well-established Library.</li>
+      <li>Dynamic support for extracurricular activities.</li>
     </ul>
   </div>
 
   <div className="highlights-card">
-    <h3 className="highlight-category">Innovation and Sustainability Initiatives & Entrepreneurship</h3>
+    <h3 className="highlight-category">Curriculum & Academic Excellence</h3>
     <ul>
-      <li>The Department of Biotechnology & Biochemical Engineering actively promotes eco-friendly practices through innovative, hands-on initiatives that integrate biotechnology with sustainable development.</li>
-      <li>Key initiatives include a composting unit that converts organic waste into nutrient-rich compost, a water treatment unit supplying purified drinking water across campus, a bio-mushroom cultivation unit, Medicinal plant garden offering training in sustainable farming, and a soap-making unit producing eco-friendly soaps.</li>
+      <li>Autonomous status facilitates a flexible, industry-aligned curriculum.</li>
+      <li>Course contents are continuously revitalized to integrate emerging trends in Biotechnology & Biochemical engineering.</li>
     </ul>
   </div>
 
   <div className="highlights-card">
-    <h3 className="highlight-category">Consultancy Services</h3>
+    <h3 className="highlight-category">Consultancy and Outreach Activity</h3>
     <ul>
-      <li>Water and Wastewater Quality Analysis Laboratory: The Department of Biotechnology & Biochemical Engineering houses a State Pollution Control Board-approved Water and Wastewater Quality Analysis Lab. This facility offers professional consultancy services for assessing water and wastewater quality, supporting environmental compliance and promoting safe, sustainable water management practices.</li>
+      <li>Analytical consultancy in Sophisticated Equipment facility.</li>
+      <li>Kerala State Pollution Control Board approved the water quality testing Lab and Consultancy.</li>
+      <li>Dedicated mushroom cultivation unit.</li>
+      <li>Potable-water purification facility.</li>
+      <li>Medicinal plant garden.</li>
+      <li>Solid-waste treatment plant.</li>
+      <li>Customized flavoured soap-making unit.</li>
     </ul>
   </div>
 </div>
