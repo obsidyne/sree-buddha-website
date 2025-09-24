@@ -20,26 +20,27 @@ export default function BiotechnologyDepartmentFacilities() {
       id: "hmt-lab",
       name: "HEAT AND MASS TRANSFER LAB",
       description: "HMT Lab is equipped with both the heat transfer and mass transfer operation equipment. The lab facilities include a U tube heat exchanger, emissivity apparatus, Stefan-Boltzmann's apparatus, natural convection apparatus, free convection apparatus, composite wall, rotary drier, steam distillation unit, simple distillation unit, Soxhlet extractor, etc. These experiments also pave way for inculcating certain innovative skills in the students and to use the experimental setups as starting point to take up higher level experimental studies in heat as well as mass transfer.",
-      image: "/assets/images/departments/facilities/biot/lab1.jpg"
+      image: "/assets/images/departments/facilities/biot/lab1new.png"
       
     },
     {
       id: "fluid-flow-lab",
       name: "FLUID FLOW AND PARTICLE TECHNOLOGY LAB",
       description: "This lab is run in conjunction with the theory course BT201 Fluid flow and Particle Technology. The goals of the experiments aim at the explication of industrial applicability of various techniques of fluid flow and particle technology in process engineering. The facilities include manometers, Stokes Law apparatus, venturimeter, orificemeter, packed bed, fluidized bed, pipette analysis, beaker decantation, flocculator, viscometer, batch sedimentation test etc.",
-      
+      image: "/assets/images/departments/facilities/biot/fluidflow.png"
+
     },
     {
       id: "research-lab",
       name: "RESEARCH LABORATORY",
       description: "The research laboratory of the department of BT & BCE provides a propitious environment that ensures the participation of faculty and students in research and development. The facility has sophisticated instrumental facilities that support research in emerging areas like bio-nanotechnology, sensor development and validation, molecular biology, bio-processing and environmental remediation. The laboratory houses animal cell culture facility, photoluminescence spectro-photometric equipment and other state-of the art facilities. The nanotechnology wing of the laboratory is funded by the BioCARe scheme of the Department of Biotechnology, Government of India and has a dedicated research team working on quantum dot synthesis and allied areas. The facility also supports student internships and consultancy projects in bio-nanotechnology and basic microbiology.",
-       image: "/assets/images/departments/facilities/biot/lab2.jpg"
+       image: "/assets/images/departments/facilities/biot/lab2new.png"
     },
     {
       id: "downstream-lab",
       name: "DOWNSTREAM PROCESSING LABORATORY",
       description: "The lab is equipped with instruments to give a technical knowhow to students on downstream processing of biomolecules to strengthen the knowledge in basic techniques of cell disruption, flocculation, precipitation, protein purification and polishing techniques. The downstream processing lab is equipped with ultra sonicator, dead end filtration unit, centrifuge, electronic balance, vortex shaker, autoclave etc.",
-       image: "/assets/images/departments/facilities/biot/lab3.jpg"
+       image: "/assets/images/departments/facilities/biot/lab3new.png"
     },
     {
       id: "reaction-engineering-lab",
@@ -51,7 +52,7 @@ export default function BiotechnologyDepartmentFacilities() {
       id: "microbiology-lab",
       name: "MICROBIOLOGY LABORATORY",
       description: "Microbiology laboratory in the department has a unique environment that houses special practices and containment facilities in order to properly protect persons working with microorganisms. Aim of the microbiology lab is to focus mainly on basic principles, safe practices and morphological characters of different types of cells. Specific experiments address topics in microbial isolation, quantification and characterization. The laboratory has basic devices, equipment and instruments needed in microbiology experiments such as microscopes, hot air oven, laminar air flow, incubator, refrigerator, centrifuge, autoclave, chemicals including media and consumables.",
-       image: "/assets/images/departments/facilities/biot/lab7.jpg"
+       image: "/assets/images/departments/facilities/biot/lab7new.png"
     },
     {
       id: "biochemistry-lab",
@@ -69,7 +70,7 @@ export default function BiotechnologyDepartmentFacilities() {
       id: "bioprocess-lab",
       name: "BIOPROCESS ENGINEERING LAB",
       description: "The Bioprocess Engineering Lab explore hands-on experience on the isolation and purification of various important enzymes (urease, amylase etc.) used in Bioprocess Industry. Further, they may study the effect of various environmental factors (pH, temperature, substrate concentration etc.) on enzyme activity under laboratory conditions. The second part the lab provides an idea about microbial growth curve, importance of immobilization technique, Residence Time Distribution (RTD) studies and estimation of total sugar and phenol content in wine sample.",
-      image: "/assets/images/departments/facilities/bt/bioprocess_lab.jpg"
+      image: "/assets/images/departments/facilities/biot/bioprocess.png"
     },
     {
       id: "software-lab",
