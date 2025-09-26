@@ -77,7 +77,7 @@ export default function FoodTechnologyDepartmentHOD() {
     title: 'HOD - Food Technology Department',
     imagePath: '/assets/images/departments/hod_food_technology.jpeg',
     email: 'hod.food@sbce.ac.in',
-    phone: '+91 85903 32548'
+    phone: '+91 9446462869'
   };
 
   const tabData = {

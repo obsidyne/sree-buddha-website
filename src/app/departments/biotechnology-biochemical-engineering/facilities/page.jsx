@@ -146,7 +146,7 @@ export default function BiotechnologyDepartmentFacilities() {
                 </div>
               </div>
 
-              <h3 className="text-xl font-semibold mb-4 text-gray-800">Laboratory Highlights</h3>
+              {/* <h3 className="text-xl font-semibold mb-4 text-gray-800">Laboratory Highlights</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 mb-8">
                 {labs.slice(0, 6).map((lab, index) => (
                   <div key={`lab-highlight-${index}`} className="flex items-start">
@@ -160,7 +160,7 @@ export default function BiotechnologyDepartmentFacilities() {
                     <p className="text-gray-700 font-medium">{lab.name}</p>
                   </div>
                 ))}
-              </div>
+              </div> */}
 
               <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="bg-blue-50 p-4 rounded-lg text-center">

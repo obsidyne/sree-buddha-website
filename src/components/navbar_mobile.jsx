@@ -38,6 +38,8 @@ export default function NavbarMobile() {
                 { name: "Admission and Accounts", link: "/about-us/admission_and_accounts", visible: false },
                 { name: "PTA", link: "/about-us/pta", visible: false },
                 { name: "Sister Institutions", link: "/about-us/sister_institutions", visible: false },
+                { name: "Audits", link: "/autonomous/audits", visible: false },
+
                 { name: "Contact Us", link: "/about-us/contact_us", visible: false },
                 { name: "Feedback", link: "/about-us/feedback", visible: false },
             ],
