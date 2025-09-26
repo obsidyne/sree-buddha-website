@@ -22,7 +22,9 @@ const AchievementCard = memo(({ description, id, imageUrl }) => (
             )}
         </div>
         <div className="p-4">
-            <p className="text-gray-700 text-sm">{description}</p>
+            <p className="text-gray-700 text-sm text-justify">{description}
+                
+            </p>
         </div>
     </div>
 ));

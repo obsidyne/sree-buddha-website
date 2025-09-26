@@ -100,10 +100,10 @@ export default function Navbar() {
           name: "Computer Science and Engineering",
           link: "/departments/computer-science-engineering",
         },
-        {
-          name: "Computer Science and Engineering (Artificial Intelligence & Machine learning)",
-          link: "/departments/artificial-intelligence-machine-learning",
-        },
+        // {
+        //   name: "Computer Science and Engineering (Artificial Intelligence & Machine learning)",
+        //   link: "/departments/artificial-intelligence-machine-learning",
+        // },
         {
           name: "Electrical and Electronics Engineering",
           link: "/departments/electrical-electronics-engineering",
