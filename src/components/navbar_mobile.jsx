@@ -116,7 +116,7 @@ export default function NavbarMobile() {
             name: "Cells and Chapter",
             visible: false,
             links: [
-                { name: "Academic and Administrative Bodies", link: "/cells_and_chapters/various_cells", visible: false },
+                { name: "Academic and Administrative Bodies", link: "/cells_and_chapters/student-clubs", visible: false },
                 { name: "IEEE", link: "/cells_and_chapters/ieee", visible: false },
                 { name: "IE(I)", link: "/cells_and_chapters/ie_i", visible: false },
                 { name: "SAE India", link: "/cells_and_chapters/sae_india", visible: false },
