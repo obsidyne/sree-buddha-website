@@ -138,7 +138,7 @@ export default function ResearchPage() {
 
     return (
         <div className={`${poppins.className} min-h-screen bg-white`}>
-            <div className="max-w-7xl mx-auto px-4 py-12">
+            <div className="w-[80%] mx-auto px-4 py-12">
                 <header className="mb-12 text-center">
                 <div className="events_title_area">
                     <span className="event_left_border"></span>
@@ -195,7 +195,7 @@ export default function ResearchPage() {
                             {/* Scrolling cards container */}
                             <div
                                 ref={carouselRef}
-                                className="overflow-x-auto flex space-x-6 py-4 hide-scrollbar"
+                                className="overflow-x-auto flex space-x-8 py-2 hide-scrollbar"
                                 onMouseEnter={() => setIsPaused(true)}
                                 onMouseLeave={() => {
                                     if (isAutoScrolling) {
@@ -234,7 +234,7 @@ export default function ResearchPage() {
                                             >
                                                 <div className="h-48 overflow-hidden">
                                                     {imageUrl ? (
-                                                        <div className="w-full h-64 sm:h-80 md:h-96 overflow-hidden rounded-lg bg-gray-100">
+                                                        <div className="w-full h-70 sm:h-80 md:h-97 overflow-hidden rounded-lg bg-gray-100">
   <img
     src={imageUrl}
     alt={research.heading || 'Research image'}
