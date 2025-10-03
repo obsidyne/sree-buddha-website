@@ -376,12 +376,13 @@
   text-align: center;
   color: var(--primary);
   margin-bottom: 15px;
+  font-size: 20px;
   font-family: 'Playfair Display', serif;
 }
 
 .benefitCard p {
   font-size: 0.95rem;
-  text-align: center;
+  text-align: justify;
 }
 
 /* NAAC Section */
