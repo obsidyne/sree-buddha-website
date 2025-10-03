@@ -195,7 +195,7 @@ export default function ResearchPage() {
                             {/* Scrolling cards container */}
                             <div
                                 ref={carouselRef}
-                                className="overflow-x-auto flex space-x-8 py-2 hide-scrollbar"
+                                className="overflow-x-auto flex space-x-6 py-2 hide-scrollbar"
                                 onMouseEnter={() => setIsPaused(true)}
                                 onMouseLeave={() => {
                                     if (isAutoScrolling) {
@@ -212,7 +212,7 @@ export default function ResearchPage() {
                                     return (
                                         <motion.div
                                             key={`${research.id}-${index}`}
-                                            className="flex-none w-[280px] sm:w-[320px] md:w-[340px]"
+                                            className="flex-none w-[270px] sm:w-[290px] md:w-[290px]"
                                             initial={{ opacity: 0, y: 20 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.5, delay: Math.min(index * 0.1, 0.5) }}
