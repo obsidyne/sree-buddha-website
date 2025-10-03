@@ -108,7 +108,7 @@ export default function Carousel({ items, background, mediaField , type }) {
                                     alt={item.attributes?.Heading || "Event image"}
                                     width={800}
                                     height={1000}
-                                    className="absolute object-cover w-full h-full object-center transition duration-500 filter grayscale group-hover:grayscale-0 group-hover:scale-105"
+                                    className="absolute object-cover w-full h-full object-center transition duration-500  group-hover:scale-105"
                                 />
 
 
