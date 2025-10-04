@@ -36,7 +36,7 @@ export default function Page() {
 
   return (
     <div className='page'>
-      <h3 className='page_heading'>Board of Studies</h3>
+      <h3 className='page_heading'>Board of Studies Constitution</h3>
       <div>
         {boardDocs.map((doc) => (
           <DownloadButton
@@ -47,7 +47,7 @@ export default function Page() {
         ))}
       </div>
 
-      <h3 className='page_heading2'>Board of Studies First Meeting</h3>
+      <h3 className='page_heading2'>Board of Studies First Meeting minutes</h3>
       <div>
         {firstMeetingDocs.map((doc) =>
           doc.file?.map((f) => (
