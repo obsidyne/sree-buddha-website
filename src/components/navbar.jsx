@@ -42,7 +42,7 @@ export default function Navbar() {
         { name: "Internal Quality Assurance Cell", link: "/about-us/iqac" },
         { name: "Gallery", link: "/about-us/gallery" },
         {
-          name: "Admission and Accounts",
+          name: "Admission and Finance",
           link: "/about-us/admission_and_accounts",
         },
         { name: "PTA", link: "/about-us/pta" },

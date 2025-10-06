@@ -8,7 +8,7 @@ const page = () => {
       <div className="line"></div>
       <div className="content">
         <NAAC
-          name="Fee Notification 2024-25 dummy get data from backend "
+          name="Fee Notification 2024-25"
           link="/assets/documents/fee-payment/fee.pdf"
         />
         

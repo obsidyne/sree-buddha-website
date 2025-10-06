@@ -52,14 +52,14 @@ export default function ArtificialIntelligenceDepartment() {
     return (
         <div className="cs-dept-container">
             <header className="cs-dept-header">
-                <h1>Artificial Intelligence & Machine Learning Department</h1>
+                <h1>computer Science and Engineering - Artificial Intelligence & Machine Learning Department</h1>
                 <p>Innovation • Excellence • Future</p>
             </header>
 
             <div className="cs-dept-hero">
                 <div className="cs-dept-hero-image">
                     <Image
-                        src="/images/ai-dept-hero.jpg"
+                        src="/images/ai-hero.png"
                         alt="Artificial Intelligence Students Working Together"
                         width={1200}
                         height={400}

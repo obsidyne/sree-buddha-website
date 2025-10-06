@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useRouter } from 'next/navigation';
 
 export default function VisionMission() {
   useEffect(() => {
@@ -12,6 +13,8 @@ export default function VisionMission() {
       once: true,
     });
   }, []);
+  
+const router = useRouter();
 
   return (
     <section
@@ -26,9 +29,19 @@ export default function VisionMission() {
             the teachings of Lord Buddha. The institution nurtures aspiring
             technocrats and strives to be a model for the world.
           </p>
-          <button className="bg-black text-white font-semibold px-6 py-3 rounded-2xl shadow-md hover:bg-gray-900 transition">
+          {/* <button className="bg-black text-white font-semibold px-6 py-3 rounded-2xl shadow-md hover:bg-gray-900 transition">
             About Us
-          </button>
+          </button> */}
+         
+
+
+<button 
+  onClick={() => router.push('/about-us/profile')}
+  className="bg-black text-white font-semibold px-6 py-3 rounded-2xl shadow-md hover:bg-gray-900 transition"
+>
+  About Us
+</button>
+          
         </div>
 
         <div className="space-y-10" data-aos="fade-up">
