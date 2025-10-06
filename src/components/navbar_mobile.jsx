@@ -188,9 +188,20 @@ export default function NavbarMobile() {
         <>
         <div className="relative w-full bg-white shadow-md navbar_mobile">
             <div className="flex items-center justify-between p-4 --bg-green-200 w-full">
-               <Link href = "/"><div className="flex items-center">
-                    <img src="/assets/images/sree_buddha_logo.png" alt="Logo" className="h-12 w-auto" />
-                </div></Link> 
+             <div className="logo_section">
+  <Link
+    href={{
+      pathname: '/'
+    }}
+    className="block h-full"
+  >
+    <img 
+      src={"/assets/sbce_logo.png"} 
+      alt="SBCE Logo" 
+      className="h-full w-auto object-contain max-h-[60px] md:max-h-[70px] lg:max-h-[80px]" 
+    />
+  </Link>
+</div> 
 
                 <button 
                     className="flex flex-col justify-center items-center w-10 h-10 focus:outline-none"
