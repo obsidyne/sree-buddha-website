@@ -18,7 +18,7 @@ export default function Footer() {
             </div>
             <div className="text-center md:text-left">
               <p className="font-semibold text-yellow-500 mb-1">
-                SREE BUDDHA COLLEGE OF ENGINEERING
+                SREE BUDDHA COLLEGE OF ENGINEERING PATTOOR
               </p>
               <address className="text-gray-400 not-italic text-sm leading-relaxed">
                 Pattoor, P.O, Nooranad, Padanilam,<br />
@@ -47,8 +47,8 @@ export default function Footer() {
               College
             </h3>
             <ul className="space-y-3 text-center md:text-left">
-              <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Mandatory Disclosure</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Anti Ragging Cell</a></li>
+              <li><a href="/about-us/mandatory_disclosure" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Mandatory Disclosure</a></li>
+              <li><a href="/anti-ragging-cell" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Anti Ragging Cell</a></li>
               <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Corporate Video</a></li>
               <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Sitemap</a></li>
             </ul>
