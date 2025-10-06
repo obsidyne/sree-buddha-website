@@ -153,7 +153,7 @@ export default function AntiRaggingCell() {
                     <div className="h-48 overflow-hidden" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
                       {event.image ? (
                         <img 
-                          src={`${BASE_URL}${event.image.url}`} 
+                          src={`${process.env.NEXT_PUBLIC_STRAPI}${event.image.url}`} 
                           alt={event.title} 
                           className="w-full h-full object-cover"
                         />
@@ -188,7 +188,7 @@ export default function AntiRaggingCell() {
                     <div className="h-48 overflow-hidden" style={{background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'}}>
                       {workshop.image ? (
                         <img 
-                          src={`${BASE_URL}${workshop.image.url}`} 
+                          src={`${process.env.NEXT_PUBLIC_STRAPI}${workshop.image.url}`} 
                           alt={workshop.title} 
                           className="w-full h-full object-cover"
                         />
@@ -232,7 +232,7 @@ export default function AntiRaggingCell() {
                         </div>
                         {order.PDF && (
                           <a 
-                            href={`${BASE_URL}${order.PDF.url}`} 
+                            href={`${process.env.NEXT_PUBLIC_STRAPI}${order.PDF.url}`} 
                             download 
                             className="px-4 sm:px-6 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 flex items-center gap-2 w-full sm:w-auto justify-center whitespace-nowrap"
                             style={{background: '#f39c12', color: 'white', fontFamily: "'Poppins', sans-serif"}}
