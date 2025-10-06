@@ -20,7 +20,7 @@ export default function GalleryPage() {
   useEffect(() => {
     const fetchGalleryData = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI}/api/galleries?populate=*`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI}/api/galleries?populate=*&pagination[page]=1&pagination[pageSize]=100`);
         const data = await response.json();
         setGalleryData(data.data);
         setIsLoading(false);
