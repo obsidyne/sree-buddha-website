@@ -79,7 +79,7 @@ export default function Page() {
         )}
       </div>
 
-      <h3 className='page_heading2'>Board of Studies Meeting Minutes 2</h3>
+      <h3 className='page_heading2'>Board of StudiesSecond  Meeting Minutes </h3>
       <div>
         {publicMeetingDocs.map((doc) => (
           <DownloadButton

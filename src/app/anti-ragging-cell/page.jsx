@@ -16,7 +16,7 @@ export default function AntiRaggingCell() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${API_URL}/api/anti-ragging-cell?populate[anti_ragging_member][populate]=*&populate[anti_ragging_events][populate]=image&populate[anti_ragging_workshops][populate]=image&populate[orders][populate]=PDF&populate[anti_ragging_important_links][populate]=*`
+          `${process.env.NEXT_PUBLIC_STRAPI}/api/anti-ragging-cell?populate[anti_ragging_member][populate]=*&populate[anti_ragging_events][populate]=image&populate[anti_ragging_workshops][populate]=image&populate[orders][populate]=PDF&populate[anti_ragging_important_links][populate]=*`
         );
         
         if (!response.ok) {
