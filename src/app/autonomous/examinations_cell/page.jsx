@@ -93,14 +93,14 @@ export default function Page() {
   // PDF URLs from public folder - update these paths to match your file names
   const manualPDF = '/Examination manual.pdf';
   const malpracticesPDF = '/Malpractice Punishments.pdf';
-  const feeRefundPolicyPDF = '/fee-refund-policy.pdf';
+  const feeRefundPolicyPDF = '/Fee Refund Policy.pdf';
 
   // Results URL - update this to your actual results page URL
   const resultsURL = 'https://www.sbce.etlab.app/universityexam/student/examresult';
 
   // Controller and Deputy Controller images - update paths as needed
   const controllerImage = '/Controller.jpeg'; // Add controller image to public folder
-  const deputyControllerImage = '/DeputyController.jpEg'; // Add to public folder
+  const deputyControllerImage = '/DeputyController.jpeg'; // Add to public folder
 
   // Fetch exam notifications and forms from the API endpoints
   const fetchExamData = async () => {
