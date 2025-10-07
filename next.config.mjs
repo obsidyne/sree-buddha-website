@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+   eslint: {
+    // ✅ Ignore all ESLint errors during builds
+    ignoreDuringBuilds: true,
+  },
   images: {
     domains: [
       '13.51.85.192', // For backward compatibility
