@@ -15,7 +15,8 @@ export default function Page() {
       return response.json()
     }).then((jsondata) => {
       setData(jsondata);
-      console.log(data)
+      // console.log(data)
+      console.log(jsondata)
     })
 
   }, [])
