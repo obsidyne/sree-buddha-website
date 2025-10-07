@@ -257,7 +257,7 @@ export default function Page() {
                     <h4 className="text-lg font-semibold text-gray-900 mb-1">Syllabus Updates</h4>
                     <p className="text-gray-700">
                       The syllabus is regularly updated to meet industry standards and academic requirements.
-                      Always ensure you&apos;re referring to the latest version.
+                      Always ensure you are referring to the latest version.
                     </p>
                   </div>
                 </div>
