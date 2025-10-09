@@ -113,7 +113,7 @@ export default function Page() {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
+                <h2 className="text-2xl font-bold mb-6">Contact Informations</h2>
                 <div className="space-y-6">
                   <div className="flex items-start">
                     <div className="w-10 h-10 rounded-full bg-yellow-900 text-white flex items-center justify-center mr-4 flex-shrink-0">
