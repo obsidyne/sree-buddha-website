@@ -35,7 +35,7 @@ export default function NavbarMobile() {
                 { name: "Student Code of Conduct and Ethics", link: "/about-us/student_code_of_conduct", visible: false },
                 { name: "Internal Quality Assurance Cell", link: "/about-us/iqac", visible: false },
                 { name: "Gallery", link: "/about-us/gallery", visible: false },
-                { name: "Admission and Finance", link: "/about-us/admission_and_accounts", visible: false },
+                { name: "Admission and Accounts", link: "/about-us/admission_and_accounts", visible: false },
                 { name: "PTA", link: "/about-us/pta", visible: false },
                 { name: "Sister Institutions", link: "/about-us/sister_institutions", visible: false },
                 { name: "Audits", link: "/autonomous/audits", visible: false },

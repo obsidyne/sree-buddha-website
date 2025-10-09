@@ -204,7 +204,7 @@ export default function AiMlPaperPublications() {
           <div className="absolute inset-0 bg-yellow-900/10 pattern-diagonal-lines pattern-yellow-500/20 pattern-bg-white pattern-size-4" aria-hidden="true" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-gray-900 mb-3 sm:mb-4">
-              Department Of AI ML Engineering
+              Department Of Computer Science - Artificial Intelligence & Machine Learning
             </h1>
             <div className="w-24 sm:w-32 md:w-40 h-1 bg-yellow-900 mx-auto mb-4 sm:mb-8" aria-hidden="true" />
 

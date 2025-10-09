@@ -27,7 +27,7 @@ export default function Navbar() {
           link: "/about-us/service_mansuals_and_employment_policies",
         },
         {
-          name: "Administrative and Academic Bodies",
+          name: "Administrative and Finance",
           link: "/about-us/academic_and_administrative_bodies",
         },
         {
@@ -42,7 +42,7 @@ export default function Navbar() {
         { name: "Internal Quality Assurance Cell", link: "/about-us/iqac" },
         { name: "Gallery", link: "/about-us/gallery" },
         {
-          name: "Admission and Finance",
+          name: "Admission and Accounts",
           link: "/about-us/admission_and_accounts",
         },
         { name: "PTA", link: "/about-us/pta" },
@@ -100,10 +100,10 @@ export default function Navbar() {
           name: "Computer Science and Engineering",
           link: "/departments/computer-science-engineering",
         },
-        // {
-        //   name: "Computer Science and Engineering (Artificial Intelligence & Machine learning)",
-        //   link: "/departments/artificial-intelligence-machine-learning",
-        // },
+        {
+          name: "Computer Science and Engineering (Artificial Intelligence & Machine learning)",
+          link: "/departments/artificial-intelligence-machine-learning",
+        },
         {
           name: "Electrical and Electronics Engineering",
           link: "/departments/electrical-electronics-engineering",

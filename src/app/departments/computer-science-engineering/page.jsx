@@ -82,7 +82,7 @@ export default function ComputerScienceDepartment() {
     ],
     student: [
       "Computer Society of India (CSI) student branch",
-      "Association for Computing Machinery (ACM) student branch",
+      // "Association for Computing Machinery (ACM) student branch",
       "Department association named CYBORG with active student participation"
     ],
     industry: [

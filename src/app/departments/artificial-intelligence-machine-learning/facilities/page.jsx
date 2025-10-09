@@ -80,7 +80,7 @@ export default function ComputerScienceDepartmentFacilities() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <header className="mb-10 text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-yellow-900 mb-2">
-            Department of AI ML Engineering
+            Department of Computer Science ( Artificial Intelligence & Machine Learning)
           </h1>
           <div className="w-24 h-1 bg-yellow-900 mx-auto mb-4"></div>
           <h2 className="text-2xl font-semibold text-gray-700">Facilities</h2>

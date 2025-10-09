@@ -9,6 +9,7 @@ export default function FTDepartmentActivities() {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedActivity, setSelectedActivity] = useState(null);
 
   // Categories for filtering (adjusted to match your API response)
   const categories = [
@@ -87,6 +88,27 @@ export default function FTDepartmentActivities() {
     fetchData();
   }, []);
 
+  // Close modal when clicking outside or pressing ESC
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedActivity(null);
+      }
+    };
+    
+    if (selectedActivity) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedActivity]);
+
   // Filter activities based on active category
   const filteredActivities = activeFilter === 'all'
     ? activities
@@ -107,7 +129,7 @@ export default function FTDepartmentActivities() {
           <div className="absolute inset-0 bg-yellow-900/10 pattern-diagonal-lines pattern-yellow-500/20 pattern-bg-white pattern-size-4" aria-hidden="true" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center text-gray-900 mb-3 sm:mb-4">
-              Department Of Electrical & Electronics Engineering
+              Department Of Food Technology
             </h1>
             <div className="w-24 sm:w-32 md:w-40 h-1 bg-yellow-900 mx-auto mb-4 sm:mb-6 md:mb-8" aria-hidden="true" />
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center text-gray-800">Activities</h2>
@@ -123,7 +145,7 @@ export default function FTDepartmentActivities() {
               Department Activities
             </h3>
             <p className="text-sm sm:text-base text-gray-700">
-              The Department of Electrical & Electronics Engineering at Sree Buddha College of Engineering conducts
+              The Department of Food Technology at Sree Buddha College of Engineering conducts
               various activities throughout the academic year to enhance the technical skills and practical
               knowledge of students. These activities include workshops, technical competitions, guest lectures,
               industry visits, and seminars. These initiatives help students stay updated with the latest
@@ -133,7 +155,7 @@ export default function FTDepartmentActivities() {
         </div>
 
         {/* Filter Tabs */}
-        <div className="mb-6 sm:mb-8 md:mb-10 sticky top-0 bg-white pt-3 pb-3 sm:pt-4 sm:pb-4 z-10 shadow-sm rounded-lg">
+        <div className="mb-6 sm:mb-8 md:mb-10 bg-white pt-3 pb-3 sm:pt-4 sm:pb-4 shadow-sm rounded-lg">
           <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-2 sm:mb-4 px-1">Filter Activities:</h3>
           <div className="flex flex-wrap gap-1 sm:gap-2">
             {categories.map(category => (
@@ -187,7 +209,8 @@ export default function FTDepartmentActivities() {
             {filteredActivities.map(activity => (
               <div
                 key={activity.id}
-                className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg border border-gray-200 transition-shadow duration-300"
+                onClick={() => setSelectedActivity(activity)}
+                className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg border border-gray-200 transition-all duration-300 cursor-pointer hover:scale-105"
               >
                 <div className="relative h-40 sm:h-48">
                   <Image
@@ -204,10 +227,10 @@ export default function FTDepartmentActivities() {
 
                 <div className="p-3 sm:p-4 md:p-5">
                   <div className="flex justify-between items-start mb-2">
-                    <span className="inline-block px-2 py-1 bg-yellow-100 text-yellow-900 text-xs font-semibold rounded-full uppercase tracking-wide">
+                    {/* <span className="inline-block px-2 py-1 bg-yellow-100 text-yellow-900 text-xs font-semibold rounded-full uppercase tracking-wide">
                       {activity.category}
-                    </span>
-                    <span className="text-xs sm:text-sm text-gray-600">{activity.date}</span>
+                    </span> */}
+                    {/* <span className="text-xs sm:text-sm text-gray-600">{activity.date}</span> */}
                   </div>
 
                   <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-1 sm:mb-2 line-clamp-2">{activity.title}</h3>
@@ -277,7 +300,7 @@ export default function FTDepartmentActivities() {
                           {activity.title}
                         </td>
                         <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-500">
-                          {activity.date}
+                          {/* {activity.date} */}
                         </td>
                         <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-normal text-xs sm:text-sm text-gray-500">
                           {activity.location}
@@ -300,6 +323,110 @@ export default function FTDepartmentActivities() {
           </div>
         )}
       </main>
+
+      {/* Activity Details Modal */}
+      {selectedActivity && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedActivity(null)}
+        >
+          <div 
+            className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center z-10">
+              <h2 className="text-2xl font-bold text-gray-900">Activity Details</h2>
+              <button
+                onClick={() => setSelectedActivity(null)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6">
+              {/* Activity Image */}
+              <div className="relative h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden mb-6">
+                <Image
+                  src={selectedActivity.image}
+                  alt={selectedActivity.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 896px"
+                  onError={(e) => {
+                    e.currentTarget.src = "/assets/images/departments/activities/placeholder.jpg";
+                  }}
+                />
+              </div>
+
+              {/* Activity Category Badge */}
+              <div className="mb-4">
+                <span className="inline-block px-4 py-2 bg-yellow-100 text-yellow-900 text-sm font-semibold rounded-full uppercase tracking-wide">
+                  {selectedActivity.category}
+                </span>
+              </div>
+
+              {/* Activity Title */}
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                {selectedActivity.title}
+              </h3>
+
+              {/* Activity Info Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                {/* Location */}
+                <div className="flex items-start space-x-3 bg-gray-50 p-4 rounded-lg">
+                  <svg className="w-6 h-6 text-yellow-900 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  <div>
+                    <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">Location</p>
+                    <p className="text-base text-gray-900 mt-1">{selectedActivity.location}</p>
+                  </div>
+                </div>
+
+                {/* Coordinator */}
+                <div className="flex items-start space-x-3 bg-gray-50 p-4 rounded-lg">
+                  <svg className="w-6 h-6 text-yellow-900 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                  </svg>
+                  <div>
+                    <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">Coordinator</p>
+                    <p className="text-base text-gray-900 mt-1">{selectedActivity.coordinator}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Activity Description */}
+              <div className="bg-yellow-50 rounded-lg p-6">
+                <h4 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
+                  <svg className="w-5 h-5 mr-2 text-yellow-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  About This Activity
+                </h4>
+                <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+                  {selectedActivity.description}
+                </p>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="border-t border-gray-200 px-6 py-4 bg-gray-50">
+              <button
+                onClick={() => setSelectedActivity(null)}
+                className="w-full sm:w-auto px-6 py-2 bg-yellow-900 text-white rounded-md hover:bg-yellow-800 transition-colors font-medium"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

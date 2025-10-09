@@ -45,14 +45,14 @@ const Profile = () => {
           bordered by hillocks. The environment friendly and serene atmosphere
           of the campus provides a refreshing ambiance for the mind and soul.
           <br /><br />
-          Listed in Wikipedia:{" "}
+          {/* Listed in Wikipedia:{" "}
           <a
             href="https://en.wikipedia.org/wiki/Sree_Buddha_College_of_Engineering"
             target="_blank"
             rel="noopener noreferrer"
           >
             Wikipedia link
-          </a>
+          </a> */}
         </div>
       </div>
     </>
