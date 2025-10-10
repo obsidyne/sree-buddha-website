@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
 .social_media_links{
-    /* background-color: black; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,98 +9,85 @@
     right: 15px;
     bottom: 50%;
     transform: translateY(50%);
-    /* background-color: green; */
     width: 80px;
-
 }
+
 .social_media_links a{
     margin: 10px;
-    /* background-color: red; */
     width: 40px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 100%;
-    /* width: 100%; */
 }
+
 .social_media_links a:hover{
     background-color: rgba(34, 34, 34, 0.268);
-
 }
+
 .social_media_links img{
-    /* height: 80%; */
     transform: scale(0.8);
-
 }
-
-/* .black_overlay{
- position: absolute;
- top: 0px;
- left: 0px;
- height: 100%;
- width: 100%;
-
- opacity: 0.2;
- background-color: black; */
-/* } */
 
 .landing_page{
     position: relative;
     width: 100%;
     text-align: center;
     background-color: #ffffff;
-    /* background-color: red; */
     overflow-x: hidden;
     box-sizing: border-box;
-
 }
-.college_background {
-    /* width: 98.5%; Full container width */
-    /* width: 100%; */
-    height: 80vh; /* Full viewport height */
-    object-fit: cover; /* Crop video while maintaining aspect ratio */
-    margin: 0px 10px;
-    z-index: -1; /* Ensure it sits behind other content */
-    background-color: black; /* Fallback color in case the video doesn't load */
-    overflow: hidden;
 
+.college_background {
+    height: 80vh;
+    object-fit: cover;
+    margin: 0px 10px;
+    z-index: -1;
+    background-color: black;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: red; */
-    /* position: relative; */
 }
 
 .video{
     opacity: 0.7;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This is crucial to maintain proper scaling */
+    object-fit: cover;
 }
 
+/* FIXED: Changed from left: 30% to proper centering */
 .landing_page_content{
     position: absolute;
-    left: 30%;
+    left: 50%;
     top: 25%;
+    transform: translateX(-50%);
     font-family: 'poppins';
     color: white;
+    width: 90%;
+    max-width: 1200px;
 }
+
 .landing_page h3{
     text-shadow: 2px 2px 5px #000000;
-
 }
+
 .landing_page_title1{
-    /* font-size: 100px; */
     font-size: 100px;
     font-weight: 800;
     text-align: center;
+    margin: 0;
 }
+
 .landing_page_title2{
     font-size: 40px;
     font-weight: 300;
     text-align: center;
+    margin: 10px 0;
 }
+
 .landing_page_title3{
     font-size: 40px;
     font-weight: 900;
@@ -109,26 +95,15 @@
     margin-top: 10px;
     color:rgba(197, 128, 44, 0.88);
     text-align: center;
-
     text-transform: uppercase;
     text-shadow: 
-       1px 1px 2px rgba(0, 0, 0, 0.3),   /* Light shadow for subtle 3D effect */
+       1px 1px 2px rgba(0, 0, 0, 0.3),
        2px 2px 4px rgba(0, 0, 0, 0.2);
-    
-
-    font-weight: 900;
 }
 
-
-
-
-@media (max-width: 900px) { /* For tablets and small screens */
-
-    
-
+@media (max-width: 900px) {
     .college_background {
-        height: 80vh; /* Reduce height for smaller screens */
-        /* width: 98.5%; */
+        height: 80vh;
     }
 
     .video{
@@ -138,11 +113,12 @@
     }
 
     .landing_page_content {
-        top: 20%; /* Adjust top positioning */
+        top: 20%;
+        width: 85%;
     }
 
     .landing_page_title1 {
-        font-size: 12vw; /* Scale text size down */
+        font-size: 12vw;
     }
 
     .landing_page_title2 {
@@ -155,43 +131,37 @@
     }
 }
 
-@media (max-width: 480px) { /* For mobile devices */
-
-
+@media (max-width: 480px) {
     .social_media_links{
         flex-direction: row;
         bottom: 20px;
         left: 50%;
         transform: translateX(-50%) translateY(0%);
-        /* background-color: red; */
         width: max-content;
         height: 40px;
-
     }
+    
     .college_background {
-        height: 90vh; /* Further reduce height */
-        width: calc(100% - 10px); /* Account for the margins */
+        height: 90vh;
+        width: calc(100% - 10px);
         margin: 0px 5px;
-        /* background-color: red; */
     }
 
     .video {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Ensures video fills the container */
+        object-fit: cover;
     }
 
     .landing_page_content {
-        top: 20%; /* Adjust top positioning */
-        /* left: 16%; */
+        top: 20%;
         left: 50%;
         transform: translateX(-50%);
-        /* background-color: red ; */
         width: 90%;
     }
 
     .landing_page_title1 {
-        font-size: 60px; /* Smaller text for small devices */
+        font-size: 60px;
         line-height: 60px;
     }
 
@@ -201,8 +171,5 @@
 
     .landing_page_title3 {
         font-size: 25px;
-        
-
     }
- 
 }
