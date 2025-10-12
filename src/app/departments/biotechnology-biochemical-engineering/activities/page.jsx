@@ -209,8 +209,16 @@ export default function BiotechDepartmentActivities() {
                     <span className="text-xs sm:text-sm text-gray-600">{activity.date}</span>
                   </div>
 
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-1 sm:mb-2 line-clamp-2">{activity.title}</h3>
-                  <p className="text-xs sm:text-sm text-gray-700 mb-2 sm:mb-4 line-clamp-3">{activity.description}</p>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-1 sm:mb-2">{activity.title}</h3>
+                  <div 
+                    className="max-h-32 sm:max-h-40 overflow-y-auto mb-2 sm:mb-4 pr-2"
+                    style={{
+                      scrollbarWidth: 'thin',
+                      scrollbarColor: '#6b7280 #f3f4f6'
+                    }}
+                  >
+                    <p className="text-xs sm:text-sm text-gray-700 whitespace-pre-line">{activity.description}</p>
+                  </div>
 
                   <div className="flex items-center justify-between mt-2 sm:mt-4 border-t border-gray-100 pt-2 sm:pt-3">
                     <div className="flex items-center">
