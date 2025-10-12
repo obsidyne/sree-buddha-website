@@ -97,8 +97,7 @@ const PublicationStats = ({ publications }) => {
     };
   }, [publications]);
 
-
-
+  return null;
 };
 
 // Main component
@@ -121,7 +120,6 @@ export default function EceDepartmentPaperPublications() {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_STRAPI}/api/cse-depts?filters[Dept_name][$eq]=ECE&populate[Publication]=*`
         );
-
 
         if (!response.ok) {
           throw new Error(`API request failed with status ${response.status}`);
@@ -201,6 +199,13 @@ export default function EceDepartmentPaperPublications() {
       );
     }
 
+    // Sort by year in descending order (newest first)
+    result.sort((a, b) => {
+      const yearA = a.publication_date || 0;
+      const yearB = b.publication_date || 0;
+      return yearB - yearA;
+    });
+
     setFilteredPublications(result);
   }, [filter, searchTerm, yearFilter, authorFilter, publications]);
 
@@ -212,11 +217,9 @@ export default function EceDepartmentPaperPublications() {
           <div className="absolute inset-0 bg-yellow-900/10 pattern-diagonal-lines pattern-yellow-500/20 pattern-bg-white pattern-size-4" aria-hidden="true" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center text-gray-900 mb-4">
-
              Department Of Electronics and Communication Engineering
             </h1>
             <div className="w-20 sm:w-40 h-1 bg-yellow-900 mx-auto mb-4 sm:mb-8" aria-hidden="true" />
-
             <SectionSubtitle>PUBLICATIONS/CONFERENCE DETAILS</SectionSubtitle>
           </div>
         </div>
@@ -228,7 +231,6 @@ export default function EceDepartmentPaperPublications() {
           <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md border border-gray-100">
             <div className="flex flex-wrap justify-between items-center mb-4">
               <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-0">Filter Publications</h3>
-
             </div>
 
             {/* Search Box */}
@@ -308,7 +310,6 @@ export default function EceDepartmentPaperPublications() {
                 <FilterButton active={filter === 'conference'} onClick={() => setFilter('conference')}>
                   Conferences
                 </FilterButton>
-
               </div>
             </div>
           </div>

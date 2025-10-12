@@ -8,7 +8,7 @@ export default function Oronogram() {
   return (
     <div className='oronogram'>
          <h3>ORGANOGRAM</h3>
-         <img src = {"/assets/images/oronogram.png"} />
+         <img src = {"/assets/images/oronogram.jpg"} />
     </div>
   )
 }

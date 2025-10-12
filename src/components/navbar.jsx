@@ -27,7 +27,7 @@ export default function Navbar() {
           link: "/about-us/service_mansuals_and_employment_policies",
         },
         {
-          name: "Administrative and Academic Bodies",
+          name: "Administrative and Finance",
           link: "/about-us/academic_and_administrative_bodies",
         },
         {
@@ -42,7 +42,7 @@ export default function Navbar() {
         { name: "Internal Quality Assurance Cell", link: "/about-us/iqac" },
         { name: "Gallery", link: "/about-us/gallery" },
         {
-          name: "Admission and Finance",
+          name: "Admission and Accounts",
           link: "/about-us/admission_and_accounts",
         },
         { name: "PTA", link: "/about-us/pta" },
@@ -218,16 +218,37 @@ export default function Navbar() {
 
   return (
     <div className="navbar">
-      <div className="logo_section">
+      {/* <div className="logo_section">
         <Link
           href={{
             pathname: '/'
 
-          }}>
 
-          <img src={"/assets/images/sree_buddha_logo.png"} alt="" />
+
+          }}
+          
+          className="bg-green-200"
+          >
+
+            
+
+          <img src={"/assets/sbce_logo.png"} alt="" className=" h-min" />
         </Link>
-      </div>
+      </div> */}
+      <div className="logo_section">
+  <Link
+    href={{
+      pathname: '/'
+    }}
+    className="block h-full"
+  >
+    <img 
+      src={"/assets/sbce_logo.png"} 
+      alt="SBCE Logo" 
+      className="h-full w-auto object-contain max-h-[60px] md:max-h-[70px] lg:max-h-[80px]" 
+    />
+  </Link>
+</div>
       <div className="navbar_right">
         <div className="important_links">
           <Link href="/admissions/international2" className="important_link">

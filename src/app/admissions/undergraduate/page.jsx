@@ -75,14 +75,14 @@ export default function UndergraduatePage() {
                   <tr key={i} className="hover:bg-gray-50">
                     <td className={`border border-gray-300 px-6 py-4 ${underline ? "underline" : ""}`}>
                       {course}
-                      {italic && <span className="text-base italic"> *</span>}
+                      {/* {italic && <span className="text-base italic"> *</span>} */}
                     </td>
                     <td className="border border-gray-300 px-6 py-4">{seats}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <p className="text-base italic text-gray-600 mt-4">*New course 2023–24</p>
+            {/* <p className="text-base italic text-gray-600 mt-4">*New course 2023–24</p> */}
           </div>
         </section>
 

@@ -20,6 +20,10 @@
     background-color: transparent;
     border: 0px;
     padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
 }
 .download_meeting_minutes img{
     height: 100%;

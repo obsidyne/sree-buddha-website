@@ -28,14 +28,14 @@ export default function NavbarMobile() {
                 { name: "Vision and Mission", link: "/about-us/vision_and_mission", visible: false },
                 { name: "Management", link: "/about-us/management", visible: false },
                 { name: "Principal", link: "/about-us/principal", visible: false },
-                { name: "Organogram", link: "/about-us/oronogram", visible: false },
+                { name: "Organogram", link: "/about-us/organogram", visible: false },
                 { name: "Mandatory Disclosure", link: "/about-us/mandatory_disclosure", visible: false },
                 {name: "Service Rules and Employment Policy",link: "/about-us/service_mansuals_and_employment_policies",visible: false},
                 { name: "AICTE EOA", link: "/about-us/EoA", visible: false },
                 { name: "Student Code of Conduct and Ethics", link: "/about-us/student_code_of_conduct", visible: false },
                 { name: "Internal Quality Assurance Cell", link: "/about-us/iqac", visible: false },
                 { name: "Gallery", link: "/about-us/gallery", visible: false },
-                { name: "Admission and Finance", link: "/about-us/admission_and_accounts", visible: false },
+                { name: "Admission and Accounts", link: "/about-us/admission_and_accounts", visible: false },
                 { name: "PTA", link: "/about-us/pta", visible: false },
                 { name: "Sister Institutions", link: "/about-us/sister_institutions", visible: false },
                 { name: "Audits", link: "/autonomous/audits", visible: false },
@@ -83,7 +83,7 @@ export default function NavbarMobile() {
                 { name: "Biotechnology and Biochemical Engineering", link: "/departments/biotechnology-biochemical-engineering", visible: false },
                 { name: "Civil Engineering", link: "/departments/civil-engineering", visible: false },
                 { name: "Computer Science and Engineering", link: "/departments/computer-science-engineering", visible: false },
-                { name: "Computer Science and Engineering (Artificial Intelligence & Machine learning)", link: "/departments/artificial-intelligence-machine-learning", visible: false },
+                // { name: "Computer Science and Engineering (Artificial Intelligence & Machine learning)", link: "/departments/artificial-intelligence-machine-learning", visible: false },
                 { name: "Electrical and Electronics Engineering", link: "/departments/electrical-electronics-engineering", visible: false },
                 { name: "Electronics and Communication Engineering", link: "/departments/electronics-communication-engineering", visible: false },
                 { name: "Electronics and Computer Engineering", link: "/departments/electronics-computer-engineering", visible: false },
@@ -188,9 +188,20 @@ export default function NavbarMobile() {
         <>
         <div className="relative w-full bg-white shadow-md navbar_mobile">
             <div className="flex items-center justify-between p-4 --bg-green-200 w-full">
-               <Link href = "/"><div className="flex items-center">
-                    <img src="/assets/images/sree_buddha_logo.png" alt="Logo" className="h-12 w-auto" />
-                </div></Link> 
+             <div className="logo_section">
+  <Link
+    href={{
+      pathname: '/'
+    }}
+    className="block h-full"
+  >
+    <img 
+      src={"/assets/sbce_logo.png"} 
+      alt="SBCE Logo" 
+      className="h-full w-auto object-contain max-h-[60px] md:max-h-[70px] lg:max-h-[80px]" 
+    />
+  </Link>
+</div> 
 
                 <button 
                     className="flex flex-col justify-center items-center w-10 h-10 focus:outline-none"

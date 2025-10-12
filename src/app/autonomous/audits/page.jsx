@@ -119,7 +119,7 @@ export default function Page() {
                 link={document.link} 
               />
               {/* {document.fileSize && (
-                <p className="text-xs text-gray-400 ml-4 mt-1">
+                <p className="text-xs text-gray-400 msl-4 mt-1">
                   File: {document.fileName} ({document.fileSize} KB)
                 </p>
               )} */}

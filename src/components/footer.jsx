@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,16 +10,30 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-12 gap-y-10">
           {/* Logo and Address Section */}
           <div className="space-y-6">
-            <div className="flex justify-center md:justify-start">
+            {/* <div className="flex justify-center md:justify-start">
               <img
                 src="/assets/images/logo-removebg-preview.png"
                 alt="Sree Buddha College of Engineering"
                 className="h-20 w-auto"
               />
-            </div>
+            </div> */}
+            <div className="logo_section">
+  <Link
+    href={{
+      pathname: '/'
+    }}
+    className="block h-full"
+  >
+    <img 
+      src={"/assets/sbce_logo.png"} 
+      alt="SBCE Logo" 
+      className="h-full w-auto object-contain max-h-[60px] md:max-h-[70px] lg:max-h-[80px]" 
+    />
+  </Link>
+</div>
             <div className="text-center md:text-left">
               <p className="font-semibold text-yellow-500 mb-1">
-                SREE BUDDHA COLLEGE OF ENGINEERING
+                SREE BUDDHA COLLEGE OF ENGINEERING PATTOOR
               </p>
               <address className="text-gray-400 not-italic text-sm leading-relaxed">
                 Pattoor, P.O, Nooranad, Padanilam,<br />
@@ -47,8 +62,8 @@ export default function Footer() {
               College
             </h3>
             <ul className="space-y-3 text-center md:text-left">
-              <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Mandatory Disclosure</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Anti Ragging Cell</a></li>
+              <li><a href="/about-us/mandatory_disclosure" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Mandatory Disclosure</a></li>
+              <li><a href="/anti-ragging-cell" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Anti Ragging Cell</a></li>
               <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Corporate Video</a></li>
               <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Sitemap</a></li>
             </ul>

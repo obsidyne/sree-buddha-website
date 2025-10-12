@@ -96,9 +96,6 @@ const PublicationStats = ({ publications }) => {
       yearCounts
     };
   }, [publications]);
-
-
-
 };
 
 // Main component
@@ -121,7 +118,6 @@ export default function FTDepartmentPaperPublications() {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_STRAPI}/api/cse-depts?filters[Dept_name][$eq]=FT&populate[Publication]=*`
         );
-
 
         if (!response.ok) {
           throw new Error(`API request failed with status ${response.status}`);
@@ -201,6 +197,13 @@ export default function FTDepartmentPaperPublications() {
       );
     }
 
+    // Sort by year (newest first)
+    result.sort((a, b) => {
+      const yearA = a.publication_date || 0;
+      const yearB = b.publication_date || 0;
+      return yearB - yearA;
+    });
+
     setFilteredPublications(result);
   }, [filter, searchTerm, yearFilter, authorFilter, publications]);
 
@@ -227,7 +230,6 @@ export default function FTDepartmentPaperPublications() {
           <div className="bg-white rounded-xl p-4 sm:p-6 shadow-md border border-gray-100">
             <div className="flex flex-wrap justify-between items-center mb-4">
               <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-2 sm:mb-0">Filter Publications</h3>
-
             </div>
 
             {/* Search Box */}
@@ -307,7 +309,6 @@ export default function FTDepartmentPaperPublications() {
                 <FilterButton active={filter === 'conference'} onClick={() => setFilter('conference')}>
                   Conferences
                 </FilterButton>
-
               </div>
             </div>
           </div>
