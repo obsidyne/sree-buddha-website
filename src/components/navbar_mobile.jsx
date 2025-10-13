@@ -117,7 +117,7 @@ export default function NavbarMobile() {
             visible: false,
             links: [
                 { name: "Academic and Administrative Bodies", link: "/cells_and_chapters/student-clubs", visible: false },
-                { name: "IEEE", link: "/cells_and_chapters/ieee", visible: false },
+                { name: "IEEE", link: "https://www.ieeesbsbce.in/index.html", visible: false },
                 { name: "IE(I)", link: "/cells_and_chapters/ie_i", visible: false },
                 { name: "SAE India", link: "/cells_and_chapters/sae_india", visible: false },
                 { name: "NSS", link: "/cells_and_chapters/nss", visible: false },
@@ -140,6 +140,7 @@ export default function NavbarMobile() {
                 { name: "Internal Lab", link: "/facilities/lab", visible: false },
                 { name: "Hostel", link: "/facilities/hostel", visible: false },
                 { name: "Canteen", link: "/facilities/canteen", visible: false },
+                { name: "Counceling Services", link: "/facilities/counceling", visible: false },
                 { name: "Other Facilities", link: "/facilities/other", visible: false },
             ],
         },
