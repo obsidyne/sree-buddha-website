@@ -44,7 +44,8 @@ export default function StudentClubs() {
     {
       id: 8,
       title: "Academic and Administrative Bodies",
-      pdf: "/pdfs/Academic-and-Administrative-Bodies.pdf"
+      // pdf: "/pdfs/Academic-and-Administrative-Bodies.pdf"
+      pdf: "/pdfs/SBCE committes 2025-2026.pdf"
     }
   ];
 
