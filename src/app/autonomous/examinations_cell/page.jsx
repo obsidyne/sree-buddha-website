@@ -100,7 +100,8 @@ export default function Page() {
 
   // Controller and Deputy Controller images - update paths as needed
   const controllerImage = '/Controller.jpeg'; // Add controller image to public folder
-  const deputyControllerImage = '/DeputyController.jpeg'; // Add to public folder
+  const deputyController1Image = '/DeputyController.jpeg'; // Add to public folder
+  const deputyController2Image = '/DeputyController2.jpeg'; // Add to public folder
 
   // Fetch exam notifications and forms from the API endpoints
   const fetchExamData = async () => {
@@ -405,7 +406,7 @@ export default function Page() {
                         Examination Cell Board
                       </h3>
                       
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-3xl mx-auto">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
                         {/* Controller of Examinations */}
                         <motion.div
                           variants={cardVariants}
@@ -428,12 +429,12 @@ export default function Page() {
                             </div>
                           </div>
                           <h4 className="text-lg font-bold text-yellow-900 mb-1">
-                            Controller of Examinations
-                          </h4>
-                          <p className="text-sm text-gray-600">Head of Examination Cell</p>
+Dr. Saji Varghese                          </h4>
+                          <p className="text-sm text-gray-700 font-medium mb-1">Controller of Examinations</p>
+                          <p className="text-xs text-gray-600">Head of Examination Cell</p>
                         </motion.div>
 
-                        {/* Deputy Controller */}
+                        {/* Deputy Controller 1 */}
                         <motion.div
                           variants={cardVariants}
                           className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center shadow-md"
@@ -441,8 +442,8 @@ export default function Page() {
                           <div className="mb-4">
                             <div className="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-blue-900 shadow-lg bg-gray-200">
                               <img
-                                src={deputyControllerImage}
-                                alt="Deputy Controller"
+                                src={deputyController1Image}
+                                alt="Deputy Controller 1"
                                 className="w-full h-full object-cover"
                                 onError={(e) => {
                                   e.target.style.display = 'none';
@@ -455,9 +456,36 @@ export default function Page() {
                             </div>
                           </div>
                           <h4 className="text-lg font-bold text-blue-900 mb-1">
-                            Deputy Controller
-                          </h4>
-                          <p className="text-sm text-gray-600">Examination Cell</p>
+Dr. Veena Priya Sukumaran                          </h4>
+                          <p className="text-sm text-gray-700 font-medium mb-1">Deputy Controller</p>
+                          <p className="text-xs text-gray-600">Examination Cell</p>
+                        </motion.div>
+
+                        {/* Deputy Controller 2 */}
+                        <motion.div
+                          variants={cardVariants}
+                          className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 text-center shadow-md"
+                        >
+                          <div className="mb-4">
+                            <div className="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-green-900 shadow-lg bg-gray-200">
+                              <img
+                                src={deputyController2Image}
+                                alt="Deputy Controller 2"
+                                className="w-full h-full object-cover"
+                                onError={(e) => {
+                                  e.target.style.display = 'none';
+                                  e.target.nextSibling.style.display = 'flex';
+                                }}
+                              />
+                              <div className="w-full h-full hidden items-center justify-center">
+                                <FaUserTie className="text-5xl text-gray-400" />
+                              </div>
+                            </div>
+                          </div>
+                          <h4 className="text-lg font-bold text-green-900 mb-1">
+Mr. Sabi S                          </h4>
+                          <p className="text-sm text-gray-700 font-medium mb-1">Deputy Controller</p>
+                          <p className="text-xs text-gray-600">Examination Cell</p>
                         </motion.div>
                       </div>
                     </div>
