@@ -24,7 +24,7 @@ function VicePrincipal() {
     const fetchVicePrincipalData = async () => {
       try {
         const response = await fetch(
-          "http://91.99.112.1:1337/api/vice-principal?populate=*"
+          `${process.env.NEXT_PUBLIC_STRAPI}/api/vice-principal?populate=*`
         );
         if (!response.ok) {
           throw new Error(`API request failed with status ${response.status}`);
