@@ -232,7 +232,7 @@ export default function FoodTechnologyDepartmentHOD() {
                       </p>
                       <div className="mt-6 space-y-1">
                         <p className="font-medium">With regards,</p>
-                        <p className="font-medium">Dr Malu Ravi</p>
+                        <p className="font-medium">Dr Bindhya K.P.</p>
                         <p className="font-medium">HOD, Department of Food Technology</p>
                       </div>
                     </div>
