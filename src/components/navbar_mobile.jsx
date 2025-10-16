@@ -28,6 +28,8 @@ export default function NavbarMobile() {
                 { name: "Vision and Mission", link: "/about-us/vision_and_mission", visible: false },
                 { name: "Management", link: "/about-us/management", visible: false },
                 { name: "Principal", link: "/about-us/principal", visible: false },
+                { name: "Vice Principal", link: "/about-us/vice-principal", visible: false },
+                { name: "Deans", link: "/about-us/deans", visible: false },
                 { name: "Organogram", link: "/about-us/organogram", visible: false },
                 { name: "Mandatory Disclosure", link: "/about-us/mandatory_disclosure", visible: false },
                 {name: "Service Rules and Employment Policy",link: "/about-us/service_mansuals_and_employment_policies",visible: false},

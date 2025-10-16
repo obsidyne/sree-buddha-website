@@ -17,6 +17,8 @@ export default function Navbar() {
         { name: "Vision and Mission", link: "/about-us/vision_and_mission" },
         { name: "Management", link: "/about-us/management" },
         { name: "Principal", link: "/about-us/principal" },
+        { name: "Vice Principal", link: "/about-us/vice-principal" },
+        { name: "Deans", link: "/about-us/deans" },
         { name: "Organogram", link: "/about-us/organogram" },
         {
           name: "Mandatory Disclosure",
