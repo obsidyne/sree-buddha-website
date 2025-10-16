@@ -23,6 +23,7 @@ export default function ComputerScienceLayout({ children }) {
         ["Activities", "activities"],
         ["Associations and Clubs", "associations-and-clubs"],
         ["Paper Publications", "paper-publications"],
+        ["Faculty in Teaching and Learning","Innovations" ],
     ]
 
     return (
