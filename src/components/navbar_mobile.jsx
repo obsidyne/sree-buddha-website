@@ -128,6 +128,7 @@ export default function NavbarMobile() {
                 { name: "IEDC", link: "/cells_and_chapters/iedc", visible: false },
                 { name: "NPTEL", link: "/cells_and_chapters/nptel", visible: false },
                 { name: "IIT Remote Center", link: "/cells_and_chapters/iit_remote_center", visible: false },
+                { name: "Students Grievance Redressal", link: "/cells_and_chapters/Grievence", visible: false },
             ],
         },
         {

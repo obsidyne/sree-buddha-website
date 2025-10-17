@@ -166,6 +166,8 @@ export default function Navbar() {
           name: "IIT Remote Center",
           link: "/cells_and_chapters/remote_center",
         },
+        { name: "Students Grievance Redressal", link: "/cells_and_chapters/Grievence", visible: false },
+
       ],
     },
     {

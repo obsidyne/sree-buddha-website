@@ -78,7 +78,7 @@ export default function Footer() {
               <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Students</a></li>
               <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Staff</a></li>
               <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">SBCE Moodle</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Grievance Redressal</a></li>
+              <li><a href="/cells_and_chapters/Grievence" className="text-gray-400 hover:text-yellow-500 transition-colors text-sm">Grievance Redressal</a></li>
             </ul>
           </div>
 
