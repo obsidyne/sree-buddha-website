@@ -143,7 +143,7 @@ export default function NavbarMobile() {
                 { name: "Internal Lab", link: "/facilities/lab", visible: false },
                 { name: "Hostel", link: "/facilities/hostel", visible: false },
                 { name: "Canteen", link: "/facilities/canteen", visible: false },
-                { name: "Counceling Services", link: "/facilities/counceling", visible: false },
+                { name: "Counseling Services", link: "/facilities/counceling", visible: false },
                 { name: "Other Facilities", link: "/facilities/other", visible: false },
             ],
         },

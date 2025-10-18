@@ -181,7 +181,7 @@ export default function Navbar() {
         { name: "Internal Lab", link: "/facilities/lab" },
         { name: "Hostel", link: "/facilities/hostel" },
         { name: "Canteen", link: "/facilities/canteen" },
-        { name: "Counceling Services", link: "/facilities/counceling" },
+        { name: "Counseling Services", link: "/facilities/counceling" },
         { name: "Other Facilities", link: "/facilities/other" },
       ],
     },
