@@ -194,7 +194,7 @@ This grievance was submitted on ${new Date().toLocaleString('en-IN', { timeZone:
                   For detailed guidelines, committee structure, and grievance procedures, please refer to the official documentation.
                 </p>
                 <a 
-                  href="Student Grievance Redressal Committee.docx"
+                  href={"/Student_Grievance_Redressal_Committee.docx"}
                   download
                   className="text-yellow-800 hover:text-yellow-900 font-medium text-sm sm:text-base flex items-center"
                 >
