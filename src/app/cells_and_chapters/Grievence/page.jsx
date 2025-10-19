@@ -137,7 +137,7 @@ This grievance was submitted on ${new Date().toLocaleString('en-IN', { timeZone:
     {
       title: "Consitution OF Internal Complaints Committee",
       description: "",
-      url: "/counselling/consitution.pdf"
+      url: "/counselling/constitution.pdf"
     },
     {
       title: "Sexual Harassment at Workplace Act Gazatte",
