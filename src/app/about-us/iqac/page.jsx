@@ -1,24 +1,33 @@
 'use client';
-import React from "react";
+import React, { useState, useEffect } from "react";
 import DownloadButton from "@/components/common/DownloadButton";
 import { motion } from "framer-motion";
 import Image from 'next/image';
 
 export default function Page() {
-  const meetings = [
-    {
-      id: 1,
-      title: "Minutes-of-7-th-IQAC-meeting-held-on-13-03-2017",
-      date: "2017-03-13",
-      key_points: ["Quality enhancement measures", "Academic excellence initiatives", "Infrastructure development plans"]
-    },
-    {
-      id: 2,
-      title: "Minutes-of-8-th-IQAC-meeting-held-on-21-06-2017",
-      date: "2017-06-21",
-      key_points: ["Academic performance review", "Research collaboration proposals", "Student feedback analysis"]
-    },
-  ];
+  const [meetings, setMeetings] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchMeetingMinutes();
+  }, []);
+
+  const fetchMeetingMinutes = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI}/api/iqac-meeting-minutess?populate=*`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch meeting minutes');
+      }
+      const data = await response.json();
+      setMeetings(data.data || []);
+      setLoading(false);
+    } catch (err) {
+      console.error('Error fetching meeting minutes:', err);
+      setError(err.message);
+      setLoading(false);
+    }
+  };
 
   const features = [
     {
@@ -62,8 +71,8 @@ export default function Page() {
           <Image
             src="https://sbce.ac.in/assets/images/profile_pic.png"
             alt="College Campus"
-            width={1920} // Set appropriate width
-            height={1080} // Set appropriate height
+            width={1920}
+            height={1080}
             className="w-full h-full object-cover"
           />
         </div>
@@ -129,51 +138,76 @@ export default function Page() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className=""
             >
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Meeting Minutes</h2>
-              <div className="grid grid-cols-1 gap-4">
-                {meetings && meetings.length > 0 ? (
-                  meetings.map((meeting, index) => (
-                    <motion.div
-                      key={meeting.id}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="bg-white rounded-lg shadow-sm p-6"
-                    >
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                        <div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                            IQAC Meeting #{meeting.id}
-                          </h3>
-                          <p className="text-gray-600 text-sm">
-                            Date: {new Date(meeting.date).toLocaleDateString('en-US', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric'
-                            })}
-                          </p>
+              
+              {loading ? (
+                <div className="flex justify-center items-center py-12 bg-white rounded-lg">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-900"></div>
+                </div>
+              ) : error ? (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+                  <p className="text-red-600">Error loading meeting minutes: {error}</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 gap-4">
+                  {meetings && meetings.length > 0 ? (
+                    meetings.map((meeting, index) => (
+                      <motion.div
+                        key={meeting.id}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
+                      >
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                          <div className="flex-1">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                              {meeting.title}
+                            </h3>
+                            <p className="text-gray-600 text-sm mb-2">
+                              Date: {new Date(meeting.date).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                              })}
+                            </p>
+                            {meeting.description && (
+                              <p className="text-gray-600 text-sm">
+                                {meeting.description}
+                              </p>
+                            )}
+                          </div>
+                          <DownloadButton
+                            title="Download Minutes"
+                            link={`${process.env.NEXT_PUBLIC_STRAPI}${meeting.file.url}`}
+                            className="mt-4 md:mt-0 md:ml-4 inline-flex items-center px-4 py-2 bg-yellow-900 text-white rounded-md hover:bg-yellow-800 transition-colors whitespace-nowrap"
+                          />
                         </div>
-                        <DownloadButton
-                          title="Download Minutes"
-                          link={`/assets/documents/iqac/minutes/${meeting.title}.pdf`}
-                          className="mt-4 md:mt-0 inline-flex items-center px-4 py-2 bg-yellow-900 text-white rounded-md hover:bg-yellow-800 transition-colors"
+                      </motion.div>
+                    ))
+                  ) : (
+                    <div className="bg-gray-50 rounded-lg p-12 text-center">
+                      <svg 
+                        className="mx-auto h-12 w-12 text-gray-400 mb-4" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth={2} 
+                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
                         />
-                      </div>
-                      <ul className="list-disc list-inside text-gray-600 text-sm">
-                        {meeting.key_points.map((point, idx) => (
-                          <li key={idx} className="mb-1">{point}</li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  ))
-                ) : (
-                  <p className="text-gray-600 text-center py-8">
-                    No meeting minutes available at the moment.
-                  </p>
-                )}
-              </div>
+                      </svg>
+                      <p className="text-gray-600">
+                        No meeting minutes available at the moment.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
             </motion.div>
           </div>
         </div>
