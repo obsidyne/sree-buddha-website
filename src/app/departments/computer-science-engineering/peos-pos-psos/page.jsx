@@ -92,11 +92,11 @@ export default function ComputerScienceDepartmentPEOSPSO() {
           <ul className="space-y-3">
             <li className="text-justify">
               <span className="font-semibold">PSO1: </span>
-              Apply standard practices in software project development using the open source environment to deliver a quality product.
+              Apply standard practices in software project development using the open-source environments to deliver quality software products.
             </li>
             <li className="text-justify">
               <span className="font-semibold">PSO2: </span>
-              Analyze and develop computer programs using modern programming languages.
+              Develop computer-based systems of varying complexity using the latest technological advancements across interdisciplinary domains
             </li>
           </ul>
         </div>
@@ -126,7 +126,7 @@ export default function ComputerScienceDepartmentPEOSPSO() {
             </li>
             <li className="text-justify">
               <span className="font-semibold">PEO III: </span>
-              Have balanced insight into various advanced technologies in the field of Computer Science and Engineering through lifelong learning.
+                Be adaptable to rapidly changing technological advancements through lifelong learning
             </li>
           </ul>
         </div>

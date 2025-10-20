@@ -130,7 +130,7 @@ export default function ComputerScienceDepartmentHOD() {
     title: 'HOD - CSE Department',
     imagePath: '/assets/images/departments/hod.jpg',
     email: 'hod.cse@sbce.ac.in',
-    phone: '+91 85903 32548',
+    phone: '+91 94872 74466',
     linkedinProfile: 'Dr. S.V. Annlin Jeba',
     linkedinUrl: 'https://www.linkedin.com/in/dr-sv-annlin-jeba'
   };
