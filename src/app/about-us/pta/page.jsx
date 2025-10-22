@@ -29,8 +29,8 @@ export default function Page() {
                     </tr>
                     <tr className='table-row'>
                         <td className='table-data'>PTA Vice President</td>
-                        <td className='table-data'>Mr. Jayakumar R (Parent of Sreeparvathy, S5 ECE)</td>
-                        <td className='table-data'>9495478005</td>
+                        <td className='table-data'>Dr. Madhu A K (Parent of Giridhar Madhu, S3 CIVIL)</td>
+                        <td className='table-data'>-</td>
                     </tr>
                     <tr className='table-row'>
                         <td className='table-data'>PTA Secretary</td>
@@ -39,7 +39,7 @@ export default function Page() {
                     </tr>
                     <tr className='table-row'>
                         <td className='table-data'>PTA Joint Secretary</td>
-                        <td className='table-data'>Mrs. Sheeja E Yohannan (Parent of Neha Siju, S5 CSE)</td>
+                        <td className='table-data'>Mrs. Saritha Anil (Parent of Akhila Anil, S1 BT)</td>
                         <td className='table-data'>9495726027</td>
                     </tr>
                     <tr className='table-row'>
@@ -68,11 +68,12 @@ export default function Page() {
                     <tr className='table-row'><td className='table-data'>BT&BCE</td><td className='table-data'>Prof. Meera Bai S</td><td className='table-data'>9446589673</td></tr>
                     <tr className='table-row'><td className='table-data'>ME</td><td className='table-data'>Prof. Anil Kumar A V</td><td className='table-data'>9947758310</td></tr>
                     <tr className='table-row'><td className='table-data'>CE</td><td className='table-data'>Dr. Gouri Antherjanam</td><td className='table-data'>9446112617</td></tr>
-                    <tr className='table-row'><td className='table-data'>CS</td><td className='table-data'>Dr. S V Annlin Jeba</td><td className='table-data'>9487274466</td></tr>
-                    <tr className='table-row'><td className='table-data'>AI</td><td className='table-data'>Dr. Anil A R</td><td className='table-data'>9447477577</td></tr>
+                    <tr className='table-row'><td className='table-data'>CS/AI</td><td className='table-data'>Dr. S V Annlin Jeba</td><td className='table-data'>9487274466</td></tr>
+                    {/* <tr className='table-row'><td className='table-data'>AI</td><td className='table-data'>Dr. Anil A R</td><td className='table-data'>9447477577</td></tr> */}
                     <tr className='table-row'><td className='table-data'>EEE</td><td className='table-data'>Dr. Vinod V P</td><td className='table-data'>9048260779</td></tr>
                     <tr className='table-row'><td className='table-data'>ECE</td><td className='table-data'>Prof. Pavitha P P</td><td className='table-data'>8075376012</td></tr>
                     <tr className='table-row'><td className='table-data'>HRD</td><td className='table-data'>Prof. Pradeep Kumar R</td><td className='table-data'>9446472562</td></tr>
+                    <tr className='table-row'><td className='table-data'>FT</td><td className='table-data'>Dr. Malu Ravi </td><td className='table-data'>9446462869</td></tr>
                 </tbody>
             </table>
 
@@ -90,9 +91,10 @@ export default function Page() {
                     <tr className='table-row'><td className='table-data'>ME</td><td className='table-data'>Mr. Prashanth V</td><td className='table-data'>9496877660</td></tr>
                     <tr className='table-row'><td className='table-data'>CE</td><td className='table-data'>Mr. Ashok Mathew</td><td className='table-data'>9645287537</td></tr>
                     <tr className='table-row'><td className='table-data'>CS</td><td className='table-data'>Ms. Dhanya S</td><td className='table-data'>9656800583</td></tr>
-                    <tr className='table-row'><td className='table-data'>EEE</td><td className='table-data'>Ms. Sindhuja</td><td className='table-data'>9544112161</td></tr>
+                    <tr className='table-row'><td className='table-data'>EEE</td><td className='table-data'>Ms. Sindhu V</td><td className='table-data'>9544412161</td></tr>
                     <tr className='table-row'><td className='table-data'>ECE</td><td className='table-data'>Ms. Pooja S Mohan</td><td className='table-data'>9446394252</td></tr>
                     <tr className='table-row'><td className='table-data'>BS</td><td className='table-data'>Ms. Prabhiya P S</td><td className='table-data'>9400154655</td></tr>
+                    <tr className='table-row'><td className='table-data'>FT</td><td className='table-data'>Ms. Rincy Susan Raju</td><td className='table-data'>8289900291</td></tr>
                 </tbody>
             </table>
 
@@ -108,16 +110,84 @@ export default function Page() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className='table-row'><td className='table-data'>III</td><td className='table-data'>CSE/AI</td><td className='table-data'>Mrs. Sheeja E Yohannan</td><td className='table-data'>Neha Siju</td><td className='table-data'>9495726027</td></tr>
-                    <tr className='table-row'><td className='table-data'>III</td><td className='table-data'>ME</td><td className='table-data'>Mr. Lanil Kumar</td><td className='table-data'>Nanda Kishor A</td><td className='table-data'>9495118331</td></tr>
-                    <tr className='table-row'><td className='table-data'>III</td><td className='table-data'>ECE</td><td className='table-data'>Mr. Jayakumar R</td><td className='table-data'>Sreeparvathy</td><td className='table-data'>9495478005</td></tr>
-                    <tr className='table-row'><td className='table-data'>III</td><td className='table-data'>EEE</td><td className='table-data'>Mr. Anoop P K</td><td className='table-data'>Sandra Anoop</td><td className='table-data'>9446547271</td></tr>
-                    <tr className='table-row'><td className='table-data'>II</td><td className='table-data'>BT/FT</td><td className='table-data'>Mrs. Sreelekha / Mr. Madhu S</td><td className='table-data'>Avani / Manasi</td><td className='table-data'>9539744827 / 9847493229</td></tr>
-                    <tr className='table-row'><td className='table-data'>IV</td><td className='table-data'>CE</td><td className='table-data'>Mr. Pradeep C</td><td className='table-data'>Prince P</td><td className='table-data'>9349472018</td></tr>
-                    <tr className='table-row'><td className='table-data'>I</td><td className='table-data'>ECE/ES</td><td className='table-data'>Mrs. Ambily R</td><td className='table-data'>Amitha/Amrutha</td><td className='table-data'>9847103375</td></tr>
-                    <tr className='table-row'><td className='table-data'>I</td><td className='table-data'>EEE</td><td className='table-data'>Mrs. Bindhu R</td><td className='table-data'>Abhirami B</td><td className='table-data'>7012620587</td></tr>
-                    <tr className='table-row'><td className='table-data'>I</td><td className='table-data'>BT</td><td className='table-data'>Mr. Harikrishnan Nair</td><td className='table-data'>Geethika Harikrishnan</td><td className='table-data'>9745268161</td></tr>
-                    <tr className='table-row'><td className='table-data'>I</td><td className='table-data'>CE</td><td className='table-data'>Dr. Madhu A K</td><td className='table-data'>Giridhar Madhu</td><td className='table-data'>9447484345</td></tr>
+                <tr className='table-row'><td className='table-data'>IV</td><td className='table-data'>CSE/AI</td><td className='table-data'>Mrs. Sheeja E Yohannan</td><td className='table-data'>Neha Siju</td><td className='table-data'>9495726027</td></tr>
+                <tr className='table-row'><td className='table-data'>IV</td><td className='table-data'>ME</td><td className='table-data'>Mr. J ANILKUMAR</td><td className='table-data'>Nanda Kishor A</td><td className='table-data'>9495118331</td></tr>
+                <tr className='table-row'><td className='table-data'>IV</td><td className='table-data'>EEE</td><td className='table-data'>Mr.ANOOP P K </td><td className='table-data'>Sandra Anoop</td><td className='table-data'>9446547271</td></tr>
+                <tr className='table-row'><td className='table-data'>IV</td><td className='table-data'>BT</td><td className='table-data'>SRELEKHA</td><td className='table-data'>Avani</td><td className='table-data'>9539744827</td></tr>
+                <tr className='table-row'><td className='table-data'>IV</td><td className='table-data'>FT</td><td className='table-data'>Mr.MADHU S</td><td className='table-data'>Manasi</td><td className='table-data'>9847493229</td></tr>
+
+                <tr className='table-row'><td className='table-data'>III</td><td className='table-data'>ECE</td><td className='table-data'>Mr.VINOD D</td><td className='table-data'>Adithya S</td><td className='table-data'>9961269071</td></tr>
+
+                    <tr className='table-row'><td className='table-data'>II</td><td className='table-data'>ECE/ES</td><td className='table-data'>Mrs. AMBILY R</td><td className='table-data'>Amitha/Amrutha</td><td className='table-data'>9847103375</td></tr>
+                    <tr className='table-row'><td className='table-data'>II</td><td className='table-data'>EEE</td><td className='table-data'>Mrs. BINDHU R</td><td className='table-data'>Abhirami B</td><td className='table-data'>7012629587</td></tr>
+                    <tr className='table-row'><td className='table-data'>II</td><td className='table-data'>BT</td><td className='table-data'>Mr. HARIKRISHNAN NAIR</td><td className='table-data'>Geethika Harikrishnan</td><td className='table-data'>9745268161</td></tr>
+                    <tr className='table-row'><td className='table-data'>II</td><td className='table-data'>CE</td><td className='table-data'>Dr.MADHU A K </td><td className='table-data'>Giridhar Madhu</td><td className='table-data'>9447484345</td></tr>
+{/* ------------------------------------------------------------------------------------------------------------------------------------ */}
+                    
+<tr className='table-row'>
+  <td className='table-data'>I</td>
+  <td className='table-data'>BT</td>
+  <td className='table-data'>Mrs. Bindu Shibu / Ms. Saritha Anil</td>
+  <td className='table-data'>Akshida Shibu / Akhila Anil</td>
+  <td className='table-data'>9995455770 / 9061727354</td>
+</tr>
+
+<tr className='table-row'>
+  <td className='table-data'>I</td>
+  <td className='table-data'>FT</td>
+  <td className='table-data'>Mrs. Sheeja Manoj</td>
+  <td className='table-data'>Aditya Manoj</td>
+  <td className='table-data'>7356667084</td>
+</tr>
+
+<tr className='table-row'>
+  <td className='table-data'>I</td>
+  <td className='table-data'>EEE</td>
+  <td className='table-data'>Mrs. Raji B</td>
+  <td className='table-data'>Ashiqu Jiji</td>
+  <td className='table-data'>9048549463</td>
+</tr>
+
+<tr className='table-row'>
+  <td className='table-data'>I</td>
+  <td className='table-data'>CE</td>
+  <td className='table-data'>Mr. Suresh Kumar K</td>
+  <td className='table-data'>Nanditha S Nair</td>
+  <td className='table-data'>9544509733</td>
+</tr>
+
+<tr className='table-row'>
+  <td className='table-data'>I</td>
+  <td className='table-data'>CSE</td>
+  <td className='table-data'>Mr. Unnikrishnan S</td>
+  <td className='table-data'>Lekshmi Krishna P</td>
+  <td className='table-data'>9447710598</td>
+</tr>
+
+<tr className='table-row'>
+  <td className='table-data'>I</td>
+  <td className='table-data'>CSE</td>
+  <td className='table-data'>Mr. Manesh Mohan</td>
+  <td className='table-data'>Vishnu Manesh</td>
+  <td className='table-data'>8848370484</td>
+</tr>
+
+<tr className='table-row'>
+  <td className='table-data'>I</td>
+  <td className='table-data'>CSE</td>
+  <td className='table-data'>Mr. Gopikrishnan C</td>
+  <td className='table-data'>Ananthapadmanabhan</td>
+  <td className='table-data'>9747432855</td>
+</tr>
+
+<tr className='table-row'>
+  <td className='table-data'>I</td>
+  <td className='table-data'>CSE</td>
+  <td className='table-data'>Mr. G Rajan Pillai</td>
+  <td className='table-data'>Neeraj R</td>
+  <td className='table-data'>9495269686</td>
+</tr>
+
                 </tbody>
             </table>
 
