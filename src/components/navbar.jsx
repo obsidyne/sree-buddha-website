@@ -29,7 +29,7 @@ export default function Navbar() {
           link: "/about-us/service_mansuals_and_employment_policies",
         },
         {
-          name: "Administrative and Finance",
+          name: "Academic and Administrative Bodies",
           link: "/about-us/academic_and_administrative_bodies",
         },
         {
@@ -44,7 +44,7 @@ export default function Navbar() {
         { name: "Internal Quality Assurance Cell", link: "/about-us/iqac" },
         { name: "Gallery", link: "/about-us/gallery" },
         {
-          name: "Admission and Accounts",
+          name: "Administration and Finance",
           link: "/about-us/admission_and_accounts",
         },
         { name: "PTA", link: "/about-us/pta" },
