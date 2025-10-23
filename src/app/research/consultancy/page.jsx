@@ -127,13 +127,25 @@ export default function Consultancy() {
                     Work Order Form
                   </button>
                 </Link>
-                <Link href="/assets/documents/research/instructions.pdf" target="_blank">
+                <Link href="/assets/documents/research/Instructions.pdf" target="_blank">
                   <button className="px-4 py-2 bg-yellow-900 text-white rounded-md hover:bg-yellow-800 transition-colors text-sm sm:text-base">
                     Instructions
                   </button>
                 </Link>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Computer Science and Engineering Section */}
+        <section className="mb-8 sm:mb-12">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 border-l-4 border-yellow-900 pl-3">
+            DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING
+          </h2>
+          <div className="bg-yellow-50 rounded-lg p-4 sm:p-6 shadow-sm">
+            <p className="text-sm sm:text-base text-gray-700">
+              Consultancy Project with Sree Narayana Ayurvedic Medical College and Research Center in &quot;Application of Artificial Intelligence in Ayurvedic Health Care&quot;
+            </p>
           </div>
         </section>
       </main>

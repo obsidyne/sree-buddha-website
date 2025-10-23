@@ -21,7 +21,7 @@ export default function ComputerScienceDepartmentPEOSPSO() {
           <ul className="list-disc pl-6 space-y-2">
             <li className="text-justify">Be able to analyse problems in Computer Science and Engineering and related areas.</li>
             <li className="text-justify">Imbibe professional attitude, team spirit to contribute ethically to the needs of the society.</li>
-            <li className="text-justify">Be adaptable to rapidly changing technological advancements through continued learning and research.</li>
+            <li className="text-justify">Be adaptable to rapidly changing technological advancements through lifelong learning.</li>
           </ul>
         </div>
         
