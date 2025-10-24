@@ -19,10 +19,10 @@ export default function page({children}) {
     <div className='page' >
         <h1 className="page_heading">Internal Quality Assurance Cell</h1>
         <div className="line"></div>
-        <div className="iqac">
+        <div className="iqac flex flex-col --bg-red-200">
        
         <DepartmentNavbar links = {links}  />
-
+         <div className='mb-[20px]'></div>
 
         {children}
         </div>
