@@ -1,206 +1,179 @@
-
 "use client";
-import React, { useState } from 'react';
-import "./page.css";
 
-const Page = () => {
+import { useState } from "react";
+
+const STRAPI = process.env.NEXT_PUBLIC_STRAPI;
+
+export default function AlumniRegistrationPage() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const [formData, setFormData] = useState({
-    name: '',
-    department: '',
-    gender: '',
-    graduationYear: '',
-    email: '',
-    contactNumber: '',
-    additional_qualification: '',
-    current_working_organization: '',
-    current_designation: '',
-    file: null, // Added for file upload
-    comments: '',
+    name: "",
+    department: "",
+    gender: "",
+    graduationYear: "",
+    email: "",
+    contactNumber: "",
+    address: "",
+    additional_qualification: "",
+    current_working_organization: "",
+    current_designation: "",
+    comments: "",
+    resume: null,
   });
 
-  const handleChange = (event) => {
-    const { name, value, type, files } = event.target;
-    if (type === 'file') {
-      const file = files[0];
-      // Check file type and size
-      if (file) {
-        const isValidFileType = /\.(doc|docx|pdf)$/i.test(file.name);
-        const isValidFileSize = file.size <= 2 * 1024 * 1024; // 2MB in bytes
+  /* ---------------- INPUT HANDLER ---------------- */
+  const handleChange = (e) => {
+    const { name, value, files, type } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "file" ? files[0] : value,
+    }));
+  };
 
-        if (isValidFileType && isValidFileSize) {
-          setFormData({
-            ...formData,
-            [name]: file,
-          });
-        } else {
-          alert("Please upload a valid file (.doc, .docx, .pdf) under 2MB.");
-        }
+  /* ---------------- UPLOAD RESUME ---------------- */
+  const uploadResume = async (file) => {
+    const fd = new FormData();
+    fd.append("files", file);
+
+    const res = await fetch(`${STRAPI}/api/upload`, {
+      method: "POST",
+      body: fd,
+    });
+
+    if (!res.ok) {
+      throw new Error("Resume upload failed");
+    }
+
+    const uploaded = await res.json();
+    return uploaded[0].id;
+  };
+
+  /* ---------------- SUBMIT FORM ---------------- */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    try {
+      let resumeId = null;
+
+      if (formData.resume) {
+        resumeId = await uploadResume(formData.resume);
       }
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
+
+      const payload = {
+        data: {
+          registration: [
+            {
+              data: JSON.stringify({
+                name: formData.name,
+                department: formData.department,
+                gender: formData.gender,
+                graduationYear: formData.graduationYear,
+                email: formData.email,
+                contactNumber: formData.contactNumber,
+                address: formData.address,
+                additional_qualification:
+                  formData.additional_qualification,
+                current_working_organization:
+                  formData.current_working_organization,
+                current_designation:
+                  formData.current_designation,
+                comments: formData.comments,
+              }),
+              ...(resumeId && { resume: resumeId }),
+            },
+          ],
+        },
+      };
+
+      const res = await fetch(`${STRAPI}/api/alumnis`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
       });
+
+      if (!res.ok) {
+        throw new Error("Failed to submit alumni registration");
+      }
+
+      alert("Alumni registration submitted successfully!");
+
+      setFormData({
+        name: "",
+        department: "",
+        gender: "",
+        graduationYear: "",
+        email: "",
+        contactNumber: "",
+        address: "",
+        additional_qualification: "",
+        current_working_organization: "",
+        current_designation: "",
+        comments: "",
+        resume: null,
+      });
+    } catch (err) {
+      console.error(err);
+      setError("Submission failed. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('Form Submitted:', formData);
-  };
-
+  /* ---------------- UI ---------------- */
   return (
-    <div className="container">
-    <form onSubmit={handleSubmit} className="form-container">
-      <h1 className="form-title">Alumni Registration</h1>
+    <div className="max-w-2xl mx-auto p-6">
+      <h1 className="text-2xl font-bold mb-6">
+        Alumni Registration
+      </h1>
 
-      <div className="form-group">
-        <label className="form-label">Name of the Applicant</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          className="form-input"
-          required
-        />
-      </div>
+      {error && (
+        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
+          {error}
+        </div>
+      )}
 
-      <div className="form-group">
-        <label className="form-label">Department</label>
-        <select
-          name="department"
-          value={formData.department}
-          onChange={handleChange}
-          className="form-input"
-          required
-        >
-          <option value="">---</option>
-          <option value="Human Resource Development">Human Resource Development</option>
-          <option value="Biotechnology and Biochemical Engineering">Biotechnology and Biochemical Engineering</option>
-          <option value="Civil Engineering">Civil Engineering</option>
-          <option value="Computer Science">Computer Science</option>
-          <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
-          <option value="Electronics and Communication Engineering">Electronics and Communication Engineering</option>
-          <option value="Human Resource Management">Human Resource Management</option>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input className="w-full border px-3 py-2 rounded" name="name" placeholder="Name" required onChange={handleChange} />
+        <input className="w-full border px-3 py-2 rounded" name="department" placeholder="Department" required onChange={handleChange} />
+
+        <select className="w-full border px-3 py-2 rounded" name="gender" onChange={handleChange}>
+          <option value="">Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
         </select>
-      </div>
 
-      <div className="form-group">
-        <label className="form-label">Gender</label>
-        <input type="radio" name="gender" value="Male" onChange={handleChange} className="form-radio" /> Male
-        <input type="radio" name="gender" value="Female" onChange={handleChange} className="form-radio" /> Female
-      </div>
+        <input className="w-full border px-3 py-2 rounded" name="graduationYear" placeholder="Graduation Year" onChange={handleChange} />
+        <input className="w-full border px-3 py-2 rounded" type="email" name="email" placeholder="Email" required onChange={handleChange} />
+        <input className="w-full border px-3 py-2 rounded" name="contactNumber" placeholder="Contact Number" required onChange={handleChange} />
 
-      <div className="form-group">
-        <label className="form-label">Year of Graduation</label>
-        <input
-          type="number"
-          name="graduationYear"
-          min="2005"
-          max="2016"
-          value={formData.graduationYear}
-          onChange={handleChange}
-          className="form-input"
-          required
-        />
-        <p className="error-message">Must be between 2005 - 2016</p>
-      </div>
+        <textarea className="w-full border px-3 py-2 rounded" name="address" placeholder="Address" rows={3} onChange={handleChange} />
+        <input className="w-full border px-3 py-2 rounded" name="additional_qualification" placeholder="Additional Qualification" onChange={handleChange} />
+        <input className="w-full border px-3 py-2 rounded" name="current_working_organization" placeholder="Current Organization" onChange={handleChange} />
+        <input className="w-full border px-3 py-2 rounded" name="current_designation" placeholder="Designation" onChange={handleChange} />
+        <textarea className="w-full border px-3 py-2 rounded" name="comments" placeholder="Comments" rows={3} onChange={handleChange} />
 
-      <div className="form-group">
-        <label className="form-label">Present Address *</label>
-        <textarea
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          className="form-input"
-          required
-        />
-      </div>
-
-      <div className="form-group">
-        <label className="form-label">Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          className="form-input"
-          required
-        />
-      </div>
-
-      <div className="form-group">
-        <label className="form-label">Contact Number</label>
-        <input
-          type="number"
-          name="contactNumber"
-          value={formData.contactNumber}
-          onChange={handleChange}
-          className="form-input"
-          required
-        />
-      </div>
-
-      <div className="form-group">
-        <label className="form-label">Additional Qualification (if any)</label>
-        <input
-          type="text"
-          name="additional_qualification"
-          value={formData.additional_qualification}
-          onChange={handleChange}
-          className="form-input"
-        />
-      </div>
-
-      <div className="form-group">
-        <label className="form-label">Currently Working Organization</label>
-        <input
-          type="text"
-          name="current_working_organization"
-          value={formData.current_working_organization}
-          onChange={handleChange}
-          className="form-input"
-        />
-      </div>
-
-      <div className="form-group">
-        <label className="form-label">Current Designation</label>
-        <input
-          type="text"
-          name="current_designation"
-          value={formData.current_designation}
-          onChange={handleChange}
-          className="form-input"
-        />
-      </div>
-
-      <div className="form-group">
-        <label className="form-label">Upload Resume (DOC, DOCX, PDF - Max 2MB)</label>
         <input
           type="file"
-          name="file"
-          accept=".doc,.docx,.pdf"
+          name="resume"
+          accept=".pdf,.doc,.docx"
           onChange={handleChange}
-          className="form-input"
         />
-      </div>
 
-      <div className="form-group">
-        <label className="form-label">Comments</label>
-        <input
-          type="text"
-          name="comments"
-          value={formData.comments}
-          onChange={handleChange}
-          className="form-input"
-        />
-      </div>
-
-      <button type="submit" className="form-button">Submit</button>
-    </form>
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full bg-black text-white py-2 rounded hover:bg-gray-800"
+        >
+          {loading ? "Submitting..." : "Submit"}
+        </button>
+      </form>
     </div>
   );
-};
-
-export default Page;
+}
