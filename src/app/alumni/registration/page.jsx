@@ -159,12 +159,30 @@ export default function AlumniRegistrationPage() {
         <input className="w-full border px-3 py-2 rounded" name="current_designation" placeholder="Designation" onChange={handleChange} />
         <textarea className="w-full border px-3 py-2 rounded" name="comments" placeholder="Comments" rows={3} onChange={handleChange} />
 
-        <input
-          type="file"
-          name="resume"
-          accept=".pdf,.doc,.docx"
-          onChange={handleChange}
-        />
+        <div className="flex flex-col gap-2">
+  <label
+    htmlFor="resume"
+    className="cursor-pointer inline-block text-center bg-gray-900 text-white px-4 py-2 rounded hover:bg-gray-800"
+  >
+    Upload CV
+  </label>
+
+  <input
+    id="resume"
+    type="file"
+    name="resume"
+    accept=".pdf,.doc,.docx"
+    onChange={handleChange}
+    className="hidden"
+  />
+
+  {formData.resume && (
+    <p className="text-sm text-gray-600">
+      Selected file: <span className="font-medium">{formData.resume.name}</span>
+    </p>
+  )}
+</div>
+
 
         <button
           type="submit"
