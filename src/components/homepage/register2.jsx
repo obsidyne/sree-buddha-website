@@ -19,7 +19,7 @@ export default function Register2() {
     return (
         <div className="register2_container">
             <div className='register2'>
-                <h3 data-aos="fade-up">REGISTER NOW  FOR 2025-2026</h3>
+                <h3 data-aos="fade-up">REGISTER NOW  FOR 2026-2027</h3>
                 <a data-aos="fade-up" href="/academics/courses" className="register_now">Register</a>
             </div>
         </div>
