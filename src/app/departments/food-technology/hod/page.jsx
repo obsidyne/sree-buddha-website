@@ -73,9 +73,9 @@ export default function FoodTechnologyDepartmentHOD() {
   const [activeTab, setActiveTab] = useState('message');
 
   const profileData = {
-    name: 'Dr.Bindhya K.P.',
+    name: 'Dr.Malu Ravi',
     title: 'HOD - Food Technology Department',
-    imagePath: '/assets/images/departments/hod_food_technology_temp.jpg',
+    imagePath: '/assets/images/departments/hod_food_technology.jpeg',
     email: 'hod.food@sbce.ac.in',
     phone: '+91 9446462869'
   };
