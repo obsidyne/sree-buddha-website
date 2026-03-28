@@ -17,6 +17,21 @@ import Footer from "@/components/footer";
 import News2 from "@/components/homepage/News2";
 import Contact from "@/components/homepage/Contact";
 
+export const metadata = {
+  title: "Sree Buddha College of Engineering | SBCE – Pattoor, Kerala",
+  description:
+    "Welcome to Sree Buddha College of Engineering (SBCE), Pattoor – an Autonomous institution in Kerala offering B.Tech, M.Tech & PhD programmes. NAAC Accredited, affiliated to APJ Abdul Kalam Technological University (KTU).",
+  alternates: {
+    canonical: "https://www.sbce.ac.in",
+  },
+  openGraph: {
+    url: "https://www.sbce.ac.in",
+    title: "Sree Buddha College of Engineering | SBCE – Pattoor, Kerala",
+    description:
+      "Autonomous Engineering College in Kerala – B.Tech, M.Tech & PhD. NAAC Accredited. KTU affiliated. Pattoor, Alappuzha.",
+  },
+};
+
 const announcements = [
   '2025 ADMISSION STARTED',
   '2025 ADMISSION STARTED',
