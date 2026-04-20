@@ -25,7 +25,7 @@ export default function NewsDetailPage() {
             
             // Short delay to allow component to render first
             setTimeout(() => {
-                window.location.href = reloadUrl;
+                window.location.replace(reloadUrl);
             }, 100);
         }
     }, []);
