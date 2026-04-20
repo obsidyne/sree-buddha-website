@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import "@/styles/homepage/counts.css";
 
 export default function Counts() {
@@ -62,7 +63,7 @@ export default function Counts() {
             data-count="5144"
             ref={(el) => countsRef.current[1] = el}
           >
-             <img src="/assets/images/home/counts_admissions.png" alt="" />
+             <Image src="/assets/images/home/counts_admissions.png" alt="" width={60} height={60} />
             <div className="count_data">
               <h3>UNDERGRADUATE</h3>
               <span className="count-number">0</span>
@@ -76,7 +77,7 @@ export default function Counts() {
             data-count="572"
             ref={(el) => countsRef.current[2] = el}
           >
-             <img src="/assets/images/home/counts_admissions.png" alt="" />
+             <Image src="/assets/images/home/counts_admissions.png" alt="" width={60} height={60} />
             <div className="count_data">
               <h3>POSTGRADUATE</h3>
               <span className="count-number">0</span>
@@ -90,7 +91,7 @@ export default function Counts() {
             data-count="2004"
             ref={(el) => countsRef.current[3] = el}
           >
-             <img src="/assets/images/home/counts_admissions.png" alt="" />
+             <Image src="/assets/images/home/counts_admissions.png" alt="" width={60} height={60} />
             <div className="count_data">
               <h3>RESEARCH</h3>
               <span className="count-number">0</span>

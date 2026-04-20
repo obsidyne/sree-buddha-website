@@ -1,17 +1,20 @@
 "use client";
 
 import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { useRouter } from 'next/navigation';
 
 export default function VisionMission() {
   useEffect(() => {
-    AOS.init({
-      duration: 600,
-      easing: "ease-out-cubic",
-      once: true,
-    });
+    const initAOS = async () => {
+      const AOS = (await import('aos')).default;
+      await import('aos/dist/aos.css');
+      AOS.init({
+        duration: 600,
+        easing: "ease-out-cubic",
+        once: true,
+      });
+    };
+    initAOS();
   }, []);
   
 const router = useRouter();
