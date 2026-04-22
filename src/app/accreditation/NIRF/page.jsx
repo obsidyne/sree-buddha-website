@@ -73,6 +73,10 @@ const page = () => {
       name: "NIRF 2026",
       link: "/assets/documents/accreditation/NIRF/nirf26.pdf",
     },
+    {
+      name: "NIRF DCS Report - SBCE",
+      link: "/assets/documents/accreditation/NIRF/NIRF-DCS-REPORT-SBCE.pdf",
+    },
   ];
 
 
