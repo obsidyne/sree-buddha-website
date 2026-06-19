@@ -15,7 +15,7 @@ export default function page() {
       /> */}
          <NAAC
         name="mandatory disclosure 2025-2026"
-        link="/assets/documents/mandatory_disclosure/mandatory_disclosure_2025-26.pdf"
+        link="/assets/documents/mandatory_disclosure/mandatory_disclosure_2026-27.pdf"
       />
     </div>
   );

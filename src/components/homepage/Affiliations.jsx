@@ -1,13 +1,8 @@
 "use client"
 
 import React from "react";
+import Image from "next/image";
 import "@/styles/homepage/affiliations.css";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
-
-import { useEffect } from "react";
-
 
 export default function Affiliations() {
   return (
@@ -16,24 +11,19 @@ export default function Affiliations() {
         <h3>Our Affiliations</h3>
         <ul >
           <div className="affiliation-item" data-aos="fade-up">
-            <li><img src={"/assets/images/home images/aicte logo.png"} alt="AICTE Logo" /></li>
+            <li><Image src="/assets/images/home images/aicte logo.png" alt="AICTE Logo" width={100} height={80} style={{height: 'auto'}} /></li>
             <span>Approved by AICTE New Delhi</span>
           </div>
 
           <div className="affiliation-item" data-aos="fade-up">
-            <li><img src={"/assets/images/home images/ugc-logo.png"} alt="KU Logo" /></li>
+            <li><Image src="/assets/images/home images/ugc-logo.png" alt="UGC Logo" width={100} height={80} style={{height: 'auto'}} /></li>
             <span>University Grants Commision of India</span>
           </div>
 
           <div className="affiliation-item" data-aos="fade-up">
-            <li><img src={"/assets/images/home images/ktu logo.png"} alt="KTU Logo" /></li>
+            <li><Image src="/assets/images/home images/ktu logo.png" alt="KTU Logo" width={100} height={80} style={{height: 'auto'}} /></li>
             <span>Kerala Technological University</span>
           </div>
-
-          {/* <div className="affiliation-item" data-aos="fade-up">
-            <li><img src={"/assets/images/home images/iso logo.png"} alt="ISO Logo" /></li>
-            <span>ISO 9001-2008 Certified Institution</span>
-          </div> */}
         </ul>
       </div>
 
@@ -41,22 +31,22 @@ export default function Affiliations() {
         <h3>Cells & Chapters</h3>
         <ul >
           <div className="affiliation-item" data-aos="fade-up">
-            <li><img src={"/assets/images/home images/IEEE Blue variant.png"} alt="AICTE Logo" /></li>
+            <li><Image src="/assets/images/home images/IEEE Blue variant.png" alt="IEEE Logo" width={100} height={80} style={{height: 'auto'}} /></li>
             <span></span>
           </div>
 
           <div className="affiliation-item" data-aos="fade-up">
-            <li><img src={"/assets/images/home images/nptel logo.png"} alt="KU Logo" /></li>
+            <li><Image src="/assets/images/home images/nptel logo.png" alt="NPTEL Logo" width={100} height={80} style={{height: 'auto'}} /></li>
             <span></span>
           </div>
 
           <div className="affiliation-item" data-aos="fade-up">
-            <li><img src={"/assets/images/home images/cs logo.png"} alt="KTU Logo" /></li>
+            <li><Image src="/assets/images/home images/cs logo.png" alt="CS Logo" width={100} height={80} style={{height: 'auto'}} /></li>
             <span></span>
           </div>
 
           <div className="affiliation-item" data-aos="fade-up">
-            <li><img src={"/assets/images/home images/sae logo.png"} alt="ISO Logo" /></li>
+            <li><Image src="/assets/images/home images/sae logo.png" alt="SAE Logo" width={100} height={80} style={{height: 'auto'}} /></li>
             <span></span>
           </div>
         </ul>

@@ -73,9 +73,9 @@ export default function FoodTechnologyDepartmentHOD() {
   const [activeTab, setActiveTab] = useState('message');
 
   const profileData = {
-    name: 'Dr.Bindhya K.P.',
+    name: 'Dr.Malu Ravi',
     title: 'HOD - Food Technology Department',
-    imagePath: '/assets/images/departments/hod_food_technology_temp.jpg',
+    imagePath: '/assets/images/departments/hod_food_technology.jpeg',
     email: 'hod.food@sbce.ac.in',
     phone: '+91 9446462869'
   };
@@ -232,7 +232,7 @@ export default function FoodTechnologyDepartmentHOD() {
                       </p>
                       <div className="mt-6 space-y-1">
                         <p className="font-medium">With regards,</p>
-                        <p className="font-medium">Dr Bindhya K.P.</p>
+                        <p className="font-medium">Dr. Malu Ravi</p>
                         <p className="font-medium">HOD, Department of Food Technology</p>
                       </div>
                     </div>

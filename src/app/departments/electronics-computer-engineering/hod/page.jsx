@@ -4,6 +4,7 @@ import React, { memo, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
+
 // Animated Section Component
 const AnimatedSection = memo(({ children, delay = 0 }) => (
   <motion.div
