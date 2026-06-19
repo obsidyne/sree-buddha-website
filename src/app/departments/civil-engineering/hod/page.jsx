@@ -75,7 +75,7 @@ export default function CivilEngineeringDepartmentHOD() {
   const [activeTab, setActiveTab] = useState('education');
 
   const profileData = {
-    name: 'Dr. Gouri Antherjanam',
+    name: 'Dr. Unnikrishnan S',
     title: 'HOD - Civil Engineering Department',
     imagePath: '/assets/images/departments/hod_civil.jpg',
     email: 'hod.civil@sbce.ac.in',
@@ -86,26 +86,27 @@ export default function CivilEngineeringDepartmentHOD() {
     education: {
       icon: <svg className="w-6 h-6 text-yellow-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>,
       content: [
-        'B.Tech in Civil Engineering - University of Kerala (1982)',
-        'M.Tech in Geotechnical Engineering - IIT Madras (1989)',
-        'Ph.D - University of Kerala (2016)'
+        'B.Tech in Civil Engineering – TKM College of Engineering, University of Kerala (2010)',
+        'M.Tech in Construction Engineering and Management – SRM University, Chennai (2013)',
+        'Ph.D. in Civil Engineering – National Institute of Technology Calicut (2025)'
       ]
     },
     experience: {
       icon: <svg className="w-6 h-6 text-yellow-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>,
       timeline: [
-        { period: '2016 - Present', role: 'HOD, Department of Civil Engineering, Sree Buddha College of Engineering, Pattoor' },
-        { period: 'Previous', role: 'Professor and HOD, Civil Engineering, TKM College of Engineering' },
-        { period: '1989 - 2016', role: '35 years of teaching experience in Civil Engineering' }
+        { period: '2026 - Present', role: 'Associate Professor & HoD, Dept. of Civil Engineering, Sree Buddha College of Engineering' },
+        { period: '2013 - 2026', role: 'Assistant Professor, Dept. of Civil Engineering, Sree Buddha College of Engineering' }
       ]
     },
     research: {
       icon: <svg className="w-6 h-6 text-yellow-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>,
       achievements: [
-        'Member of Board of Studies, Kerala University for two terms',
-        'Coordinator for B.Tech syllabus revision committee (2008 and 2013 scheme)',
-        'Life member of ISTE and Institution of Engineers',
-        'Research focus: Landslides in Western Ghats region, soil structure interaction, and ground improvement techniques'
+        'Principal Investigator for projects funded by Kerala State Council for Science, Technology and Environment (KSCSTE)',
+        'Published research papers in reputed national and international journals; presented more than 15 papers at various national and international conferences',
+        'Reviewer for reputed peer-reviewed journals and question paper setter for various academic institutions',
+        'Recipient of Best Academic Performance Award in M.Tech from SRM Society of Civil Engineers (2012–2013)',
+        'Contributed to supervision of structural CADD drawings for projects under NHAI (August 2021)',
+        'Participated in the Mapathon Keralam Campaign (May 2022), contributing to institution and ward mapping in Pandalam Municipality under Kerala State IT Mission'
       ]
     }
   };
@@ -157,7 +158,7 @@ export default function CivilEngineeringDepartmentHOD() {
                     <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
-                    <span>Life Member: ISTE &amp; Institution of Engineers</span>
+                    <span>Life Member: ISTE &amp; Member: IAHS, IAEng</span>
                   </div>
                 </div>
               </motion.div>
@@ -213,7 +214,7 @@ export default function CivilEngineeringDepartmentHOD() {
                       ))}
                     </div>
                     <div className="mt-6 text-gray-700">
-                      <p>Dr. Gouri Antherjanam has an impressive teaching career spanning 35 years, including her role as Professor and HOD at TKM College of Engineering. She joined the Sree Buddha Group of Institutions in June 2016 and currently heads the Civil Engineering Department at Pattoor.</p>
+                      <p>Dr. Unnikrishnan S has 13 years of teaching, research, and academic experience in Civil Engineering. He has been with Sree Buddha College of Engineering since 2013, serving as Assistant Professor before being appointed Associate Professor & HoD in 2026. His areas of interest include Construction Engineering and Management, Lean Construction, Construction Productivity, Sustainable Construction Practices, and Project Management.</p>
                     </div>
                   </InfoCard>
                 )}
@@ -239,16 +240,18 @@ export default function CivilEngineeringDepartmentHOD() {
               >
                 <h3 className="text-xl font-semibold mb-4">Biography</h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Dr. Gouri Antherjanam graduated in Civil Engineering from University of Kerala in 1982, 
-                  pursued her Master&apos;s degree at IIT Madras in Geotechnical Engineering in 1989 and obtained 
-                  her PhD from the University of Kerala in 2016. She has served as the member of Board of Studies, 
-                  Kerala University for two terms and was a coordinator for B Tech syllabus revision committee 
-                  (2008 and 2013 scheme). She has a teaching experience of 35 years and served as Professor and 
-                  HoD, Civil Engineering in TKM college of Engineering. She joined the Sree Buddha Group of 
-                  Institutions in June 2016 and currently she is the Head of the Department of Civil Engineering, 
-                  Pattoor. She is a life member of ISTE and Institution of Engineers. She is currently active in 
-                  the area of landslides in Western Ghats region, soil structure interaction and ground improvement 
-                  techniques.
+                  Dr. Unnikrishnan S has 13 years of teaching, research, and academic experience in the field 
+                  of Civil Engineering. He graduated from TKM College of Engineering, University of Kerala, in 
+                  2010, and obtained his M.Tech. from SRM University, Chennai, in 2013. He was awarded his 
+                  Ph.D. in Civil Engineering from the National Institute of Technology, Calicut in 2025. His 
+                  areas of interest include Construction Engineering and Management, Lean Construction, 
+                  Construction Productivity, Sustainable Construction Practices, and Project Management. He is 
+                  a Life Member of the ISTE and a member of the International Association of Hydrological 
+                  Sciences and the International Association of Engineers. He has served as Principal Investigator 
+                  for projects funded by KSCSTE and has published several research papers in reputed national 
+                  and international journals, presenting more than 15 papers at various national and international 
+                  conferences. He also serves as a reviewer for reputed peer-reviewed journals and contributes 
+                  as a question paper setter for various institutions.With a strong commitment to teaching, research, and academic excellence, he continues to contribute significantly to the advancement of civil engineering education and research.
                 </p>
               </motion.div>
             </AnimatedSection>
