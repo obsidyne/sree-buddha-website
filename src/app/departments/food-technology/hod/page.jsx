@@ -238,6 +238,7 @@ export default function FoodTechnologyDepartmentHOD() {
                     </div>
                   </InfoCard>
                 )}
+                
 
                 {activeTab === 'department' && (
                   <InfoCard title={tabData.department.title} icon={tabData.department.icon}>
