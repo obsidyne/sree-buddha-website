@@ -84,6 +84,7 @@ export default function Navbar() {
         { name: "Handbook", link: "/academics/handbook" },
         { name: "Syllabus", link: "https://ktu.edu.in/" },
         { name: "Campus Newsletter", link: "/academics/newsletter" },
+        { name: "Scholarship", link: "/assets/documents/academics/AICTE_YASHASVI_SCHEME.docx", download: true },
       ],
     },
     {
@@ -301,7 +302,20 @@ export default function Navbar() {
                 >
                   <ul>
                     {menu.links.map((menul2, index2) => {
-                      if (menul2.link != undefined) {
+                      if (menul2.download) {
+                        return (
+                          <a
+                            className="submenu_link"
+                            href={menul2.link}
+                            key={index2}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            download
+                          >
+                            {menul2.name}
+                          </a>
+                        );
+                      } else if (menul2.link != undefined) {
                         return (
                           <Link
                             className="submenu_link"

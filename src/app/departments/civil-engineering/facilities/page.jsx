@@ -27,70 +27,63 @@ export default function CivilDepartmentFacilities() {
       {
         name: "Survey Laboratory",
         description: "Survey laboratory houses both conventional and modern equipment for practical surveying. The equipment available are LYNX Measuring Chain – 20m, LYNX Measuring Chain – 30m, LYNX Cross staff, LYNX Ranging rod, LYNX Offset rod, Measuring Tape – 30 m, Arrows, LYNX Prismatic Compass with aluminium stand, LYNX Plane Table with all accessories, LYNX Dumpy Level with aluminium tripod and all standard accessories, LYNX Auto Level with aluminium tripod and all standard accessories, LYNX Levelling Staff (4m), LYNX Standard Vernier Theodolite with aluminium tripod and all standard accessories, LYNX Planimeter with box, Total Station (Sokkia CX105), wooden mallet, wooden peg, distance meter and hand held G P S.",
-        image: "/assets/images/departments/facilities/civil/survey_lab.jpg",
+        image: "/assets/images/departments/facilities/civil/survey_lab.jpeg",
         inCharge: "Mr Pradeep P",
         staff: "Ms. Manjula Devi S"
       },
       {
         name: "Concrete Laboratory",
         description: "This lab provides facilities for various tests for cement and concrete which includes test for compressive strength, flexural strength, fineness, and mix design of concrete etc. The main equipment include AIMIL AIL-317E-AN-2 Compression Testing machine (2000 KN), Electrically operated single phase with three load guage of 500 KN, 1000KN, 2000KN, LYNX Sieve Shaker (Gyratory motorized), Test Sieves 20 cm Diameter- 90 microns, LYNX Vicat Needle Apparatus, Le-Chatlier's Mould with 2 glass plate & 1 Lead wt., Le-Chatlier's Flask, Longitudinal Compresometer with dial gauge.",
-        image: "/assets/images/departments/facilities/civil/concrete_lab.jpg",
+        image: "/assets/images/departments/facilities/civil/concrete_lab.jpeg",
         inCharge: "Mr Ashok Mathew",
         staff: "Mr Renjith C R"
       },
       {
         name: "Geo-Technical Engineering Laboratory",
         description: "The laboratory has facilities for conducting practical classes for undergraduate programmes. The undergraduate students are being encouraged to take up topics in the field of Geotechnical Engineering for their project work by making use of facilities available in the laboratory. Various equipment available in the lab are LYNX Direct Shear Apparatus (motorised), Dial Guage (0.01 X 25mm), Proving Ring (2 KN), Unconfined Compression Test Apparatus, Dial Guage 0.01 X 25mm, Extractor Frame for 38mm diameter sample with mould, Soil Permeability Apparatus.",
-        image: "/assets/images/departments/facilities/civil/geo_tech_lab.jpg",
+        image: "/assets/images/departments/facilities/civil/geo_tech_lab.jpeg",
         inCharge: "Ms Regi P Mohan",
-        staff: "Mr Syam Raj S"
-      },
-      {
-        name: "Strength of Materials Lab",
-        description: "The objective of the strength of materials lab is to demonstrate the basic principles in the area of strength and mechanics of materials and structural analysis to the undergraduate students through a series of experiments. In this lab, the experiments are performed to measure the properties of the materials such as impact strength, tensile strength, compressive strength, hardness, ductility etc.",
-        image: "/assets/images/departments/facilities/civil/strength_materials_lab.jpg",
-        inCharge: "Ms Indhu V S",
         staff: "Mr Syam Raj S"
       },
       {
         name: "Transportation Engineering Laboratory",
         description: "The Transportation Engineering Laboratory is equipped with facilities for testing of Aggregates, Bitumen and Soil. The laboratory is fully equipped for conduct of regular experiments at UG level and consultancy works. Various equipment available in the lab are Abrasion Testing Machine, Ring and Ball Apparatus (motorised), Standard Penetrometer, Ductility Testing Machine, Crushing Value Test Apparatus, Test Sieves 30cm Dia, Thickness Gauge, Length Gauge, Density Basket, CBR Test Apparatus, Impact Value With Counter and Compression Testing Machine.",
-        image: "/assets/images/departments/facilities/civil/transportation_lab.jpg",
+        image: "/assets/images/departments/facilities/civil/transportation_lab.jpeg",
         inCharge: "Ms. Aswathy Lal",
         staff: "Mr Syam Raj S"
       },
       {
         name: "Environmental Engineering Lab",
         description: "The environmental lab serves to acquaint students with the details of water and wastewater analysis for water and wastewater treatment. The lab is well equipped with Flame Photometer, UV- Visible Spectrophotometer (Double beam), BOD Incubator, Laminar Air flow cabinet (Vertical), Auto Clave (Vertical) and COD Digestion Apparatus.",
-        image: "/assets/images/departments/facilities/civil/environmental_lab.jpg",
+        image: "/assets/images/departments/facilities/civil/environmental_lab.jpeg",
         inCharge: "Ms Jency James",
         staff: "Ms Manjula Devi S"
       },
       {
         name: "Advanced Computational Lab",
         description: "This lab deals with the study of various distinctive features and tools used in AutoCAD in civil engineering drafting. Advanced Design and analysis softwares used are STAAD-PRO V8i, STAAD-PRO FOUNDATION, RESIST, AUTO CADD 2014, TOTAL STATION and MS PROJECT 2013.",
-        image: "/assets/images/departments/facilities/civil/computational_lab.jpg",
+        image: "/assets/images/departments/facilities/civil/computational_lab.jpeg",
         inCharge: "Ms Namitha Chandran",
         staff: "Ms Sindhu O"
       },
       {
         name: "Civil Engineering Workshop",
         description: "This lab is intended to conduct the practical sessions of the first year B-tech students. Training sessions like setting out of building, area and volume calculation of building and building components, making of brick bonds and basics surveying using levelling instruments are conducted by using this lab facility.",
-        image: "/assets/images/departments/facilities/civil/civil_workshop.jpg",
+        image: "/assets/images/departments/facilities/civil/civil_workshop.jpeg",
         inCharge: "Mr Unnikrishnan S",
         staff: "Ms Manjula Devi S"
       },
       {
         name: "Structural Dynamics Laboratory (PG)",
         description: "Structural dynamics lab has testing facility for vibration testing and data analysis. Various lab equipment include Horizontal Shake Table with Electronic Cam (Harmonic Base Motor), Vertical Shake Table, Experimental Models Shake Table Instrumentation (Accelero Meters, Data Acquistion System and Vibration Analyser Software).",
-        image: "/assets/images/departments/facilities/civil/structural_dynamics_lab.jpg",
+        image: "/assets/images/departments/facilities/civil/structural_dynamics_lab.jpeg",
         inCharge: "Ms Ritzy R",
         staff: "Mr Renjith C R"
       },
       {
         name: "Structural Engineering Laboratory (PG)",
         description: "The lab mainly facilitates the post graduate students and the research scholars to conduct the experiments related to structural engineering. Some of the facilities available in the lab are Loading Frame (100 T) 5m X 3.1m, Ultrasonic Pulse Velocitymeter, Data Acquisition System. DT-800, DATA TAKER, AIM 388 Concrete Test Hammer, Rebar Locator, Accelerated Curing Tank, Vicat Apparatus, AIM-400.",
-        image: "/assets/images/departments/facilities/civil/structural_engineering_lab.jpg",
+        image: "/assets/images/departments/facilities/civil/structural_engineering_lab.jpeg",
         inCharge: "Ms Indhu V S",
         staff: "Mr Syam Raj S"
       }
@@ -99,22 +92,25 @@ export default function CivilDepartmentFacilities() {
       {
         name: "Well equipped seminar Hall",
         description: "Modern seminar hall with audio-visual facilities for presentations and guest lectures.",
-        image: "/assets/images/departments/facilities/civil/seminar_hall.jpg"
+        image: "/assets/images/departments/facilities/civil/seminar_hall.jpeg"
       },
       {
         name: "Department Library",
         description: "Dedicated department library with specialized texts, reference books, and technical journals.",
-        image: "/assets/images/departments/facilities/civil/library.jpg"
+        image: "/assets/images/departments/facilities/civil/library.jpeg"
+      },
+      {
+        name: "Drawing Hall",
+        description: "Dedicated drawing hall equipped with drafting tables for engineering drawing and graphics classes.",
+        image: "/assets/images/departments/facilities/civil/drawing_hall.jpeg"
       },
       {
         name: "Research Facilities",
-        description: "Specialized equipment and software for research and development in civil engineering.",
-        image: "/assets/images/departments/facilities/civil/research.jpg"
+        description: "Specialized equipment and software for research and development in civil engineering."
       },
       {
         name: "Computer Lab",
-        description: "Modern computer lab with civil engineering software for design and analysis.",
-        image: "/assets/images/departments/facilities/civil/computer_lab.jpg"
+        description: "Modern computer lab with civil engineering software for design and analysis."
       }
     ]
   };
@@ -211,7 +207,7 @@ export default function CivilDepartmentFacilities() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
                     </svg>
                   </div>
-                  <div className="text-base sm:text-lg font-semibold text-gray-800">10 Labs</div>
+                  <div className="text-base sm:text-lg font-semibold text-gray-800">9 Labs</div>
                   <div className="text-xs sm:text-sm text-gray-600">Specialized Facilities</div>
                 </div>
                 <div className="bg-purple-50 p-3 sm:p-4 rounded-lg text-center sm:col-span-2 md:col-span-1">
@@ -236,19 +232,11 @@ export default function CivilDepartmentFacilities() {
                 {facilities.labs.map((lab, index) => (
                   <div key={`lab-${index}`} className="bg-white rounded-lg shadow-md overflow-hidden">
                     <div className="h-36 sm:h-48 w-full overflow-hidden bg-gray-100 flex items-center justify-center">
-                      {/* If you have actual images, uncomment this */}
-                      {/* <img 
-                        src={lab.image} 
-                        alt={lab.name} 
+                      <img
+                        src={lab.image}
+                        alt={lab.name}
                         className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                      /> */}
-                      
-                      {/* Placeholder if no images */}
-                      <div className="text-4xl sm:text-5xl text-gray-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-12 h-12 sm:w-16 sm:h-16">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
-                        </svg>
-                      </div>
+                      />
                     </div>
                     <div className="p-3 sm:p-4">
                       <h4 className="text-base sm:text-lg font-semibold text-gray-800 mb-1 sm:mb-2">{lab.name}</h4>
@@ -286,19 +274,19 @@ export default function CivilDepartmentFacilities() {
                   facility.name ? (
                     <div key={`other-${index}`} className="bg-white rounded-lg shadow-md overflow-hidden">
                       <div className="h-36 sm:h-48 w-full overflow-hidden bg-gray-100 flex items-center justify-center">
-                        {/* If you have actual images, uncomment this */}
-                        {/* <img 
-                          src={facility.image} 
-                          alt={facility.name} 
-                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                        /> */}
-                        
-                        {/* Placeholder if no images */}
-                        <div className="text-4xl sm:text-5xl text-gray-300">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-12 h-12 sm:w-16 sm:h-16">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
-                          </svg>
-                        </div>
+                        {facility.image ? (
+                          <img
+                            src={facility.image}
+                            alt={facility.name}
+                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                          />
+                        ) : (
+                          <div className="text-4xl sm:text-5xl text-gray-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-12 h-12 sm:w-16 sm:h-16">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                            </svg>
+                          </div>
+                        )}
                       </div>
                       <div className="p-3 sm:p-4">
                         <h4 className="text-base sm:text-lg font-semibold text-gray-800 mb-1 sm:mb-2">{facility.name}</h4>

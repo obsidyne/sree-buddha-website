@@ -76,6 +76,7 @@ export default function NavbarMobile() {
                 { name: "NSS", link: "/academics/nss", visible: false },
                 { name: "Syllabus", link: "/academics/syllabus", visible: false },
                 { name: "Campus Newsletter", link: "/academics/campus_newsletter", visible: false },
+                { name: "Scholarship", link: "/assets/documents/academics/AICTE_YASHASVI_SCHEME.docx", download: true, visible: false },
             ],
         },
         {
@@ -258,10 +259,24 @@ export default function NavbarMobile() {
                             >
                                 <div className="bg-gray-50 pl-4">
                                     {menu_link.links.map((menu_linkl2, index2) => {
-                                        if (!menu_linkl2.links) {
+                                        if (menu_linkl2.download) {
                                             return (
-                                                <Link 
-                                                    key={index2} 
+                                                <a
+                                                    key={index2}
+                                                    href={menu_linkl2.link}
+                                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    download
+                                                    onClick={() => setSidebarVisible(false)}
+                                                >
+                                                    {menu_linkl2.name}
+                                                </a>
+                                            );
+                                        } else if (!menu_linkl2.links) {
+                                            return (
+                                                <Link
+                                                    key={index2}
                                                     href={menu_linkl2.link}
                                                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                                     onClick={() => setSidebarVisible(false)}
