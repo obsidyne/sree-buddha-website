@@ -33,7 +33,7 @@ export default function LandingPage() {
           muted
           playsInline
           preload="metadata"
-          poster="/assets/images/sree_buddha_college_image1.png"
+          poster="/assets/images/sree_buddha_college_image1_poster.webp"
         >
           <source src="/assets/videos/sree_buddha_final.mp4" type="video/mp4" />
           Your browser does not support the video tag.

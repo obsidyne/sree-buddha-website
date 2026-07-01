@@ -28,15 +28,15 @@ export default function CivilDepartmentFacilities() {
         name: "Survey Laboratory",
         description: "Survey laboratory houses both conventional and modern equipment for practical surveying. The equipment available are LYNX Measuring Chain – 20m, LYNX Measuring Chain – 30m, LYNX Cross staff, LYNX Ranging rod, LYNX Offset rod, Measuring Tape – 30 m, Arrows, LYNX Prismatic Compass with aluminium stand, LYNX Plane Table with all accessories, LYNX Dumpy Level with aluminium tripod and all standard accessories, LYNX Auto Level with aluminium tripod and all standard accessories, LYNX Levelling Staff (4m), LYNX Standard Vernier Theodolite with aluminium tripod and all standard accessories, LYNX Planimeter with box, Total Station (Sokkia CX105), wooden mallet, wooden peg, distance meter and hand held G P S.",
         image: "/assets/images/departments/facilities/civil/survey_lab.jpeg",
-        inCharge: "Mr Pradeep P",
-        staff: "Ms. Manjula Devi S"
+        inCharge: "Dr. Jisa Johnson",
+        staff: "Mr. Renjith C R"
       },
       {
-        name: "Concrete Laboratory",
+        name: "Strength of Materials Lab",
         description: "This lab provides facilities for various tests for cement and concrete which includes test for compressive strength, flexural strength, fineness, and mix design of concrete etc. The main equipment include AIMIL AIL-317E-AN-2 Compression Testing machine (2000 KN), Electrically operated single phase with three load guage of 500 KN, 1000KN, 2000KN, LYNX Sieve Shaker (Gyratory motorized), Test Sieves 20 cm Diameter- 90 microns, LYNX Vicat Needle Apparatus, Le-Chatlier's Mould with 2 glass plate & 1 Lead wt., Le-Chatlier's Flask, Longitudinal Compresometer with dial gauge.",
         image: "/assets/images/departments/facilities/civil/concrete_lab.jpeg",
-        inCharge: "Mr Ashok Mathew",
-        staff: "Mr Renjith C R"
+        inCharge: "Ms. Shobha Elizabeth Thomas",
+        staff: "Mr. Syam Raj S"
       },
       {
         name: "Geo-Technical Engineering Laboratory",
@@ -49,15 +49,15 @@ export default function CivilDepartmentFacilities() {
         name: "Transportation Engineering Laboratory",
         description: "The Transportation Engineering Laboratory is equipped with facilities for testing of Aggregates, Bitumen and Soil. The laboratory is fully equipped for conduct of regular experiments at UG level and consultancy works. Various equipment available in the lab are Abrasion Testing Machine, Ring and Ball Apparatus (motorised), Standard Penetrometer, Ductility Testing Machine, Crushing Value Test Apparatus, Test Sieves 30cm Dia, Thickness Gauge, Length Gauge, Density Basket, CBR Test Apparatus, Impact Value With Counter and Compression Testing Machine.",
         image: "/assets/images/departments/facilities/civil/transportation_lab.jpeg",
-        inCharge: "Ms. Aswathy Lal",
-        staff: "Mr Syam Raj S"
+        inCharge: "Ms. Saritha V Raj",
+        staff: "Mr. Syam Raj S"
       },
       {
         name: "Environmental Engineering Lab",
         description: "The environmental lab serves to acquaint students with the details of water and wastewater analysis for water and wastewater treatment. The lab is well equipped with Flame Photometer, UV- Visible Spectrophotometer (Double beam), BOD Incubator, Laminar Air flow cabinet (Vertical), Auto Clave (Vertical) and COD Digestion Apparatus.",
         image: "/assets/images/departments/facilities/civil/environmental_lab.jpeg",
-        inCharge: "Ms Jency James",
-        staff: "Ms Manjula Devi S"
+        inCharge: "Ms. Aswathy S Kumar",
+        staff: "Ms. Sindhu O"
       },
       {
         name: "Advanced Computational Lab",
@@ -70,8 +70,8 @@ export default function CivilDepartmentFacilities() {
         name: "Civil Engineering Workshop",
         description: "This lab is intended to conduct the practical sessions of the first year B-tech students. Training sessions like setting out of building, area and volume calculation of building and building components, making of brick bonds and basics surveying using levelling instruments are conducted by using this lab facility.",
         image: "/assets/images/departments/facilities/civil/civil_workshop.jpeg",
-        inCharge: "Mr Unnikrishnan S",
-        staff: "Ms Manjula Devi S"
+        inCharge: "Ms. Cinaya Tony",
+        staff: "Mr. Madhusoodanan Nair"
       },
       {
         name: "Structural Dynamics Laboratory (PG)",
@@ -84,8 +84,8 @@ export default function CivilDepartmentFacilities() {
         name: "Structural Engineering Laboratory (PG)",
         description: "The lab mainly facilitates the post graduate students and the research scholars to conduct the experiments related to structural engineering. Some of the facilities available in the lab are Loading Frame (100 T) 5m X 3.1m, Ultrasonic Pulse Velocitymeter, Data Acquisition System. DT-800, DATA TAKER, AIM 388 Concrete Test Hammer, Rebar Locator, Accelerated Curing Tank, Vicat Apparatus, AIM-400.",
         image: "/assets/images/departments/facilities/civil/structural_engineering_lab.jpeg",
-        inCharge: "Ms Indhu V S",
-        staff: "Mr Syam Raj S"
+        inCharge: "Dr. S Sivasankar",
+        staff: "Mr. Madhusoodanan Nair"
       }
     ],
     other: [
