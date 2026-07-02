@@ -139,9 +139,9 @@ export default function ComputerScienceDepartmentHOD() {
     education: {
       icon: <EducationIcon />,
       content: [
-        '•	Ph.D. in Electronics and Computer Engineering, Bharathiar University. ',
-        '•	M.Tech. in Computer Science and Technology, Indian Institute of Technology (IIT), Roorkee. ',
-        '•	B.Sc. (Engineering), University of Kerala'
+        'Ph.D. in Electronics and Computer Engineering, Bharathiar University. ',
+        'M.Tech. in Computer Science and Technology, Indian Institute of Technology (IIT), Roorkee. ',
+        'B.Sc. (Engineering), University of Kerala'
 
       ]
     },
