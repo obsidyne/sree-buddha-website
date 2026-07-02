@@ -126,44 +126,45 @@ export default function ComputerScienceDepartmentHOD() {
   }, []);
 
   const profileData = {
-    name: 'Dr. S.V. Annlin Jeba',
-    title: 'HOD - CSE Department',
-    imagePath: '/assets/images/departments/hod.jpg',
-    email: 'hod.cse@sbce.ac.in',
-    phone: '+91 9487274466',
-    linkedinProfile: 'Dr. S.V. Annlin Jeba',
-    linkedinUrl: 'https://www.linkedin.com/in/dr-sv-annlin-jeba'
+    name: 'Dr. S. Suresh Babu',
+    title: 'Dean / HOD - CSE Department',
+    imagePath: '/assets/images/departments/hod_cse.jpeg',
+    email: 'drssb@sbcemail.in',
+    phone: '+91 94472 66626',
+    linkedinProfile: 'Dr. S. Suresh Babu',
+    linkedinUrl: ''
   };
 
   const tabData = {
     education: {
       icon: <EducationIcon />,
       content: [
-        'Ph.D. in Information and Communication Engineering - Anna University (2014)',
-        'M.E. in Computer Science and Engineering - Anna University (2004)',
-        'B.E. in Computer Science and Engineering - Manonmaniam Sundaranar University (2000)'
+        '•	Ph.D. in Electronics and Computer Engineering, Bharathiar University. ',
+        '•	M.Tech. in Computer Science and Technology, Indian Institute of Technology (IIT), Roorkee. ',
+        '•	B.Sc. (Engineering), University of Kerala'
+
       ]
     },
-    experience: {
-      icon: <ExperienceIcon />,
-      timeline: [
-        { period: '2018 - Present', role: 'Faculty, Department of CSE, Sree Buddha College of Engineering' },
-        { period: '2005 - 2017', role: 'Associate Professor, CSE Department, C.S.I. Institute of Technology' },
-        { period: '2004 - 2005', role: 'Assistant Professor, N.I. College of Engineering' },
-        { period: '2000 - 2004', role: 'Lecturer, Sun College of Engineering and Technology' }
-      ]
-    },
-    research: {
-      icon: <ResearchIcon />,
-      achievements: [
-        'Published 10 papers in International Journals',
-        'Presented more than 15 papers in National/International conferences',
-        'Research Supervisor under Anna University Chennai',
-        'Specialization in Privacy issues in Wireless Sensor Networks',
-        'Expert in Network trust and security in wireless communication'
-      ]
-    }
-  };
+experience: {
+    icon: <ExperienceIcon />,
+    timeline: [
+      { period: '2020 - Present', role: 'Dean, Professor, and Head of the Department of Computer Science and Engineering' },
+      { period: '2015 - 2020', role: 'Principal, Sree Buddha College of Engineering' },
+      { period: '2006 - 2015', role: 'Professor, TKM College of Engineering' },
+      { period: '1983 - 2005', role: 'Faculty Member, TKM College of Engineering' }
+    ]
+  },
+  research: {
+    icon: <ResearchIcon />,
+    achievements: [
+      'Supervised five Ph.D. scholars',
+      'Published more than 30 papers in International Journals',
+      'Research Supervisor under APJ Abdul Kalam Technological University (KTU)',
+      'Published two books and filed two patents',
+      'Research interests include: Artificial Intelligence (AI) in Healthcare, and Prompt Engineering'
+    ]
+  }
+};
 
   return (
     
