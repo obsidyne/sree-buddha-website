@@ -134,6 +134,7 @@ export default function ComputerScienceDepartmentHOD() {
     linkedinProfile: 'Dr. S. Suresh Babu',
     linkedinUrl: ''
   };
+  
 
   const tabData = {
     education: {
