@@ -189,6 +189,23 @@ export default function AboutAutonomy() {
           </div>
         </section>
         
+        {/* Examination & Evaluation Block Section */}
+        <section className={styles.naacSection}>
+          <div className={styles.container}>
+            <div className={styles.naacContent}>
+              <div className={styles.naacImage}>
+                <img src="/assets/images/autonomous/examination-evaluation-block.jpeg" alt="Examination & Evaluation Block - Office of the Controller of Examinations" />
+              </div>
+              <div className={styles.naacText}>
+                <h2>Examination & Evaluation Block</h2>
+                <p>
+                  As part of the infrastructure supporting our autonomous status, the college has a dedicated Examination & Evaluation Block that houses the Office of the Controller of Examinations. This facility manages all examination scheduling, conduct, and evaluation processes, ensuring the smooth, transparent, and confidential administration of assessments under our autonomous framework.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Quote Section */}
         <section className={styles.quoteSection}>
           <div className={styles.container}>
