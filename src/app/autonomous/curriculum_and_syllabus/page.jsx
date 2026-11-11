@@ -173,6 +173,33 @@ export default function Page() {
       icon: "🧬",
       description: "Updated 2024 curriculum for Biotechnology & Biochemical Engineering.",
       keywords: ["bt", "bce", "biotechnology", "biochemical", "bt bce", "bt&bce"]
+    },
+    {
+      id: "ece",
+      path: "/syllabus/2024_curriculum/ECE.pdf",
+      title: "Electronics & Communication Engineering",
+      code: "ECE",
+      icon: "📡",
+      description: "Updated 2024 curriculum for Electronics & Communication Engineering.",
+      keywords: ["ece", "electronics", "communication", "electronics and communication"]
+    },
+    {
+      id: "me",
+      path: "/syllabus/2024_curriculum/ME.pdf",
+      title: "Mechanical Engineering",
+      code: "ME",
+      icon: "⚙️",
+      description: "Updated 2024 curriculum for Mechanical Engineering.",
+      keywords: ["me", "mechanical", "mechanical engineering"]
+    },
+    {
+      id: "ft",
+      path: "/syllabus/2024_curriculum/FT.pdf",
+      title: "Food Technology",
+      code: "FT",
+      icon: "🍲",
+      description: "Updated 2024 curriculum for Food Technology.",
+      keywords: ["ft", "food technology", "food"]
     }
   ];
 
@@ -389,7 +416,7 @@ export default function Page() {
                       <p className="text-gray-600 mb-6 text-sm">{document.description}</p>
                       <div className="mt-4">
                         <DownloadButton
-                          title="Download Syllabus"
+                          title={selectedYear === '2024' ? 'Download Curriculum' : 'Download Syllabus'}
                           link={document.path}
                           className="w-full px-6 py-3 bg-yellow-900 text-white font-medium rounded-md hover:bg-yellow-800 transition-colors flex items-center justify-center text-sm"
                         />
